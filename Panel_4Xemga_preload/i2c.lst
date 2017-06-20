@@ -1,0 +1,4378 @@
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 1
+
+
+   1               		.file	"i2c.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.section	.debug_abbrev,"",@progbits
+   9               	.Ldebug_abbrev0:
+  10               		.section	.debug_info,"",@progbits
+  11               	.Ldebug_info0:
+  12               		.section	.debug_line,"",@progbits
+  13               	.Ldebug_line0:
+  14               		.text
+  15               	.Ltext0:
+  16               	.global	i2cSetBitrate
+  17               		.type	i2cSetBitrate, @function
+  18               	i2cSetBitrate:
+  19               	.LFB3:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24               	.LM2:
+  25 0000 2091 B900 		lds r18,185
+  26 0004 2E7F      		andi r18,lo8(-2)
+  27 0006 2093 B900 		sts 185,r18
+  28               	.LM3:
+  29 000a 2091 B900 		lds r18,185
+  30 000e 2D7F      		andi r18,lo8(-3)
+  31 0010 2093 B900 		sts 185,r18
+  32               	.LM4:
+  33 0014 9C01      		movw r18,r24
+  34 0016 40E0      		ldi r20,lo8(0)
+  35 0018 50E0      		ldi r21,hi8(0)
+  36               	.LVL1:
+  37 001a 60E2      		ldi r22,lo8(20000)
+  38 001c 7EE4      		ldi r23,hi8(20000)
+  39 001e 80E0      		ldi r24,hlo8(20000)
+  40 0020 90E0      		ldi r25,hhi8(20000)
+  41 0022 0E94 0000 		call __divmodsi4
+  42 0026 2051      		subi r18,lo8(-(-16))
+  43 0028 3040      		sbci r19,hi8(-(-16))
+  44 002a 4040      		sbci r20,hlo8(-(-16))
+  45 002c 5040      		sbci r21,hhi8(-(-16))
+  46 002e CA01      		movw r24,r20
+  47 0030 B901      		movw r22,r18
+  48 0032 22E0      		ldi r18,lo8(2)
+  49 0034 30E0      		ldi r19,hi8(2)
+  50 0036 40E0      		ldi r20,hlo8(2)
+  51 0038 50E0      		ldi r21,hhi8(2)
+  52 003a 0E94 0000 		call __divmodsi4
+  53               	.LM5:
+  54 003e 2A30      		cpi r18,lo8(10)
+  55               	.LVL2:
+  56 0040 00F4      		brsh .L2
+  57 0042 2AE0      		ldi r18,lo8(10)
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 2
+
+
+  58               	.L2:
+  59               	.LM6:
+  60 0044 2093 B800 		sts 184,r18
+  61               	/* epilogue start */
+  62               	.LM7:
+  63 0048 0895      		ret
+  64               	.LFE3:
+  65               		.size	i2cSetBitrate, .-i2cSetBitrate
+  66               	.global	i2cInit
+  67               		.type	i2cInit, @function
+  68               	i2cInit:
+  69               	.LFB2:
+  70               	.LM8:
+  71               	/* prologue: function */
+  72               	/* frame size = 0 */
+  73               	.LM9:
+  74 004a 81E0      		ldi r24,lo8(1)
+  75 004c 8093 0000 		sts GenCal_Flag,r24
+  76               	.LM10:
+  77 0050 1092 0000 		sts (i2cSlaveReceive)+1,__zero_reg__
+  78 0054 1092 0000 		sts i2cSlaveReceive,__zero_reg__
+  79               	.LM11:
+  80 0058 1092 0000 		sts (i2cSlaveTransmit)+1,__zero_reg__
+  81 005c 1092 0000 		sts i2cSlaveTransmit,__zero_reg__
+  82               	.LM12:
+  83 0060 84E6      		ldi r24,lo8(100)
+  84 0062 90E0      		ldi r25,hi8(100)
+  85 0064 0E94 0000 		call i2cSetBitrate
+  86               	.LM13:
+  87 0068 ECEB      		ldi r30,lo8(188)
+  88 006a F0E0      		ldi r31,hi8(188)
+  89 006c 8081      		ld r24,Z
+  90 006e 8460      		ori r24,lo8(4)
+  91 0070 8083      		st Z,r24
+  92               	.LM14:
+  93 0072 1092 0000 		sts I2cState,__zero_reg__
+  94               	.LM15:
+  95 0076 8081      		ld r24,Z
+  96 0078 8160      		ori r24,lo8(1)
+  97 007a 8083      		st Z,r24
+  98               	.LM16:
+  99 007c 8081      		ld r24,Z
+ 100 007e 8064      		ori r24,lo8(64)
+ 101 0080 8083      		st Z,r24
+ 102               	.LM17:
+ 103               	/* #APP */
+ 104               	 ;  115 "i2c.c" 1
+ 105 0082 7894      		sei
+ 106               	 ;  0 "" 2
+ 107               	/* epilogue start */
+ 108               	.LM18:
+ 109               	/* #NOAPP */
+ 110 0084 0895      		ret
+ 111               	.LFE2:
+ 112               		.size	i2cInit, .-i2cInit
+ 113               	.global	i2cSetLocalDeviceAddr
+ 114               		.type	i2cSetLocalDeviceAddr, @function
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 3
+
+
+ 115               	i2cSetLocalDeviceAddr:
+ 116               	.LFB4:
+ 117               	.LM19:
+ 118               	.LVL3:
+ 119               	/* prologue: function */
+ 120               	/* frame size = 0 */
+ 121               	.LM20:
+ 122 0086 90E0      		ldi r25,lo8(0)
+ 123 0088 6111      		cpse r22,__zero_reg__
+ 124 008a 91E0      		ldi r25,lo8(1)
+ 125               	.L7:
+ 126 008c 8E7F      		andi r24,lo8(-2)
+ 127               	.LVL4:
+ 128 008e 982B      		or r25,r24
+ 129 0090 9093 BA00 		sts 186,r25
+ 130               	/* epilogue start */
+ 131               	.LM21:
+ 132 0094 0895      		ret
+ 133               	.LFE4:
+ 134               		.size	i2cSetLocalDeviceAddr, .-i2cSetLocalDeviceAddr
+ 135               	.global	i2cSetSlaveReceiveHandler
+ 136               		.type	i2cSetSlaveReceiveHandler, @function
+ 137               	i2cSetSlaveReceiveHandler:
+ 138               	.LFB5:
+ 139               	.LM22:
+ 140               	.LVL5:
+ 141               	/* prologue: function */
+ 142               	/* frame size = 0 */
+ 143               	.LM23:
+ 144 0096 9093 0000 		sts (i2cSlaveReceive)+1,r25
+ 145 009a 8093 0000 		sts i2cSlaveReceive,r24
+ 146               	/* epilogue start */
+ 147               	.LM24:
+ 148 009e 0895      		ret
+ 149               	.LFE5:
+ 150               		.size	i2cSetSlaveReceiveHandler, .-i2cSetSlaveReceiveHandler
+ 151               	.global	i2cSetSlaveTransmitHandler
+ 152               		.type	i2cSetSlaveTransmitHandler, @function
+ 153               	i2cSetSlaveTransmitHandler:
+ 154               	.LFB6:
+ 155               	.LM25:
+ 156               	.LVL6:
+ 157               	/* prologue: function */
+ 158               	/* frame size = 0 */
+ 159               	.LM26:
+ 160 00a0 9093 0000 		sts (i2cSlaveTransmit)+1,r25
+ 161 00a4 8093 0000 		sts i2cSlaveTransmit,r24
+ 162               	/* epilogue start */
+ 163               	.LM27:
+ 164 00a8 0895      		ret
+ 165               	.LFE6:
+ 166               		.size	i2cSetSlaveTransmitHandler, .-i2cSetSlaveTransmitHandler
+ 167               	.global	i2cSendStart
+ 168               		.type	i2cSendStart, @function
+ 169               	i2cSendStart:
+ 170               	.LFB7:
+ 171               	.LM28:
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 4
+
+
+ 172               	/* prologue: function */
+ 173               	/* frame size = 0 */
+ 174               	.LM29:
+ 175 00aa ECEB      		ldi r30,lo8(188)
+ 176 00ac F0E0      		ldi r31,hi8(188)
+ 177 00ae 8081      		ld r24,Z
+ 178 00b0 8F70      		andi r24,lo8(15)
+ 179 00b2 806A      		ori r24,lo8(-96)
+ 180 00b4 8083      		st Z,r24
+ 181               	/* epilogue start */
+ 182               	.LM30:
+ 183 00b6 0895      		ret
+ 184               	.LFE7:
+ 185               		.size	i2cSendStart, .-i2cSendStart
+ 186               	.global	i2cSendStop
+ 187               		.type	i2cSendStop, @function
+ 188               	i2cSendStop:
+ 189               	.LFB8:
+ 190               	.LM31:
+ 191               	/* prologue: function */
+ 192               	/* frame size = 0 */
+ 193               	.LM32:
+ 194 00b8 ECEB      		ldi r30,lo8(188)
+ 195 00ba F0E0      		ldi r31,hi8(188)
+ 196 00bc 8081      		ld r24,Z
+ 197 00be 8F70      		andi r24,lo8(15)
+ 198 00c0 806D      		ori r24,lo8(-48)
+ 199 00c2 8083      		st Z,r24
+ 200               	/* epilogue start */
+ 201               	.LM33:
+ 202 00c4 0895      		ret
+ 203               	.LFE8:
+ 204               		.size	i2cSendStop, .-i2cSendStop
+ 205               	.global	i2cWaitForComplete
+ 206               		.type	i2cWaitForComplete, @function
+ 207               	i2cWaitForComplete:
+ 208               	.LFB9:
+ 209               	.LM34:
+ 210               	/* prologue: function */
+ 211               	/* frame size = 0 */
+ 212               	.L18:
+ 213               	.LM35:
+ 214 00c6 8091 BC00 		lds r24,188
+ 215 00ca 87FF      		sbrs r24,7
+ 216 00cc 00C0      		rjmp .L18
+ 217               	/* epilogue start */
+ 218               	.LM36:
+ 219 00ce 0895      		ret
+ 220               	.LFE9:
+ 221               		.size	i2cWaitForComplete, .-i2cWaitForComplete
+ 222               	.global	i2cSendByte
+ 223               		.type	i2cSendByte, @function
+ 224               	i2cSendByte:
+ 225               	.LFB10:
+ 226               	.LM37:
+ 227               	.LVL7:
+ 228               	/* prologue: function */
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 5
+
+
+ 229               	/* frame size = 0 */
+ 230               	.LM38:
+ 231 00d0 8093 BB00 		sts 187,r24
+ 232               	.LM39:
+ 233 00d4 ECEB      		ldi r30,lo8(188)
+ 234 00d6 F0E0      		ldi r31,hi8(188)
+ 235 00d8 8081      		ld r24,Z
+ 236               	.LVL8:
+ 237 00da 8F70      		andi r24,lo8(15)
+ 238 00dc 8068      		ori r24,lo8(-128)
+ 239 00de 8083      		st Z,r24
+ 240               	/* epilogue start */
+ 241               	.LM40:
+ 242 00e0 0895      		ret
+ 243               	.LFE10:
+ 244               		.size	i2cSendByte, .-i2cSendByte
+ 245               	.global	i2cReceiveByte
+ 246               		.type	i2cReceiveByte, @function
+ 247               	i2cReceiveByte:
+ 248               	.LFB11:
+ 249               	.LM41:
+ 250               	.LVL9:
+ 251               	/* prologue: function */
+ 252               	/* frame size = 0 */
+ 253               	.LM42:
+ 254 00e2 8823      		tst r24
+ 255 00e4 01F0      		breq .L24
+ 256               	.LM43:
+ 257 00e6 8091 BC00 		lds r24,188
+ 258               	.LVL10:
+ 259 00ea 8F70      		andi r24,lo8(15)
+ 260 00ec 806C      		ori r24,lo8(-64)
+ 261 00ee 00C0      		rjmp .L27
+ 262               	.LVL11:
+ 263               	.L24:
+ 264               	.LM44:
+ 265 00f0 8091 BC00 		lds r24,188
+ 266               	.LVL12:
+ 267 00f4 8F70      		andi r24,lo8(15)
+ 268 00f6 8068      		ori r24,lo8(-128)
+ 269               	.L27:
+ 270 00f8 8093 BC00 		sts 188,r24
+ 271 00fc 0895      		ret
+ 272               	.LFE11:
+ 273               		.size	i2cReceiveByte, .-i2cReceiveByte
+ 274               	.global	i2cGetReceivedByte
+ 275               		.type	i2cGetReceivedByte, @function
+ 276               	i2cGetReceivedByte:
+ 277               	.LFB12:
+ 278               	.LM45:
+ 279               	/* prologue: function */
+ 280               	/* frame size = 0 */
+ 281               	.LM46:
+ 282 00fe 8091 BB00 		lds r24,187
+ 283               	/* epilogue start */
+ 284               	.LM47:
+ 285 0102 0895      		ret
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 6
+
+
+ 286               	.LFE12:
+ 287               		.size	i2cGetReceivedByte, .-i2cGetReceivedByte
+ 288               	.global	i2cGetStatus
+ 289               		.type	i2cGetStatus, @function
+ 290               	i2cGetStatus:
+ 291               	.LFB13:
+ 292               	.LM48:
+ 293               	/* prologue: function */
+ 294               	/* frame size = 0 */
+ 295               	.LM49:
+ 296 0104 8091 B900 		lds r24,185
+ 297               	/* epilogue start */
+ 298               	.LM50:
+ 299 0108 0895      		ret
+ 300               	.LFE13:
+ 301               		.size	i2cGetStatus, .-i2cGetStatus
+ 302               	.global	i2cMasterSend
+ 303               		.type	i2cMasterSend, @function
+ 304               	i2cMasterSend:
+ 305               	.LFB14:
+ 306               	.LM51:
+ 307               	.LVL13:
+ 308               	/* prologue: function */
+ 309               	/* frame size = 0 */
+ 310 010a 982F      		mov r25,r24
+ 311               	.LVL14:
+ 312               	.L33:
+ 313               	.LM52:
+ 314 010c 8091 0000 		lds r24,I2cState
+ 315 0110 8823      		tst r24
+ 316 0112 01F4      		brne .L33
+ 317               	.LM53:
+ 318 0114 82E0      		ldi r24,lo8(2)
+ 319 0116 8093 0000 		sts I2cState,r24
+ 320               	.LM54:
+ 321 011a 9E7F      		andi r25,lo8(-2)
+ 322 011c 9093 0000 		sts I2cDeviceAddrRW,r25
+ 323 0120 A0E0      		ldi r26,lo8(I2cSendData)
+ 324 0122 B0E0      		ldi r27,hi8(I2cSendData)
+ 325 0124 FA01      		movw r30,r20
+ 326 0126 00C0      		rjmp .L34
+ 327               	.LVL15:
+ 328               	.L35:
+ 329               	.LM55:
+ 330 0128 8191      		ld r24,Z+
+ 331 012a 8D93      		st X+,r24
+ 332               	.LVL16:
+ 333               	.L34:
+ 334               	.LM56:
+ 335 012c 8E2F      		mov r24,r30
+ 336               	.LVL17:
+ 337 012e 841B      		sub r24,r20
+ 338 0130 8617      		cp r24,r22
+ 339 0132 00F0      		brlo .L35
+ 340               	.LM57:
+ 341 0134 1092 0000 		sts I2cSendDataIndex,__zero_reg__
+ 342               	.LM58:
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 7
+
+
+ 343 0138 6093 0000 		sts I2cSendDataLength,r22
+ 344               	.LBB46:
+ 345               	.LBB47:
+ 346               	.LM59:
+ 347 013c 8091 BC00 		lds r24,188
+ 348 0140 8F70      		andi r24,lo8(15)
+ 349 0142 806A      		ori r24,lo8(-96)
+ 350 0144 8093 BC00 		sts 188,r24
+ 351               	/* epilogue start */
+ 352               	.LBE47:
+ 353               	.LBE46:
+ 354               	.LM60:
+ 355 0148 0895      		ret
+ 356               	.LFE14:
+ 357               		.size	i2cMasterSend, .-i2cMasterSend
+ 358               	.global	i2cMasterReceive
+ 359               		.type	i2cMasterReceive, @function
+ 360               	i2cMasterReceive:
+ 361               	.LFB15:
+ 362               	.LM61:
+ 363               	.LVL18:
+ 364               	/* prologue: function */
+ 365               	/* frame size = 0 */
+ 366 014a 982F      		mov r25,r24
+ 367               	.LVL19:
+ 368               	.L39:
+ 369               	.LM62:
+ 370 014c 8091 0000 		lds r24,I2cState
+ 371 0150 8823      		tst r24
+ 372 0152 01F4      		brne .L39
+ 373               	.LM63:
+ 374 0154 83E0      		ldi r24,lo8(3)
+ 375 0156 8093 0000 		sts I2cState,r24
+ 376               	.LM64:
+ 377 015a 9160      		ori r25,lo8(1)
+ 378 015c 9093 0000 		sts I2cDeviceAddrRW,r25
+ 379               	.LM65:
+ 380 0160 1092 0000 		sts I2cReceiveDataIndex,__zero_reg__
+ 381               	.LM66:
+ 382 0164 6093 0000 		sts I2cReceiveDataLength,r22
+ 383               	.LBB48:
+ 384               	.LBB49:
+ 385               	.LM67:
+ 386 0168 8091 BC00 		lds r24,188
+ 387 016c 8F70      		andi r24,lo8(15)
+ 388 016e 806A      		ori r24,lo8(-96)
+ 389 0170 8093 BC00 		sts 188,r24
+ 390               	.L40:
+ 391               	.LBE49:
+ 392               	.LBE48:
+ 393               	.LM68:
+ 394 0174 8091 0000 		lds r24,I2cState
+ 395 0178 8823      		tst r24
+ 396 017a 01F4      		brne .L40
+ 397 017c A0E0      		ldi r26,lo8(I2cReceiveData)
+ 398 017e B0E0      		ldi r27,hi8(I2cReceiveData)
+ 399 0180 FA01      		movw r30,r20
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 8
+
+
+ 400 0182 00C0      		rjmp .L41
+ 401               	.LVL20:
+ 402               	.L42:
+ 403               	.LM69:
+ 404 0184 8D91      		ld r24,X+
+ 405 0186 8193      		st Z+,r24
+ 406               	.LVL21:
+ 407               	.L41:
+ 408               	.LM70:
+ 409 0188 8E2F      		mov r24,r30
+ 410               	.LVL22:
+ 411 018a 841B      		sub r24,r20
+ 412 018c 8617      		cp r24,r22
+ 413 018e 00F0      		brlo .L42
+ 414               	/* epilogue start */
+ 415               	.LM71:
+ 416 0190 0895      		ret
+ 417               	.LFE15:
+ 418               		.size	i2cMasterReceive, .-i2cMasterReceive
+ 419               	.global	i2cMasterSendNI
+ 420               		.type	i2cMasterSendNI, @function
+ 421               	i2cMasterSendNI:
+ 422               	.LFB16:
+ 423               	.LM72:
+ 424               	.LVL23:
+ 425               	/* prologue: function */
+ 426               	/* frame size = 0 */
+ 427 0192 982F      		mov r25,r24
+ 428 0194 FA01      		movw r30,r20
+ 429               	.LM73:
+ 430 0196 8091 BC00 		lds r24,188
+ 431               	.LVL24:
+ 432 019a 8E7F      		andi r24,lo8(-2)
+ 433 019c 8093 BC00 		sts 188,r24
+ 434               	.LBB50:
+ 435               	.LBB51:
+ 436               	.LM74:
+ 437 01a0 8091 BC00 		lds r24,188
+ 438 01a4 8F70      		andi r24,lo8(15)
+ 439 01a6 806A      		ori r24,lo8(-96)
+ 440 01a8 8093 BC00 		sts 188,r24
+ 441               	.LVL25:
+ 442               	.L47:
+ 443               	.LBE51:
+ 444               	.LBE50:
+ 445               	.LBB52:
+ 446               	.LBB53:
+ 447               	.LM75:
+ 448 01ac 8091 BC00 		lds r24,188
+ 449 01b0 87FF      		sbrs r24,7
+ 450 01b2 00C0      		rjmp .L47
+ 451               	.LBE53:
+ 452               	.LBE52:
+ 453               	.LM76:
+ 454 01b4 9E7F      		andi r25,lo8(-2)
+ 455               	.LBB54:
+ 456               	.LBB55:
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 9
+
+
+ 457               	.LM77:
+ 458 01b6 9093 BB00 		sts 187,r25
+ 459               	.LM78:
+ 460 01ba 8091 BC00 		lds r24,188
+ 461 01be 8F70      		andi r24,lo8(15)
+ 462 01c0 8068      		ori r24,lo8(-128)
+ 463 01c2 8093 BC00 		sts 188,r24
+ 464               	.L48:
+ 465               	.LBE55:
+ 466               	.LBE54:
+ 467               	.LBB56:
+ 468               	.LBB57:
+ 469               	.LM79:
+ 470 01c6 8091 BC00 		lds r24,188
+ 471 01ca 87FF      		sbrs r24,7
+ 472 01cc 00C0      		rjmp .L48
+ 473               	.LBE57:
+ 474               	.LBE56:
+ 475               	.LM80:
+ 476 01ce 8091 B900 		lds r24,185
+ 477 01d2 8831      		cpi r24,lo8(24)
+ 478 01d4 01F0      		breq .L59
+ 479 01d6 91E0      		ldi r25,lo8(1)
+ 480               	.LVL26:
+ 481 01d8 00C0      		rjmp .L50
+ 482               	.LVL27:
+ 483               	.L52:
+ 484               	.LM81:
+ 485 01da 8081      		ld r24,Z
+ 486               	.LBB58:
+ 487               	.LBB59:
+ 488               	.LM82:
+ 489 01dc 8093 BB00 		sts 187,r24
+ 490               	.LM83:
+ 491 01e0 8091 BC00 		lds r24,188
+ 492 01e4 8F70      		andi r24,lo8(15)
+ 493 01e6 8068      		ori r24,lo8(-128)
+ 494 01e8 8093 BC00 		sts 188,r24
+ 495               	.L51:
+ 496               	.LBE59:
+ 497               	.LBE58:
+ 498               	.LBB60:
+ 499               	.LBB61:
+ 500               	.LM84:
+ 501 01ec 8091 BC00 		lds r24,188
+ 502 01f0 87FF      		sbrs r24,7
+ 503 01f2 00C0      		rjmp .L51
+ 504               	.LBE61:
+ 505               	.LBE60:
+ 506               	.LM85:
+ 507 01f4 3196      		adiw r30,1
+ 508               	.LM86:
+ 509 01f6 6150      		subi r22,lo8(-(-1))
+ 510               	.LVL28:
+ 511               	.L59:
+ 512               	.LM87:
+ 513 01f8 6623      		tst r22
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 10
+
+
+ 514 01fa 01F4      		brne .L52
+ 515 01fc 90E0      		ldi r25,lo8(0)
+ 516               	.LVL29:
+ 517               	.L50:
+ 518               	.LBB62:
+ 519               	.LBB63:
+ 520               	.LM88:
+ 521 01fe 8091 BC00 		lds r24,188
+ 522 0202 8F70      		andi r24,lo8(15)
+ 523 0204 806D      		ori r24,lo8(-48)
+ 524 0206 8093 BC00 		sts 188,r24
+ 525               	.L53:
+ 526               	.LBE63:
+ 527               	.LBE62:
+ 528               	.LM89:
+ 529 020a 8091 BC00 		lds r24,188
+ 530 020e 84FF      		sbrs r24,4
+ 531 0210 00C0      		rjmp .L53
+ 532               	.LM90:
+ 533 0212 8091 BC00 		lds r24,188
+ 534 0216 8160      		ori r24,lo8(1)
+ 535 0218 8093 BC00 		sts 188,r24
+ 536               	.LM91:
+ 537 021c 892F      		mov r24,r25
+ 538               	/* epilogue start */
+ 539 021e 0895      		ret
+ 540               	.LFE16:
+ 541               		.size	i2cMasterSendNI, .-i2cMasterSendNI
+ 542               	.global	i2cMasterReceiveNI
+ 543               		.type	i2cMasterReceiveNI, @function
+ 544               	i2cMasterReceiveNI:
+ 545               	.LFB17:
+ 546               	.LM92:
+ 547               	.LVL30:
+ 548 0220 1F93      		push r17
+ 549 0222 CF93      		push r28
+ 550 0224 DF93      		push r29
+ 551               	/* prologue: function */
+ 552               	/* frame size = 0 */
+ 553 0226 982F      		mov r25,r24
+ 554 0228 162F      		mov r17,r22
+ 555 022a EA01      		movw r28,r20
+ 556               	.LM93:
+ 557 022c 8091 BC00 		lds r24,188
+ 558               	.LVL31:
+ 559 0230 8E7F      		andi r24,lo8(-2)
+ 560 0232 8093 BC00 		sts 188,r24
+ 561               	.LBB64:
+ 562               	.LBB65:
+ 563               	.LM94:
+ 564 0236 8091 BC00 		lds r24,188
+ 565 023a 8F70      		andi r24,lo8(15)
+ 566 023c 806A      		ori r24,lo8(-96)
+ 567 023e 8093 BC00 		sts 188,r24
+ 568               	.LVL32:
+ 569               	.L61:
+ 570               	.LBE65:
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 11
+
+
+ 571               	.LBE64:
+ 572               	.LBB66:
+ 573               	.LBB67:
+ 574               	.LM95:
+ 575 0242 8091 BC00 		lds r24,188
+ 576 0246 87FF      		sbrs r24,7
+ 577 0248 00C0      		rjmp .L61
+ 578               	.LBE67:
+ 579               	.LBE66:
+ 580               	.LM96:
+ 581 024a 9160      		ori r25,lo8(1)
+ 582               	.LBB68:
+ 583               	.LBB69:
+ 584               	.LM97:
+ 585 024c 9093 BB00 		sts 187,r25
+ 586               	.LM98:
+ 587 0250 8091 BC00 		lds r24,188
+ 588 0254 8F70      		andi r24,lo8(15)
+ 589 0256 8068      		ori r24,lo8(-128)
+ 590 0258 8093 BC00 		sts 188,r24
+ 591               	.L62:
+ 592               	.LBE69:
+ 593               	.LBE68:
+ 594               	.LBB70:
+ 595               	.LBB71:
+ 596               	.LM99:
+ 597 025c 8091 BC00 		lds r24,188
+ 598 0260 87FF      		sbrs r24,7
+ 599 0262 00C0      		rjmp .L62
+ 600               	.LBE71:
+ 601               	.LBE70:
+ 602               	.LM100:
+ 603 0264 8091 B900 		lds r24,185
+ 604 0268 8034      		cpi r24,lo8(64)
+ 605 026a 01F0      		breq .L73
+ 606 026c 91E0      		ldi r25,lo8(1)
+ 607               	.LVL33:
+ 608 026e 00C0      		rjmp .L64
+ 609               	.LVL34:
+ 610               	.L66:
+ 611               	.LM101:
+ 612 0270 81E0      		ldi r24,lo8(1)
+ 613 0272 0E94 0000 		call i2cReceiveByte
+ 614               	.LVL35:
+ 615               	.L65:
+ 616               	.LBB72:
+ 617               	.LBB73:
+ 618               	.LM102:
+ 619 0276 8091 BC00 		lds r24,188
+ 620 027a 87FF      		sbrs r24,7
+ 621 027c 00C0      		rjmp .L65
+ 622               	.LBE73:
+ 623               	.LBE72:
+ 624               	.LBB74:
+ 625               	.LBB75:
+ 626               	.LM103:
+ 627 027e 8091 BB00 		lds r24,187
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 12
+
+
+ 628               	.LBE75:
+ 629               	.LBE74:
+ 630               	.LM104:
+ 631 0282 8993      		st Y+,r24
+ 632               	.LM105:
+ 633 0284 1150      		subi r17,lo8(-(-1))
+ 634               	.LVL36:
+ 635               	.L73:
+ 636               	.LM106:
+ 637 0286 1230      		cpi r17,lo8(2)
+ 638 0288 00F4      		brsh .L66
+ 639               	.LM107:
+ 640 028a 80E0      		ldi r24,lo8(0)
+ 641 028c 0E94 0000 		call i2cReceiveByte
+ 642               	.LVL37:
+ 643               	.L67:
+ 644               	.LBB76:
+ 645               	.LBB77:
+ 646               	.LM108:
+ 647 0290 8091 BC00 		lds r24,188
+ 648 0294 87FF      		sbrs r24,7
+ 649 0296 00C0      		rjmp .L67
+ 650               	.LBE77:
+ 651               	.LBE76:
+ 652               	.LBB78:
+ 653               	.LBB79:
+ 654               	.LM109:
+ 655 0298 8091 BB00 		lds r24,187
+ 656               	.LBE79:
+ 657               	.LBE78:
+ 658               	.LM110:
+ 659 029c 8883      		st Y,r24
+ 660 029e 90E0      		ldi r25,lo8(0)
+ 661               	.LVL38:
+ 662               	.L64:
+ 663               	.LBB80:
+ 664               	.LBB81:
+ 665               	.LM111:
+ 666 02a0 8091 BC00 		lds r24,188
+ 667 02a4 8F70      		andi r24,lo8(15)
+ 668 02a6 806D      		ori r24,lo8(-48)
+ 669 02a8 8093 BC00 		sts 188,r24
+ 670               	.LBE81:
+ 671               	.LBE80:
+ 672               	.LM112:
+ 673 02ac 8091 BC00 		lds r24,188
+ 674 02b0 8160      		ori r24,lo8(1)
+ 675 02b2 8093 BC00 		sts 188,r24
+ 676               	.LM113:
+ 677 02b6 892F      		mov r24,r25
+ 678               	/* epilogue start */
+ 679 02b8 DF91      		pop r29
+ 680 02ba CF91      		pop r28
+ 681               	.LVL39:
+ 682 02bc 1F91      		pop r17
+ 683               	.LVL40:
+ 684 02be 0895      		ret
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 13
+
+
+ 685               	.LFE17:
+ 686               		.size	i2cMasterReceiveNI, .-i2cMasterReceiveNI
+ 687               	.global	__vector_24
+ 688               		.type	__vector_24, @function
+ 689               	__vector_24:
+ 690               	.LFB18:
+ 691               	.LM114:
+ 692 02c0 1F92      		push __zero_reg__
+ 693 02c2 0F92      		push r0
+ 694 02c4 0FB6      		in r0,__SREG__
+ 695 02c6 0F92      		push r0
+ 696 02c8 1124      		clr __zero_reg__
+ 697 02ca 2F93      		push r18
+ 698 02cc 3F93      		push r19
+ 699 02ce 4F93      		push r20
+ 700 02d0 5F93      		push r21
+ 701 02d2 6F93      		push r22
+ 702 02d4 7F93      		push r23
+ 703 02d6 8F93      		push r24
+ 704 02d8 9F93      		push r25
+ 705 02da AF93      		push r26
+ 706 02dc BF93      		push r27
+ 707 02de EF93      		push r30
+ 708 02e0 FF93      		push r31
+ 709               	/* prologue: Signal */
+ 710               	/* frame size = 0 */
+ 711               	.LM115:
+ 712 02e2 8091 B900 		lds r24,185
+ 713               	.LM116:
+ 714 02e6 887F      		andi r24,lo8(-8)
+ 715 02e8 8036      		cpi r24,lo8(96)
+ 716 02ea 01F4      		brne .+2
+ 717 02ec 00C0      		rjmp .L84
+ 718 02ee 8136      		cpi r24,lo8(97)
+ 719 02f0 00F4      		brsh .L92
+ 720 02f2 8832      		cpi r24,lo8(40)
+ 721 02f4 01F4      		brne .+2
+ 722 02f6 00C0      		rjmp .L78
+ 723 02f8 8932      		cpi r24,lo8(41)
+ 724 02fa 00F4      		brsh .L93
+ 725 02fc 8031      		cpi r24,lo8(16)
+ 726 02fe 01F4      		brne .+2
+ 727 0300 00C0      		rjmp .L77
+ 728 0302 8131      		cpi r24,lo8(17)
+ 729 0304 00F4      		brsh .L94
+ 730 0306 8823      		tst r24
+ 731 0308 01F4      		brne .+2
+ 732 030a 00C0      		rjmp .L76
+ 733 030c 8830      		cpi r24,lo8(8)
+ 734 030e 01F0      		breq .+2
+ 735 0310 00C0      		rjmp .L105
+ 736 0312 00C0      		rjmp .L77
+ 737               	.L94:
+ 738 0314 8831      		cpi r24,lo8(24)
+ 739 0316 01F4      		brne .+2
+ 740 0318 00C0      		rjmp .L78
+ 741 031a 8032      		cpi r24,lo8(32)
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 14
+
+
+ 742 031c 01F0      		breq .+2
+ 743 031e 00C0      		rjmp .L105
+ 744 0320 00C0      		rjmp .L76
+ 745               	.L93:
+ 746 0322 8034      		cpi r24,lo8(64)
+ 747 0324 01F4      		brne .+2
+ 748 0326 00C0      		rjmp .L81
+ 749 0328 8134      		cpi r24,lo8(65)
+ 750 032a 00F4      		brsh .L95
+ 751 032c 8033      		cpi r24,lo8(48)
+ 752 032e 01F4      		brne .+2
+ 753 0330 00C0      		rjmp .L76
+ 754 0332 8833      		cpi r24,lo8(56)
+ 755 0334 01F0      		breq .+2
+ 756 0336 00C0      		rjmp .L105
+ 757 0338 00C0      		rjmp .L113
+ 758               	.L95:
+ 759 033a 8035      		cpi r24,lo8(80)
+ 760 033c 01F4      		brne .+2
+ 761 033e 00C0      		rjmp .L82
+ 762 0340 8835      		cpi r24,lo8(88)
+ 763 0342 01F4      		brne .+2
+ 764 0344 00C0      		rjmp .L83
+ 765 0346 8834      		cpi r24,lo8(72)
+ 766 0348 01F0      		breq .+2
+ 767 034a 00C0      		rjmp .L105
+ 768 034c 00C0      		rjmp .L76
+ 769               	.L92:
+ 770 034e 8839      		cpi r24,lo8(-104)
+ 771 0350 01F4      		brne .+2
+ 772 0352 00C0      		rjmp .L86
+ 773 0354 8939      		cpi r24,lo8(-103)
+ 774 0356 00F4      		brsh .L96
+ 775 0358 8837      		cpi r24,lo8(120)
+ 776 035a 01F4      		brne .+2
+ 777 035c 00C0      		rjmp .L84
+ 778 035e 8937      		cpi r24,lo8(121)
+ 779 0360 00F4      		brsh .L97
+ 780 0362 8836      		cpi r24,lo8(104)
+ 781 0364 01F4      		brne .+2
+ 782 0366 00C0      		rjmp .L84
+ 783 0368 8037      		cpi r24,lo8(112)
+ 784 036a 01F0      		breq .+2
+ 785 036c 00C0      		rjmp .L105
+ 786 036e 00C0      		rjmp .L84
+ 787               	.L97:
+ 788 0370 8838      		cpi r24,lo8(-120)
+ 789 0372 01F4      		brne .+2
+ 790 0374 00C0      		rjmp .L86
+ 791 0376 8039      		cpi r24,lo8(-112)
+ 792 0378 01F4      		brne .+2
+ 793 037a 00C0      		rjmp .L87
+ 794 037c 8038      		cpi r24,lo8(-128)
+ 795 037e 01F0      		breq .+2
+ 796 0380 00C0      		rjmp .L105
+ 797 0382 00C0      		rjmp .L114
+ 798               	.L96:
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 15
+
+
+ 799 0384 803B      		cpi r24,lo8(-80)
+ 800 0386 01F4      		brne .+2
+ 801 0388 00C0      		rjmp .L89
+ 802 038a 813B      		cpi r24,lo8(-79)
+ 803 038c 00F4      		brsh .L98
+ 804 038e 803A      		cpi r24,lo8(-96)
+ 805 0390 01F4      		brne .+2
+ 806 0392 00C0      		rjmp .L88
+ 807 0394 883A      		cpi r24,lo8(-88)
+ 808 0396 01F0      		breq .+2
+ 809 0398 00C0      		rjmp .L105
+ 810 039a 00C0      		rjmp .L89
+ 811               	.L98:
+ 812 039c 803C      		cpi r24,lo8(-64)
+ 813 039e 01F4      		brne .+2
+ 814 03a0 00C0      		rjmp .L91
+ 815 03a2 883C      		cpi r24,lo8(-56)
+ 816 03a4 01F4      		brne .+2
+ 817 03a6 00C0      		rjmp .L91
+ 818 03a8 883B      		cpi r24,lo8(-72)
+ 819 03aa 01F0      		breq .+2
+ 820 03ac 00C0      		rjmp .L105
+ 821 03ae 00C0      		rjmp .L90
+ 822               	.L77:
+ 823               	.LM117:
+ 824 03b0 8091 0000 		lds r24,I2cDeviceAddrRW
+ 825 03b4 00C0      		rjmp .L112
+ 826               	.L78:
+ 827               	.LM118:
+ 828 03b6 9091 0000 		lds r25,I2cSendDataIndex
+ 829 03ba 8091 0000 		lds r24,I2cSendDataLength
+ 830 03be 9817      		cp r25,r24
+ 831 03c0 00F0      		brlo .+2
+ 832 03c2 00C0      		rjmp .L76
+ 833               	.LM119:
+ 834 03c4 E92F      		mov r30,r25
+ 835 03c6 F0E0      		ldi r31,lo8(0)
+ 836 03c8 E050      		subi r30,lo8(-(I2cSendData))
+ 837 03ca F040      		sbci r31,hi8(-(I2cSendData))
+ 838 03cc 8081      		ld r24,Z
+ 839 03ce 9F5F      		subi r25,lo8(-(1))
+ 840 03d0 9093 0000 		sts I2cSendDataIndex,r25
+ 841               	.L112:
+ 842               	.LBB82:
+ 843               	.LBB83:
+ 844               	.LM120:
+ 845 03d4 8093 BB00 		sts 187,r24
+ 846 03d8 00C0      		rjmp .L104
+ 847               	.L83:
+ 848               	.LBE83:
+ 849               	.LBE82:
+ 850               	.LM121:
+ 851 03da 8091 0000 		lds r24,I2cReceiveDataIndex
+ 852 03de 9091 BB00 		lds r25,187
+ 853 03e2 E82F      		mov r30,r24
+ 854 03e4 F0E0      		ldi r31,lo8(0)
+ 855 03e6 E050      		subi r30,lo8(-(I2cReceiveData))
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 16
+
+
+ 856 03e8 F040      		sbci r31,hi8(-(I2cReceiveData))
+ 857 03ea 9083      		st Z,r25
+ 858 03ec 8F5F      		subi r24,lo8(-(1))
+ 859 03ee 8093 0000 		sts I2cReceiveDataIndex,r24
+ 860 03f2 00C0      		rjmp .L76
+ 861               	.L113:
+ 862               	.LM122:
+ 863 03f4 8091 BC00 		lds r24,188
+ 864 03f8 8F70      		andi r24,lo8(15)
+ 865 03fa 8068      		ori r24,lo8(-128)
+ 866 03fc 00C0      		rjmp .L106
+ 867               	.L82:
+ 868               	.LM123:
+ 869 03fe 8091 0000 		lds r24,I2cReceiveDataIndex
+ 870 0402 9091 BB00 		lds r25,187
+ 871 0406 E82F      		mov r30,r24
+ 872 0408 F0E0      		ldi r31,lo8(0)
+ 873 040a E050      		subi r30,lo8(-(I2cReceiveData))
+ 874 040c F040      		sbci r31,hi8(-(I2cReceiveData))
+ 875 040e 9083      		st Z,r25
+ 876 0410 8F5F      		subi r24,lo8(-(1))
+ 877 0412 8093 0000 		sts I2cReceiveDataIndex,r24
+ 878               	.L81:
+ 879               	.LM124:
+ 880 0416 2091 0000 		lds r18,I2cReceiveDataIndex
+ 881 041a 30E0      		ldi r19,lo8(0)
+ 882 041c 8091 0000 		lds r24,I2cReceiveDataLength
+ 883 0420 90E0      		ldi r25,lo8(0)
+ 884 0422 0197      		sbiw r24,1
+ 885 0424 2817      		cp r18,r24
+ 886 0426 3907      		cpc r19,r25
+ 887 0428 04F4      		brge .L108
+ 888 042a 00C0      		rjmp .L110
+ 889               	.L84:
+ 890               	.LM125:
+ 891 042c 85E0      		ldi r24,lo8(5)
+ 892 042e 8093 0000 		sts I2cState,r24
+ 893               	.LM126:
+ 894 0432 1092 0000 		sts I2cReceiveDataIndex,__zero_reg__
+ 895 0436 00C0      		rjmp .L111
+ 896               	.L114:
+ 897               	.LM127:
+ 898 0438 1092 0000 		sts GenCal_Flag,__zero_reg__
+ 899               	.L87:
+ 900               	.LM128:
+ 901 043c 8091 0000 		lds r24,I2cReceiveDataIndex
+ 902 0440 9091 BB00 		lds r25,187
+ 903 0444 E82F      		mov r30,r24
+ 904 0446 F0E0      		ldi r31,lo8(0)
+ 905 0448 E050      		subi r30,lo8(-(I2cReceiveData))
+ 906 044a F040      		sbci r31,hi8(-(I2cReceiveData))
+ 907 044c 9083      		st Z,r25
+ 908 044e 8F5F      		subi r24,lo8(-(1))
+ 909 0450 8093 0000 		sts I2cReceiveDataIndex,r24
+ 910               	.LM129:
+ 911 0454 8032      		cpi r24,lo8(32)
+ 912 0456 00F4      		brsh .L108
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 17
+
+
+ 913               	.L110:
+ 914               	.LM130:
+ 915 0458 81E0      		ldi r24,lo8(1)
+ 916 045a 00C0      		rjmp .L109
+ 917               	.L86:
+ 918               	.LM131:
+ 919 045c 1092 0000 		sts GenCal_Flag,__zero_reg__
+ 920               	.L108:
+ 921               	.LM132:
+ 922 0460 80E0      		ldi r24,lo8(0)
+ 923               	.L109:
+ 924 0462 0E94 0000 		call i2cReceiveByte
+ 925 0466 00C0      		rjmp .L105
+ 926               	.L88:
+ 927               	.LM133:
+ 928 0468 8091 BC00 		lds r24,188
+ 929 046c 8F70      		andi r24,lo8(15)
+ 930 046e 806C      		ori r24,lo8(-64)
+ 931 0470 8093 BC00 		sts 188,r24
+ 932               	.LM134:
+ 933 0474 E091 0000 		lds r30,i2cSlaveReceive
+ 934 0478 F091 0000 		lds r31,(i2cSlaveReceive)+1
+ 935 047c 3097      		sbiw r30,0
+ 936 047e 01F0      		breq .L102
+ 937 0480 8091 0000 		lds r24,I2cReceiveDataIndex
+ 938 0484 60E0      		ldi r22,lo8(I2cReceiveData)
+ 939 0486 70E0      		ldi r23,hi8(I2cReceiveData)
+ 940 0488 0995      		icall
+ 941               	.L102:
+ 942               	.LM135:
+ 943 048a 1092 0000 		sts I2cState,__zero_reg__
+ 944               	.LM136:
+ 945 048e 81E0      		ldi r24,lo8(1)
+ 946 0490 8093 0000 		sts GenCal_Flag,r24
+ 947 0494 00C0      		rjmp .L105
+ 948               	.L89:
+ 949               	.LM137:
+ 950 0496 84E0      		ldi r24,lo8(4)
+ 951 0498 8093 0000 		sts I2cState,r24
+ 952               	.LM138:
+ 953 049c E091 0000 		lds r30,i2cSlaveTransmit
+ 954 04a0 F091 0000 		lds r31,(i2cSlaveTransmit)+1
+ 955 04a4 3097      		sbiw r30,0
+ 956 04a6 01F0      		breq .L103
+ 957 04a8 80E2      		ldi r24,lo8(32)
+ 958 04aa 60E0      		ldi r22,lo8(I2cSendData)
+ 959 04ac 70E0      		ldi r23,hi8(I2cSendData)
+ 960 04ae 0995      		icall
+ 961 04b0 8093 0000 		sts I2cSendDataLength,r24
+ 962               	.L103:
+ 963               	.LM139:
+ 964 04b4 1092 0000 		sts I2cSendDataIndex,__zero_reg__
+ 965               	.L90:
+ 966               	.LM140:
+ 967 04b8 9091 0000 		lds r25,I2cSendDataIndex
+ 968 04bc E92F      		mov r30,r25
+ 969 04be F0E0      		ldi r31,lo8(0)
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 18
+
+
+ 970 04c0 E050      		subi r30,lo8(-(I2cSendData))
+ 971 04c2 F040      		sbci r31,hi8(-(I2cSendData))
+ 972 04c4 8081      		ld r24,Z
+ 973 04c6 8093 BB00 		sts 187,r24
+ 974 04ca 9F5F      		subi r25,lo8(-(1))
+ 975 04cc 9093 0000 		sts I2cSendDataIndex,r25
+ 976               	.LM141:
+ 977 04d0 8091 0000 		lds r24,I2cSendDataLength
+ 978 04d4 9817      		cp r25,r24
+ 979 04d6 00F4      		brsh .L104
+ 980               	.L111:
+ 981               	.LM142:
+ 982 04d8 8091 BC00 		lds r24,188
+ 983 04dc 8F70      		andi r24,lo8(15)
+ 984 04de 806C      		ori r24,lo8(-64)
+ 985 04e0 00C0      		rjmp .L107
+ 986               	.L104:
+ 987               	.LM143:
+ 988 04e2 8091 BC00 		lds r24,188
+ 989 04e6 8F70      		andi r24,lo8(15)
+ 990 04e8 8068      		ori r24,lo8(-128)
+ 991               	.L107:
+ 992 04ea 8093 BC00 		sts 188,r24
+ 993 04ee 00C0      		rjmp .L105
+ 994               	.L91:
+ 995               	.LM144:
+ 996 04f0 8091 BC00 		lds r24,188
+ 997 04f4 8F70      		andi r24,lo8(15)
+ 998 04f6 806C      		ori r24,lo8(-64)
+ 999 04f8 00C0      		rjmp .L106
+ 1000               	.L76:
+ 1001               	.LM145:
+ 1002 04fa 8091 BC00 		lds r24,188
+ 1003 04fe 8F70      		andi r24,lo8(15)
+ 1004 0500 806D      		ori r24,lo8(-48)
+ 1005               	.L106:
+ 1006 0502 8093 BC00 		sts 188,r24
+ 1007               	.LM146:
+ 1008 0506 1092 0000 		sts I2cState,__zero_reg__
+ 1009               	.L105:
+ 1010               	/* epilogue start */
+ 1011               	.LM147:
+ 1012 050a FF91      		pop r31
+ 1013 050c EF91      		pop r30
+ 1014 050e BF91      		pop r27
+ 1015 0510 AF91      		pop r26
+ 1016 0512 9F91      		pop r25
+ 1017 0514 8F91      		pop r24
+ 1018 0516 7F91      		pop r23
+ 1019 0518 6F91      		pop r22
+ 1020 051a 5F91      		pop r21
+ 1021 051c 4F91      		pop r20
+ 1022 051e 3F91      		pop r19
+ 1023 0520 2F91      		pop r18
+ 1024 0522 0F90      		pop r0
+ 1025 0524 0FBE      		out __SREG__,r0
+ 1026 0526 0F90      		pop r0
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 19
+
+
+ 1027 0528 1F90      		pop __zero_reg__
+ 1028 052a 1895      		reti
+ 1029               	.LFE18:
+ 1030               		.size	__vector_24, .-__vector_24
+ 1031               	.global	i2cGetState
+ 1032               		.type	i2cGetState, @function
+ 1033               	i2cGetState:
+ 1034               	.LFB19:
+ 1035               	.LM148:
+ 1036               	/* prologue: function */
+ 1037               	/* frame size = 0 */
+ 1038               	.LM149:
+ 1039 052c 8091 0000 		lds r24,I2cState
+ 1040               	/* epilogue start */
+ 1041               	.LM150:
+ 1042 0530 0895      		ret
+ 1043               	.LFE19:
+ 1044               		.size	i2cGetState, .-i2cGetState
+ 1045               	.global	i2cGetGenCall
+ 1046               		.type	i2cGetGenCall, @function
+ 1047               	i2cGetGenCall:
+ 1048               	.LFB20:
+ 1049               	.LM151:
+ 1050               	/* prologue: function */
+ 1051               	/* frame size = 0 */
+ 1052               	.LM152:
+ 1053 0532 8091 0000 		lds r24,GenCal_Flag
+ 1054               	/* epilogue start */
+ 1055 0536 0895      		ret
+ 1056               	.LFE20:
+ 1057               		.size	i2cGetGenCall, .-i2cGetGenCall
+ 1058               		.lcomm I2cState,1
+ 1059               		.lcomm I2cDeviceAddrRW,1
+ 1060               		.lcomm I2cSendData,32
+ 1061               		.lcomm I2cSendDataIndex,1
+ 1062               		.lcomm I2cSendDataLength,1
+ 1063               		.lcomm I2cReceiveData,32
+ 1064               		.lcomm I2cReceiveDataIndex,1
+ 1065               		.lcomm I2cReceiveDataLength,1
+ 1066               		.lcomm i2cSlaveReceive,2
+ 1067               		.lcomm i2cSlaveTransmit,2
+ 1068               		.comm GenCal_Flag,1,1
+ 1069               		.section	.debug_frame,"",@progbits
+ 1070               	.Lframe0:
+ 1071 0000 0C00 0000 		.long	.LECIE0-.LSCIE0
+ 1072               	.LSCIE0:
+ 1073 0004 FFFF FFFF 		.long	0xffffffff
+ 1074 0008 01        		.byte	0x1
+ 1075 0009 00        		.string	""
+ 1076 000a 01        		.uleb128 0x1
+ 1077 000b 7F        		.sleb128 -1
+ 1078 000c 24        		.byte	0x24
+ 1079 000d 0C        		.byte	0xc
+ 1080 000e 20        		.uleb128 0x20
+ 1081 000f 00        		.uleb128 0x0
+ 1082               		.p2align	2
+ 1083               	.LECIE0:
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 20
+
+
+ 1084               	.LSFDE0:
+ 1085 0010 0C00 0000 		.long	.LEFDE0-.LASFDE0
+ 1086               	.LASFDE0:
+ 1087 0014 0000 0000 		.long	.Lframe0
+ 1088 0018 0000 0000 		.long	.LFB3
+ 1089 001c 4A00 0000 		.long	.LFE3-.LFB3
+ 1090               		.p2align	2
+ 1091               	.LEFDE0:
+ 1092               	.LSFDE2:
+ 1093 0020 0C00 0000 		.long	.LEFDE2-.LASFDE2
+ 1094               	.LASFDE2:
+ 1095 0024 0000 0000 		.long	.Lframe0
+ 1096 0028 0000 0000 		.long	.LFB2
+ 1097 002c 3C00 0000 		.long	.LFE2-.LFB2
+ 1098               		.p2align	2
+ 1099               	.LEFDE2:
+ 1100               	.LSFDE4:
+ 1101 0030 0C00 0000 		.long	.LEFDE4-.LASFDE4
+ 1102               	.LASFDE4:
+ 1103 0034 0000 0000 		.long	.Lframe0
+ 1104 0038 0000 0000 		.long	.LFB4
+ 1105 003c 1000 0000 		.long	.LFE4-.LFB4
+ 1106               		.p2align	2
+ 1107               	.LEFDE4:
+ 1108               	.LSFDE6:
+ 1109 0040 0C00 0000 		.long	.LEFDE6-.LASFDE6
+ 1110               	.LASFDE6:
+ 1111 0044 0000 0000 		.long	.Lframe0
+ 1112 0048 0000 0000 		.long	.LFB5
+ 1113 004c 0A00 0000 		.long	.LFE5-.LFB5
+ 1114               		.p2align	2
+ 1115               	.LEFDE6:
+ 1116               	.LSFDE8:
+ 1117 0050 0C00 0000 		.long	.LEFDE8-.LASFDE8
+ 1118               	.LASFDE8:
+ 1119 0054 0000 0000 		.long	.Lframe0
+ 1120 0058 0000 0000 		.long	.LFB6
+ 1121 005c 0A00 0000 		.long	.LFE6-.LFB6
+ 1122               		.p2align	2
+ 1123               	.LEFDE8:
+ 1124               	.LSFDE10:
+ 1125 0060 0C00 0000 		.long	.LEFDE10-.LASFDE10
+ 1126               	.LASFDE10:
+ 1127 0064 0000 0000 		.long	.Lframe0
+ 1128 0068 0000 0000 		.long	.LFB7
+ 1129 006c 0E00 0000 		.long	.LFE7-.LFB7
+ 1130               		.p2align	2
+ 1131               	.LEFDE10:
+ 1132               	.LSFDE12:
+ 1133 0070 0C00 0000 		.long	.LEFDE12-.LASFDE12
+ 1134               	.LASFDE12:
+ 1135 0074 0000 0000 		.long	.Lframe0
+ 1136 0078 0000 0000 		.long	.LFB8
+ 1137 007c 0E00 0000 		.long	.LFE8-.LFB8
+ 1138               		.p2align	2
+ 1139               	.LEFDE12:
+ 1140               	.LSFDE14:
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 21
+
+
+ 1141 0080 0C00 0000 		.long	.LEFDE14-.LASFDE14
+ 1142               	.LASFDE14:
+ 1143 0084 0000 0000 		.long	.Lframe0
+ 1144 0088 0000 0000 		.long	.LFB9
+ 1145 008c 0A00 0000 		.long	.LFE9-.LFB9
+ 1146               		.p2align	2
+ 1147               	.LEFDE14:
+ 1148               	.LSFDE16:
+ 1149 0090 0C00 0000 		.long	.LEFDE16-.LASFDE16
+ 1150               	.LASFDE16:
+ 1151 0094 0000 0000 		.long	.Lframe0
+ 1152 0098 0000 0000 		.long	.LFB10
+ 1153 009c 1200 0000 		.long	.LFE10-.LFB10
+ 1154               		.p2align	2
+ 1155               	.LEFDE16:
+ 1156               	.LSFDE18:
+ 1157 00a0 0C00 0000 		.long	.LEFDE18-.LASFDE18
+ 1158               	.LASFDE18:
+ 1159 00a4 0000 0000 		.long	.Lframe0
+ 1160 00a8 0000 0000 		.long	.LFB11
+ 1161 00ac 1C00 0000 		.long	.LFE11-.LFB11
+ 1162               		.p2align	2
+ 1163               	.LEFDE18:
+ 1164               	.LSFDE20:
+ 1165 00b0 0C00 0000 		.long	.LEFDE20-.LASFDE20
+ 1166               	.LASFDE20:
+ 1167 00b4 0000 0000 		.long	.Lframe0
+ 1168 00b8 0000 0000 		.long	.LFB12
+ 1169 00bc 0600 0000 		.long	.LFE12-.LFB12
+ 1170               		.p2align	2
+ 1171               	.LEFDE20:
+ 1172               	.LSFDE22:
+ 1173 00c0 0C00 0000 		.long	.LEFDE22-.LASFDE22
+ 1174               	.LASFDE22:
+ 1175 00c4 0000 0000 		.long	.Lframe0
+ 1176 00c8 0000 0000 		.long	.LFB13
+ 1177 00cc 0600 0000 		.long	.LFE13-.LFB13
+ 1178               		.p2align	2
+ 1179               	.LEFDE22:
+ 1180               	.LSFDE24:
+ 1181 00d0 0C00 0000 		.long	.LEFDE24-.LASFDE24
+ 1182               	.LASFDE24:
+ 1183 00d4 0000 0000 		.long	.Lframe0
+ 1184 00d8 0000 0000 		.long	.LFB14
+ 1185 00dc 4000 0000 		.long	.LFE14-.LFB14
+ 1186               		.p2align	2
+ 1187               	.LEFDE24:
+ 1188               	.LSFDE26:
+ 1189 00e0 0C00 0000 		.long	.LEFDE26-.LASFDE26
+ 1190               	.LASFDE26:
+ 1191 00e4 0000 0000 		.long	.Lframe0
+ 1192 00e8 0000 0000 		.long	.LFB15
+ 1193 00ec 4800 0000 		.long	.LFE15-.LFB15
+ 1194               		.p2align	2
+ 1195               	.LEFDE26:
+ 1196               	.LSFDE28:
+ 1197 00f0 0C00 0000 		.long	.LEFDE28-.LASFDE28
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 22
+
+
+ 1198               	.LASFDE28:
+ 1199 00f4 0000 0000 		.long	.Lframe0
+ 1200 00f8 0000 0000 		.long	.LFB16
+ 1201 00fc 8E00 0000 		.long	.LFE16-.LFB16
+ 1202               		.p2align	2
+ 1203               	.LEFDE28:
+ 1204               	.LSFDE30:
+ 1205 0100 0C00 0000 		.long	.LEFDE30-.LASFDE30
+ 1206               	.LASFDE30:
+ 1207 0104 0000 0000 		.long	.Lframe0
+ 1208 0108 0000 0000 		.long	.LFB17
+ 1209 010c A000 0000 		.long	.LFE17-.LFB17
+ 1210               		.p2align	2
+ 1211               	.LEFDE30:
+ 1212               	.LSFDE32:
+ 1213 0110 0C00 0000 		.long	.LEFDE32-.LASFDE32
+ 1214               	.LASFDE32:
+ 1215 0114 0000 0000 		.long	.Lframe0
+ 1216 0118 0000 0000 		.long	.LFB18
+ 1217 011c 6C02 0000 		.long	.LFE18-.LFB18
+ 1218               		.p2align	2
+ 1219               	.LEFDE32:
+ 1220               	.LSFDE34:
+ 1221 0120 0C00 0000 		.long	.LEFDE34-.LASFDE34
+ 1222               	.LASFDE34:
+ 1223 0124 0000 0000 		.long	.Lframe0
+ 1224 0128 0000 0000 		.long	.LFB19
+ 1225 012c 0600 0000 		.long	.LFE19-.LFB19
+ 1226               		.p2align	2
+ 1227               	.LEFDE34:
+ 1228               	.LSFDE36:
+ 1229 0130 0C00 0000 		.long	.LEFDE36-.LASFDE36
+ 1230               	.LASFDE36:
+ 1231 0134 0000 0000 		.long	.Lframe0
+ 1232 0138 0000 0000 		.long	.LFB20
+ 1233 013c 0600 0000 		.long	.LFE20-.LFB20
+ 1234               		.p2align	2
+ 1235               	.LEFDE36:
+ 1236               		.text
+ 1237               	.Letext0:
+ 1238               		.section	.debug_loc,"",@progbits
+ 1239               	.Ldebug_loc0:
+ 1240               	.LLST1:
+ 1241 0000 0000 0000 		.long	.LVL0-.Ltext0
+ 1242 0004 1A00 0000 		.long	.LVL1-.Ltext0
+ 1243 0008 0600      		.word	0x6
+ 1244 000a 68        		.byte	0x68
+ 1245 000b 93        		.byte	0x93
+ 1246 000c 01        		.uleb128 0x1
+ 1247 000d 69        		.byte	0x69
+ 1248 000e 93        		.byte	0x93
+ 1249 000f 01        		.uleb128 0x1
+ 1250 0010 1A00 0000 		.long	.LVL1-.Ltext0
+ 1251 0014 4A00 0000 		.long	.LFE3-.Ltext0
+ 1252 0018 0C00      		.word	0xc
+ 1253 001a 62        		.byte	0x62
+ 1254 001b 93        		.byte	0x93
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 23
+
+
+ 1255 001c 01        		.uleb128 0x1
+ 1256 001d 63        		.byte	0x63
+ 1257 001e 93        		.byte	0x93
+ 1258 001f 01        		.uleb128 0x1
+ 1259 0020 64        		.byte	0x64
+ 1260 0021 93        		.byte	0x93
+ 1261 0022 01        		.uleb128 0x1
+ 1262 0023 65        		.byte	0x65
+ 1263 0024 93        		.byte	0x93
+ 1264 0025 01        		.uleb128 0x1
+ 1265 0026 0000 0000 		.long	0x0
+ 1266 002a 0000 0000 		.long	0x0
+ 1267               	.LLST10:
+ 1268 002e D000 0000 		.long	.LVL7-.Ltext0
+ 1269 0032 DA00 0000 		.long	.LVL8-.Ltext0
+ 1270 0036 0100      		.word	0x1
+ 1271 0038 68        		.byte	0x68
+ 1272 0039 0000 0000 		.long	0x0
+ 1273 003d 0000 0000 		.long	0x0
+ 1274               	.LLST12:
+ 1275 0041 E200 0000 		.long	.LVL9-.Ltext0
+ 1276 0045 EA00 0000 		.long	.LVL10-.Ltext0
+ 1277 0049 0100      		.word	0x1
+ 1278 004b 68        		.byte	0x68
+ 1279 004c F000 0000 		.long	.LVL11-.Ltext0
+ 1280 0050 F400 0000 		.long	.LVL12-.Ltext0
+ 1281 0054 0100      		.word	0x1
+ 1282 0056 68        		.byte	0x68
+ 1283 0057 0000 0000 		.long	0x0
+ 1284 005b 0000 0000 		.long	0x0
+ 1285               	.LLST16:
+ 1286 005f 0A01 0000 		.long	.LVL13-.Ltext0
+ 1287 0063 0C01 0000 		.long	.LVL14-.Ltext0
+ 1288 0067 0100      		.word	0x1
+ 1289 0069 68        		.byte	0x68
+ 1290 006a 0C01 0000 		.long	.LVL14-.Ltext0
+ 1291 006e 4A01 0000 		.long	.LFE14-.Ltext0
+ 1292 0072 0100      		.word	0x1
+ 1293 0074 69        		.byte	0x69
+ 1294 0075 0000 0000 		.long	0x0
+ 1295 0079 0000 0000 		.long	0x0
+ 1296               	.LLST17:
+ 1297 007d 0A01 0000 		.long	.LVL13-.Ltext0
+ 1298 0081 2C01 0000 		.long	.LVL16-.Ltext0
+ 1299 0085 0600      		.word	0x6
+ 1300 0087 64        		.byte	0x64
+ 1301 0088 93        		.byte	0x93
+ 1302 0089 01        		.uleb128 0x1
+ 1303 008a 65        		.byte	0x65
+ 1304 008b 93        		.byte	0x93
+ 1305 008c 01        		.uleb128 0x1
+ 1306 008d 2C01 0000 		.long	.LVL16-.Ltext0
+ 1307 0091 2E01 0000 		.long	.LVL17-.Ltext0
+ 1308 0095 0600      		.word	0x6
+ 1309 0097 6E        		.byte	0x6e
+ 1310 0098 93        		.byte	0x93
+ 1311 0099 01        		.uleb128 0x1
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 24
+
+
+ 1312 009a 6F        		.byte	0x6f
+ 1313 009b 93        		.byte	0x93
+ 1314 009c 01        		.uleb128 0x1
+ 1315 009d 2E01 0000 		.long	.LVL17-.Ltext0
+ 1316 00a1 4A01 0000 		.long	.LFE14-.Ltext0
+ 1317 00a5 0600      		.word	0x6
+ 1318 00a7 64        		.byte	0x64
+ 1319 00a8 93        		.byte	0x93
+ 1320 00a9 01        		.uleb128 0x1
+ 1321 00aa 65        		.byte	0x65
+ 1322 00ab 93        		.byte	0x93
+ 1323 00ac 01        		.uleb128 0x1
+ 1324 00ad 0000 0000 		.long	0x0
+ 1325 00b1 0000 0000 		.long	0x0
+ 1326               	.LLST19:
+ 1327 00b5 4A01 0000 		.long	.LVL18-.Ltext0
+ 1328 00b9 4C01 0000 		.long	.LVL19-.Ltext0
+ 1329 00bd 0100      		.word	0x1
+ 1330 00bf 68        		.byte	0x68
+ 1331 00c0 4C01 0000 		.long	.LVL19-.Ltext0
+ 1332 00c4 9201 0000 		.long	.LFE15-.Ltext0
+ 1333 00c8 0100      		.word	0x1
+ 1334 00ca 69        		.byte	0x69
+ 1335 00cb 0000 0000 		.long	0x0
+ 1336 00cf 0000 0000 		.long	0x0
+ 1337               	.LLST20:
+ 1338 00d3 4A01 0000 		.long	.LVL18-.Ltext0
+ 1339 00d7 8801 0000 		.long	.LVL21-.Ltext0
+ 1340 00db 0600      		.word	0x6
+ 1341 00dd 64        		.byte	0x64
+ 1342 00de 93        		.byte	0x93
+ 1343 00df 01        		.uleb128 0x1
+ 1344 00e0 65        		.byte	0x65
+ 1345 00e1 93        		.byte	0x93
+ 1346 00e2 01        		.uleb128 0x1
+ 1347 00e3 8801 0000 		.long	.LVL21-.Ltext0
+ 1348 00e7 8A01 0000 		.long	.LVL22-.Ltext0
+ 1349 00eb 0600      		.word	0x6
+ 1350 00ed 6E        		.byte	0x6e
+ 1351 00ee 93        		.byte	0x93
+ 1352 00ef 01        		.uleb128 0x1
+ 1353 00f0 6F        		.byte	0x6f
+ 1354 00f1 93        		.byte	0x93
+ 1355 00f2 01        		.uleb128 0x1
+ 1356 00f3 8A01 0000 		.long	.LVL22-.Ltext0
+ 1357 00f7 9201 0000 		.long	.LFE15-.Ltext0
+ 1358 00fb 0600      		.word	0x6
+ 1359 00fd 64        		.byte	0x64
+ 1360 00fe 93        		.byte	0x93
+ 1361 00ff 01        		.uleb128 0x1
+ 1362 0100 65        		.byte	0x65
+ 1363 0101 93        		.byte	0x93
+ 1364 0102 01        		.uleb128 0x1
+ 1365 0103 0000 0000 		.long	0x0
+ 1366 0107 0000 0000 		.long	0x0
+ 1367               	.LLST22:
+ 1368 010b 9201 0000 		.long	.LVL23-.Ltext0
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 25
+
+
+ 1369 010f 9A01 0000 		.long	.LVL24-.Ltext0
+ 1370 0113 0100      		.word	0x1
+ 1371 0115 68        		.byte	0x68
+ 1372 0116 9A01 0000 		.long	.LVL24-.Ltext0
+ 1373 011a D801 0000 		.long	.LVL26-.Ltext0
+ 1374 011e 0100      		.word	0x1
+ 1375 0120 69        		.byte	0x69
+ 1376 0121 DA01 0000 		.long	.LVL27-.Ltext0
+ 1377 0125 FE01 0000 		.long	.LVL29-.Ltext0
+ 1378 0129 0100      		.word	0x1
+ 1379 012b 69        		.byte	0x69
+ 1380 012c 0000 0000 		.long	0x0
+ 1381 0130 0000 0000 		.long	0x0
+ 1382               	.LLST23:
+ 1383 0134 9201 0000 		.long	.LVL23-.Ltext0
+ 1384 0138 AC01 0000 		.long	.LVL25-.Ltext0
+ 1385 013c 0600      		.word	0x6
+ 1386 013e 64        		.byte	0x64
+ 1387 013f 93        		.byte	0x93
+ 1388 0140 01        		.uleb128 0x1
+ 1389 0141 65        		.byte	0x65
+ 1390 0142 93        		.byte	0x93
+ 1391 0143 01        		.uleb128 0x1
+ 1392 0144 AC01 0000 		.long	.LVL25-.Ltext0
+ 1393 0148 2002 0000 		.long	.LFE16-.Ltext0
+ 1394 014c 0600      		.word	0x6
+ 1395 014e 6E        		.byte	0x6e
+ 1396 014f 93        		.byte	0x93
+ 1397 0150 01        		.uleb128 0x1
+ 1398 0151 6F        		.byte	0x6f
+ 1399 0152 93        		.byte	0x93
+ 1400 0153 01        		.uleb128 0x1
+ 1401 0154 0000 0000 		.long	0x0
+ 1402 0158 0000 0000 		.long	0x0
+ 1403               	.LLST24:
+ 1404 015c D801 0000 		.long	.LVL26-.Ltext0
+ 1405 0160 DA01 0000 		.long	.LVL27-.Ltext0
+ 1406 0164 0100      		.word	0x1
+ 1407 0166 69        		.byte	0x69
+ 1408 0167 FE01 0000 		.long	.LVL29-.Ltext0
+ 1409 016b 2002 0000 		.long	.LFE16-.Ltext0
+ 1410 016f 0100      		.word	0x1
+ 1411 0171 69        		.byte	0x69
+ 1412 0172 0000 0000 		.long	0x0
+ 1413 0176 0000 0000 		.long	0x0
+ 1414               	.LLST26:
+ 1415 017a 2002 0000 		.long	.LVL30-.Ltext0
+ 1416 017e 3002 0000 		.long	.LVL31-.Ltext0
+ 1417 0182 0100      		.word	0x1
+ 1418 0184 68        		.byte	0x68
+ 1419 0185 3002 0000 		.long	.LVL31-.Ltext0
+ 1420 0189 6E02 0000 		.long	.LVL33-.Ltext0
+ 1421 018d 0100      		.word	0x1
+ 1422 018f 69        		.byte	0x69
+ 1423 0190 7002 0000 		.long	.LVL34-.Ltext0
+ 1424 0194 7602 0000 		.long	.LVL35-.Ltext0
+ 1425 0198 0100      		.word	0x1
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 26
+
+
+ 1426 019a 69        		.byte	0x69
+ 1427 019b 8602 0000 		.long	.LVL36-.Ltext0
+ 1428 019f 9002 0000 		.long	.LVL37-.Ltext0
+ 1429 01a3 0100      		.word	0x1
+ 1430 01a5 69        		.byte	0x69
+ 1431 01a6 0000 0000 		.long	0x0
+ 1432 01aa 0000 0000 		.long	0x0
+ 1433               	.LLST27:
+ 1434 01ae 2002 0000 		.long	.LVL30-.Ltext0
+ 1435 01b2 4202 0000 		.long	.LVL32-.Ltext0
+ 1436 01b6 0100      		.word	0x1
+ 1437 01b8 66        		.byte	0x66
+ 1438 01b9 4202 0000 		.long	.LVL32-.Ltext0
+ 1439 01bd BE02 0000 		.long	.LVL40-.Ltext0
+ 1440 01c1 0100      		.word	0x1
+ 1441 01c3 61        		.byte	0x61
+ 1442 01c4 BE02 0000 		.long	.LVL40-.Ltext0
+ 1443 01c8 C002 0000 		.long	.LFE17-.Ltext0
+ 1444 01cc 0100      		.word	0x1
+ 1445 01ce 66        		.byte	0x66
+ 1446 01cf 0000 0000 		.long	0x0
+ 1447 01d3 0000 0000 		.long	0x0
+ 1448               	.LLST28:
+ 1449 01d7 2002 0000 		.long	.LVL30-.Ltext0
+ 1450 01db 4202 0000 		.long	.LVL32-.Ltext0
+ 1451 01df 0600      		.word	0x6
+ 1452 01e1 64        		.byte	0x64
+ 1453 01e2 93        		.byte	0x93
+ 1454 01e3 01        		.uleb128 0x1
+ 1455 01e4 65        		.byte	0x65
+ 1456 01e5 93        		.byte	0x93
+ 1457 01e6 01        		.uleb128 0x1
+ 1458 01e7 4202 0000 		.long	.LVL32-.Ltext0
+ 1459 01eb BC02 0000 		.long	.LVL39-.Ltext0
+ 1460 01ef 0600      		.word	0x6
+ 1461 01f1 6C        		.byte	0x6c
+ 1462 01f2 93        		.byte	0x93
+ 1463 01f3 01        		.uleb128 0x1
+ 1464 01f4 6D        		.byte	0x6d
+ 1465 01f5 93        		.byte	0x93
+ 1466 01f6 01        		.uleb128 0x1
+ 1467 01f7 BC02 0000 		.long	.LVL39-.Ltext0
+ 1468 01fb C002 0000 		.long	.LFE17-.Ltext0
+ 1469 01ff 0600      		.word	0x6
+ 1470 0201 64        		.byte	0x64
+ 1471 0202 93        		.byte	0x93
+ 1472 0203 01        		.uleb128 0x1
+ 1473 0204 65        		.byte	0x65
+ 1474 0205 93        		.byte	0x93
+ 1475 0206 01        		.uleb128 0x1
+ 1476 0207 0000 0000 		.long	0x0
+ 1477 020b 0000 0000 		.long	0x0
+ 1478               	.LLST29:
+ 1479 020f 6E02 0000 		.long	.LVL33-.Ltext0
+ 1480 0213 7002 0000 		.long	.LVL34-.Ltext0
+ 1481 0217 0100      		.word	0x1
+ 1482 0219 69        		.byte	0x69
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 27
+
+
+ 1483 021a A002 0000 		.long	.LVL38-.Ltext0
+ 1484 021e C002 0000 		.long	.LFE17-.Ltext0
+ 1485 0222 0100      		.word	0x1
+ 1486 0224 69        		.byte	0x69
+ 1487 0225 0000 0000 		.long	0x0
+ 1488 0229 0000 0000 		.long	0x0
+ 1489               		.section	.debug_info
+ 1490 0000 7D06 0000 		.long	0x67d
+ 1491 0004 0200      		.word	0x2
+ 1492 0006 0000 0000 		.long	.Ldebug_abbrev0
+ 1493 000a 04        		.byte	0x4
+ 1494 000b 01        		.uleb128 0x1
+ 1495 000c 0000 0000 		.long	.LASF54
+ 1496 0010 01        		.byte	0x1
+ 1497 0011 0000 0000 		.long	.LASF55
+ 1498 0015 0000 0000 		.long	.LASF56
+ 1499 0019 0000 0000 		.long	.Ltext0
+ 1500 001d 0000 0000 		.long	.Letext0
+ 1501 0021 0000 0000 		.long	.Ldebug_line0
+ 1502 0025 02        		.uleb128 0x2
+ 1503 0026 01        		.byte	0x1
+ 1504 0027 06        		.byte	0x6
+ 1505 0028 0000 0000 		.long	.LASF0
+ 1506 002c 02        		.uleb128 0x2
+ 1507 002d 01        		.byte	0x1
+ 1508 002e 08        		.byte	0x8
+ 1509 002f 0000 0000 		.long	.LASF1
+ 1510 0033 03        		.uleb128 0x3
+ 1511 0034 02        		.byte	0x2
+ 1512 0035 05        		.byte	0x5
+ 1513 0036 696E 7400 		.string	"int"
+ 1514 003a 02        		.uleb128 0x2
+ 1515 003b 02        		.byte	0x2
+ 1516 003c 07        		.byte	0x7
+ 1517 003d 0000 0000 		.long	.LASF2
+ 1518 0041 02        		.uleb128 0x2
+ 1519 0042 04        		.byte	0x4
+ 1520 0043 05        		.byte	0x5
+ 1521 0044 0000 0000 		.long	.LASF3
+ 1522 0048 02        		.uleb128 0x2
+ 1523 0049 04        		.byte	0x4
+ 1524 004a 07        		.byte	0x7
+ 1525 004b 0000 0000 		.long	.LASF4
+ 1526 004f 02        		.uleb128 0x2
+ 1527 0050 08        		.byte	0x8
+ 1528 0051 05        		.byte	0x5
+ 1529 0052 0000 0000 		.long	.LASF5
+ 1530 0056 02        		.uleb128 0x2
+ 1531 0057 08        		.byte	0x8
+ 1532 0058 07        		.byte	0x7
+ 1533 0059 0000 0000 		.long	.LASF6
+ 1534 005d 04        		.uleb128 0x4
+ 1535 005e 7530 3800 		.string	"u08"
+ 1536 0062 02        		.byte	0x2
+ 1537 0063 20        		.byte	0x20
+ 1538 0064 2C00 0000 		.long	0x2c
+ 1539 0068 04        		.uleb128 0x4
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 28
+
+
+ 1540 0069 7531 3600 		.string	"u16"
+ 1541 006d 02        		.byte	0x2
+ 1542 006e 22        		.byte	0x22
+ 1543 006f 7300 0000 		.long	0x73
+ 1544 0073 02        		.uleb128 0x2
+ 1545 0074 02        		.byte	0x2
+ 1546 0075 07        		.byte	0x7
+ 1547 0076 0000 0000 		.long	.LASF7
+ 1548 007a 02        		.uleb128 0x2
+ 1549 007b 02        		.byte	0x2
+ 1550 007c 05        		.byte	0x5
+ 1551 007d 0000 0000 		.long	.LASF8
+ 1552 0081 02        		.uleb128 0x2
+ 1553 0082 01        		.byte	0x1
+ 1554 0083 08        		.byte	0x8
+ 1555 0084 0000 0000 		.long	.LASF9
+ 1556 0088 05        		.uleb128 0x5
+ 1557 0089 01        		.byte	0x1
+ 1558 008a 03        		.byte	0x3
+ 1559 008b 26        		.byte	0x26
+ 1560 008c B500 0000 		.long	0xb5
+ 1561 0090 06        		.uleb128 0x6
+ 1562 0091 0000 0000 		.long	.LASF10
+ 1563 0095 00        		.sleb128 0
+ 1564 0096 06        		.uleb128 0x6
+ 1565 0097 0000 0000 		.long	.LASF11
+ 1566 009b 01        		.sleb128 1
+ 1567 009c 06        		.uleb128 0x6
+ 1568 009d 0000 0000 		.long	.LASF12
+ 1569 00a1 02        		.sleb128 2
+ 1570 00a2 06        		.uleb128 0x6
+ 1571 00a3 0000 0000 		.long	.LASF13
+ 1572 00a7 03        		.sleb128 3
+ 1573 00a8 06        		.uleb128 0x6
+ 1574 00a9 0000 0000 		.long	.LASF14
+ 1575 00ad 04        		.sleb128 4
+ 1576 00ae 06        		.uleb128 0x6
+ 1577 00af 0000 0000 		.long	.LASF15
+ 1578 00b3 05        		.sleb128 5
+ 1579 00b4 00        		.byte	0x0
+ 1580 00b5 07        		.uleb128 0x7
+ 1581 00b6 0000 0000 		.long	.LASF16
+ 1582 00ba 03        		.byte	0x3
+ 1583 00bb 2A        		.byte	0x2a
+ 1584 00bc 8800 0000 		.long	0x88
+ 1585 00c0 08        		.uleb128 0x8
+ 1586 00c1 01        		.byte	0x1
+ 1587 00c2 0000 0000 		.long	.LASF17
+ 1588 00c6 01        		.byte	0x1
+ 1589 00c7 A6        		.byte	0xa6
+ 1590 00c8 01        		.byte	0x1
+ 1591 00c9 03        		.byte	0x3
+ 1592 00ca 08        		.uleb128 0x8
+ 1593 00cb 01        		.byte	0x1
+ 1594 00cc 0000 0000 		.long	.LASF18
+ 1595 00d0 01        		.byte	0x1
+ 1596 00d1 B3        		.byte	0xb3
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 29
+
+
+ 1597 00d2 01        		.byte	0x1
+ 1598 00d3 03        		.byte	0x3
+ 1599 00d4 09        		.uleb128 0x9
+ 1600 00d5 01        		.byte	0x1
+ 1601 00d6 0000 0000 		.long	.LASF57
+ 1602 00da 01        		.byte	0x1
+ 1603 00db B9        		.byte	0xb9
+ 1604 00dc 01        		.byte	0x1
+ 1605 00dd 03        		.byte	0x3
+ 1606 00de EE00 0000 		.long	0xee
+ 1607 00e2 0A        		.uleb128 0xa
+ 1608 00e3 0000 0000 		.long	.LASF33
+ 1609 00e7 01        		.byte	0x1
+ 1610 00e8 B8        		.byte	0xb8
+ 1611 00e9 5D00 0000 		.long	0x5d
+ 1612 00ed 00        		.byte	0x0
+ 1613 00ee 08        		.uleb128 0x8
+ 1614 00ef 01        		.byte	0x1
+ 1615 00f0 0000 0000 		.long	.LASF19
+ 1616 00f4 01        		.byte	0x1
+ 1617 00f5 AC        		.byte	0xac
+ 1618 00f6 01        		.byte	0x1
+ 1619 00f7 03        		.byte	0x3
+ 1620 00f8 0B        		.uleb128 0xb
+ 1621 00f9 01        		.byte	0x1
+ 1622 00fa 0000 0000 		.long	.LASF58
+ 1623 00fe 01        		.byte	0x1
+ 1624 00ff D0        		.byte	0xd0
+ 1625 0100 01        		.byte	0x1
+ 1626 0101 5D00 0000 		.long	0x5d
+ 1627 0105 03        		.byte	0x3
+ 1628 0106 0C        		.uleb128 0xc
+ 1629 0107 01        		.byte	0x1
+ 1630 0108 0000 0000 		.long	.LASF20
+ 1631 010c 01        		.byte	0x1
+ 1632 010d 77        		.byte	0x77
+ 1633 010e 01        		.byte	0x1
+ 1634 010f 0000 0000 		.long	.LFB3
+ 1635 0113 0000 0000 		.long	.LFE3
+ 1636 0117 02        		.byte	0x2
+ 1637 0118 90        		.byte	0x90
+ 1638 0119 20        		.uleb128 0x20
+ 1639 011a 3B01 0000 		.long	0x13b
+ 1640 011e 0D        		.uleb128 0xd
+ 1641 011f 0000 0000 		.long	.LASF22
+ 1642 0123 01        		.byte	0x1
+ 1643 0124 76        		.byte	0x76
+ 1644 0125 6800 0000 		.long	0x68
+ 1645 0129 0000 0000 		.long	.LLST1
+ 1646 012d 0E        		.uleb128 0xe
+ 1647 012e 0000 0000 		.long	.LASF35
+ 1648 0132 01        		.byte	0x1
+ 1649 0133 78        		.byte	0x78
+ 1650 0134 5D00 0000 		.long	0x5d
+ 1651 0138 01        		.byte	0x1
+ 1652 0139 62        		.byte	0x62
+ 1653 013a 00        		.byte	0x0
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 30
+
+
+ 1654 013b 0F        		.uleb128 0xf
+ 1655 013c 01        		.byte	0x1
+ 1656 013d 0000 0000 		.long	.LASF59
+ 1657 0141 01        		.byte	0x1
+ 1658 0142 5B        		.byte	0x5b
+ 1659 0143 01        		.byte	0x1
+ 1660 0144 0000 0000 		.long	.LFB2
+ 1661 0148 0000 0000 		.long	.LFE2
+ 1662 014c 02        		.byte	0x2
+ 1663 014d 90        		.byte	0x90
+ 1664 014e 20        		.uleb128 0x20
+ 1665 014f 0C        		.uleb128 0xc
+ 1666 0150 01        		.byte	0x1
+ 1667 0151 0000 0000 		.long	.LASF21
+ 1668 0155 01        		.byte	0x1
+ 1669 0156 96        		.byte	0x96
+ 1670 0157 01        		.byte	0x1
+ 1671 0158 0000 0000 		.long	.LFB4
+ 1672 015c 0000 0000 		.long	.LFE4
+ 1673 0160 02        		.byte	0x2
+ 1674 0161 90        		.byte	0x90
+ 1675 0162 20        		.uleb128 0x20
+ 1676 0163 8201 0000 		.long	0x182
+ 1677 0167 10        		.uleb128 0x10
+ 1678 0168 0000 0000 		.long	.LASF23
+ 1679 016c 01        		.byte	0x1
+ 1680 016d 95        		.byte	0x95
+ 1681 016e 5D00 0000 		.long	0x5d
+ 1682 0172 01        		.byte	0x1
+ 1683 0173 68        		.byte	0x68
+ 1684 0174 10        		.uleb128 0x10
+ 1685 0175 0000 0000 		.long	.LASF24
+ 1686 0179 01        		.byte	0x1
+ 1687 017a 95        		.byte	0x95
+ 1688 017b 5D00 0000 		.long	0x5d
+ 1689 017f 01        		.byte	0x1
+ 1690 0180 66        		.byte	0x66
+ 1691 0181 00        		.byte	0x0
+ 1692 0182 0C        		.uleb128 0xc
+ 1693 0183 01        		.byte	0x1
+ 1694 0184 0000 0000 		.long	.LASF25
+ 1695 0188 01        		.byte	0x1
+ 1696 0189 9C        		.byte	0x9c
+ 1697 018a 01        		.byte	0x1
+ 1698 018b 0000 0000 		.long	.LFB5
+ 1699 018f 0000 0000 		.long	.LFE5
+ 1700 0193 02        		.byte	0x2
+ 1701 0194 90        		.byte	0x90
+ 1702 0195 20        		.uleb128 0x20
+ 1703 0196 AD01 0000 		.long	0x1ad
+ 1704 019a 10        		.uleb128 0x10
+ 1705 019b 0000 0000 		.long	.LASF26
+ 1706 019f 01        		.byte	0x1
+ 1707 01a0 9B        		.byte	0x9b
+ 1708 01a1 C401 0000 		.long	0x1c4
+ 1709 01a5 06        		.byte	0x6
+ 1710 01a6 68        		.byte	0x68
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 31
+
+
+ 1711 01a7 93        		.byte	0x93
+ 1712 01a8 01        		.uleb128 0x1
+ 1713 01a9 69        		.byte	0x69
+ 1714 01aa 93        		.byte	0x93
+ 1715 01ab 01        		.uleb128 0x1
+ 1716 01ac 00        		.byte	0x0
+ 1717 01ad 11        		.uleb128 0x11
+ 1718 01ae 01        		.byte	0x1
+ 1719 01af BE01 0000 		.long	0x1be
+ 1720 01b3 12        		.uleb128 0x12
+ 1721 01b4 5D00 0000 		.long	0x5d
+ 1722 01b8 12        		.uleb128 0x12
+ 1723 01b9 BE01 0000 		.long	0x1be
+ 1724 01bd 00        		.byte	0x0
+ 1725 01be 13        		.uleb128 0x13
+ 1726 01bf 02        		.byte	0x2
+ 1727 01c0 5D00 0000 		.long	0x5d
+ 1728 01c4 13        		.uleb128 0x13
+ 1729 01c5 02        		.byte	0x2
+ 1730 01c6 AD01 0000 		.long	0x1ad
+ 1731 01ca 0C        		.uleb128 0xc
+ 1732 01cb 01        		.byte	0x1
+ 1733 01cc 0000 0000 		.long	.LASF27
+ 1734 01d0 01        		.byte	0x1
+ 1735 01d1 A1        		.byte	0xa1
+ 1736 01d2 01        		.byte	0x1
+ 1737 01d3 0000 0000 		.long	.LFB6
+ 1738 01d7 0000 0000 		.long	.LFE6
+ 1739 01db 02        		.byte	0x2
+ 1740 01dc 90        		.byte	0x90
+ 1741 01dd 20        		.uleb128 0x20
+ 1742 01de F501 0000 		.long	0x1f5
+ 1743 01e2 10        		.uleb128 0x10
+ 1744 01e3 0000 0000 		.long	.LASF28
+ 1745 01e7 01        		.byte	0x1
+ 1746 01e8 A0        		.byte	0xa0
+ 1747 01e9 0A02 0000 		.long	0x20a
+ 1748 01ed 06        		.byte	0x6
+ 1749 01ee 68        		.byte	0x68
+ 1750 01ef 93        		.byte	0x93
+ 1751 01f0 01        		.uleb128 0x1
+ 1752 01f1 69        		.byte	0x69
+ 1753 01f2 93        		.byte	0x93
+ 1754 01f3 01        		.uleb128 0x1
+ 1755 01f4 00        		.byte	0x0
+ 1756 01f5 14        		.uleb128 0x14
+ 1757 01f6 01        		.byte	0x1
+ 1758 01f7 5D00 0000 		.long	0x5d
+ 1759 01fb 0A02 0000 		.long	0x20a
+ 1760 01ff 12        		.uleb128 0x12
+ 1761 0200 5D00 0000 		.long	0x5d
+ 1762 0204 12        		.uleb128 0x12
+ 1763 0205 BE01 0000 		.long	0x1be
+ 1764 0209 00        		.byte	0x0
+ 1765 020a 13        		.uleb128 0x13
+ 1766 020b 02        		.byte	0x2
+ 1767 020c F501 0000 		.long	0x1f5
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 32
+
+
+ 1768 0210 15        		.uleb128 0x15
+ 1769 0211 C000 0000 		.long	0xc0
+ 1770 0215 0000 0000 		.long	.LFB7
+ 1771 0219 0000 0000 		.long	.LFE7
+ 1772 021d 02        		.byte	0x2
+ 1773 021e 90        		.byte	0x90
+ 1774 021f 20        		.uleb128 0x20
+ 1775 0220 15        		.uleb128 0x15
+ 1776 0221 EE00 0000 		.long	0xee
+ 1777 0225 0000 0000 		.long	.LFB8
+ 1778 0229 0000 0000 		.long	.LFE8
+ 1779 022d 02        		.byte	0x2
+ 1780 022e 90        		.byte	0x90
+ 1781 022f 20        		.uleb128 0x20
+ 1782 0230 15        		.uleb128 0x15
+ 1783 0231 CA00 0000 		.long	0xca
+ 1784 0235 0000 0000 		.long	.LFB9
+ 1785 0239 0000 0000 		.long	.LFE9
+ 1786 023d 02        		.byte	0x2
+ 1787 023e 90        		.byte	0x90
+ 1788 023f 20        		.uleb128 0x20
+ 1789 0240 16        		.uleb128 0x16
+ 1790 0241 D400 0000 		.long	0xd4
+ 1791 0245 0000 0000 		.long	.LFB10
+ 1792 0249 0000 0000 		.long	.LFE10
+ 1793 024d 02        		.byte	0x2
+ 1794 024e 90        		.byte	0x90
+ 1795 024f 20        		.uleb128 0x20
+ 1796 0250 5E02 0000 		.long	0x25e
+ 1797 0254 17        		.uleb128 0x17
+ 1798 0255 E200 0000 		.long	0xe2
+ 1799 0259 0000 0000 		.long	.LLST10
+ 1800 025d 00        		.byte	0x0
+ 1801 025e 0C        		.uleb128 0xc
+ 1802 025f 01        		.byte	0x1
+ 1803 0260 0000 0000 		.long	.LASF29
+ 1804 0264 01        		.byte	0x1
+ 1805 0265 C1        		.byte	0xc1
+ 1806 0266 01        		.byte	0x1
+ 1807 0267 0000 0000 		.long	.LFB11
+ 1808 026b 0000 0000 		.long	.LFE11
+ 1809 026f 02        		.byte	0x2
+ 1810 0270 90        		.byte	0x90
+ 1811 0271 20        		.uleb128 0x20
+ 1812 0272 8602 0000 		.long	0x286
+ 1813 0276 0D        		.uleb128 0xd
+ 1814 0277 0000 0000 		.long	.LASF30
+ 1815 027b 01        		.byte	0x1
+ 1816 027c C0        		.byte	0xc0
+ 1817 027d 5D00 0000 		.long	0x5d
+ 1818 0281 0000 0000 		.long	.LLST12
+ 1819 0285 00        		.byte	0x0
+ 1820 0286 15        		.uleb128 0x15
+ 1821 0287 F800 0000 		.long	0xf8
+ 1822 028b 0000 0000 		.long	.LFB12
+ 1823 028f 0000 0000 		.long	.LFE12
+ 1824 0293 02        		.byte	0x2
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 33
+
+
+ 1825 0294 90        		.byte	0x90
+ 1826 0295 20        		.uleb128 0x20
+ 1827 0296 18        		.uleb128 0x18
+ 1828 0297 01        		.byte	0x1
+ 1829 0298 0000 0000 		.long	.LASF41
+ 1830 029c 01        		.byte	0x1
+ 1831 029d D6        		.byte	0xd6
+ 1832 029e 01        		.byte	0x1
+ 1833 029f 5D00 0000 		.long	0x5d
+ 1834 02a3 0000 0000 		.long	.LFB13
+ 1835 02a7 0000 0000 		.long	.LFE13
+ 1836 02ab 02        		.byte	0x2
+ 1837 02ac 90        		.byte	0x90
+ 1838 02ad 20        		.uleb128 0x20
+ 1839 02ae 0C        		.uleb128 0xc
+ 1840 02af 01        		.byte	0x1
+ 1841 02b0 0000 0000 		.long	.LASF31
+ 1842 02b4 01        		.byte	0x1
+ 1843 02b5 DC        		.byte	0xdc
+ 1844 02b6 01        		.byte	0x1
+ 1845 02b7 0000 0000 		.long	.LFB14
+ 1846 02bb 0000 0000 		.long	.LFE14
+ 1847 02bf 02        		.byte	0x2
+ 1848 02c0 90        		.byte	0x90
+ 1849 02c1 20        		.uleb128 0x20
+ 1850 02c2 0A03 0000 		.long	0x30a
+ 1851 02c6 0D        		.uleb128 0xd
+ 1852 02c7 0000 0000 		.long	.LASF23
+ 1853 02cb 01        		.byte	0x1
+ 1854 02cc DB        		.byte	0xdb
+ 1855 02cd 5D00 0000 		.long	0x5d
+ 1856 02d1 0000 0000 		.long	.LLST16
+ 1857 02d5 10        		.uleb128 0x10
+ 1858 02d6 0000 0000 		.long	.LASF32
+ 1859 02da 01        		.byte	0x1
+ 1860 02db DB        		.byte	0xdb
+ 1861 02dc 5D00 0000 		.long	0x5d
+ 1862 02e0 01        		.byte	0x1
+ 1863 02e1 66        		.byte	0x66
+ 1864 02e2 0D        		.uleb128 0xd
+ 1865 02e3 0000 0000 		.long	.LASF33
+ 1866 02e7 01        		.byte	0x1
+ 1867 02e8 DB        		.byte	0xdb
+ 1868 02e9 BE01 0000 		.long	0x1be
+ 1869 02ed 0000 0000 		.long	.LLST17
+ 1870 02f1 19        		.uleb128 0x19
+ 1871 02f2 6900      		.string	"i"
+ 1872 02f4 01        		.byte	0x1
+ 1873 02f5 DD        		.byte	0xdd
+ 1874 02f6 5D00 0000 		.long	0x5d
+ 1875 02fa 1A        		.uleb128 0x1a
+ 1876 02fb C000 0000 		.long	0xc0
+ 1877 02ff 0000 0000 		.long	.LBB46
+ 1878 0303 0000 0000 		.long	.LBE46
+ 1879 0307 01        		.byte	0x1
+ 1880 0308 E9        		.byte	0xe9
+ 1881 0309 00        		.byte	0x0
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 34
+
+
+ 1882 030a 0C        		.uleb128 0xc
+ 1883 030b 01        		.byte	0x1
+ 1884 030c 0000 0000 		.long	.LASF34
+ 1885 0310 01        		.byte	0x1
+ 1886 0311 ED        		.byte	0xed
+ 1887 0312 01        		.byte	0x1
+ 1888 0313 0000 0000 		.long	.LFB15
+ 1889 0317 0000 0000 		.long	.LFE15
+ 1890 031b 02        		.byte	0x2
+ 1891 031c 90        		.byte	0x90
+ 1892 031d 20        		.uleb128 0x20
+ 1893 031e 6603 0000 		.long	0x366
+ 1894 0322 0D        		.uleb128 0xd
+ 1895 0323 0000 0000 		.long	.LASF23
+ 1896 0327 01        		.byte	0x1
+ 1897 0328 EC        		.byte	0xec
+ 1898 0329 5D00 0000 		.long	0x5d
+ 1899 032d 0000 0000 		.long	.LLST19
+ 1900 0331 10        		.uleb128 0x10
+ 1901 0332 0000 0000 		.long	.LASF32
+ 1902 0336 01        		.byte	0x1
+ 1903 0337 EC        		.byte	0xec
+ 1904 0338 5D00 0000 		.long	0x5d
+ 1905 033c 01        		.byte	0x1
+ 1906 033d 66        		.byte	0x66
+ 1907 033e 0D        		.uleb128 0xd
+ 1908 033f 0000 0000 		.long	.LASF33
+ 1909 0343 01        		.byte	0x1
+ 1910 0344 EC        		.byte	0xec
+ 1911 0345 BE01 0000 		.long	0x1be
+ 1912 0349 0000 0000 		.long	.LLST20
+ 1913 034d 19        		.uleb128 0x19
+ 1914 034e 6900      		.string	"i"
+ 1915 0350 01        		.byte	0x1
+ 1916 0351 EE        		.byte	0xee
+ 1917 0352 5D00 0000 		.long	0x5d
+ 1918 0356 1A        		.uleb128 0x1a
+ 1919 0357 C000 0000 		.long	0xc0
+ 1920 035b 0000 0000 		.long	.LBB48
+ 1921 035f 0000 0000 		.long	.LBE48
+ 1922 0363 01        		.byte	0x1
+ 1923 0364 F8        		.byte	0xf8
+ 1924 0365 00        		.byte	0x0
+ 1925 0366 1B        		.uleb128 0x1b
+ 1926 0367 01        		.byte	0x1
+ 1927 0368 0000 0000 		.long	.LASF37
+ 1928 036c 01        		.byte	0x1
+ 1929 036d 0101      		.word	0x101
+ 1930 036f 01        		.byte	0x1
+ 1931 0370 5D00 0000 		.long	0x5d
+ 1932 0374 0000 0000 		.long	.LFB16
+ 1933 0378 0000 0000 		.long	.LFE16
+ 1934 037c 02        		.byte	0x2
+ 1935 037d 90        		.byte	0x90
+ 1936 037e 20        		.uleb128 0x20
+ 1937 037f 4604 0000 		.long	0x446
+ 1938 0383 1C        		.uleb128 0x1c
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 35
+
+
+ 1939 0384 0000 0000 		.long	.LASF23
+ 1940 0388 01        		.byte	0x1
+ 1941 0389 0001      		.word	0x100
+ 1942 038b 5D00 0000 		.long	0x5d
+ 1943 038f 0000 0000 		.long	.LLST22
+ 1944 0393 1D        		.uleb128 0x1d
+ 1945 0394 0000 0000 		.long	.LASF32
+ 1946 0398 01        		.byte	0x1
+ 1947 0399 0001      		.word	0x100
+ 1948 039b 5D00 0000 		.long	0x5d
+ 1949 039f 01        		.byte	0x1
+ 1950 03a0 66        		.byte	0x66
+ 1951 03a1 1C        		.uleb128 0x1c
+ 1952 03a2 0000 0000 		.long	.LASF33
+ 1953 03a6 01        		.byte	0x1
+ 1954 03a7 0001      		.word	0x100
+ 1955 03a9 BE01 0000 		.long	0x1be
+ 1956 03ad 0000 0000 		.long	.LLST23
+ 1957 03b1 1E        		.uleb128 0x1e
+ 1958 03b2 0000 0000 		.long	.LASF36
+ 1959 03b6 01        		.byte	0x1
+ 1960 03b7 0201      		.word	0x102
+ 1961 03b9 5D00 0000 		.long	0x5d
+ 1962 03bd 0000 0000 		.long	.LLST24
+ 1963 03c1 1F        		.uleb128 0x1f
+ 1964 03c2 C000 0000 		.long	0xc0
+ 1965 03c6 0000 0000 		.long	.LBB50
+ 1966 03ca 0000 0000 		.long	.LBE50
+ 1967 03ce 01        		.byte	0x1
+ 1968 03cf 0801      		.word	0x108
+ 1969 03d1 1F        		.uleb128 0x1f
+ 1970 03d2 CA00 0000 		.long	0xca
+ 1971 03d6 0000 0000 		.long	.LBB52
+ 1972 03da 0000 0000 		.long	.LBE52
+ 1973 03de 01        		.byte	0x1
+ 1974 03df 0901      		.word	0x109
+ 1975 03e1 20        		.uleb128 0x20
+ 1976 03e2 D400 0000 		.long	0xd4
+ 1977 03e6 0000 0000 		.long	.LBB54
+ 1978 03ea 0000 0000 		.long	.LBE54
+ 1979 03ee 01        		.byte	0x1
+ 1980 03ef 0C01      		.word	0x10c
+ 1981 03f1 FB03 0000 		.long	0x3fb
+ 1982 03f5 21        		.uleb128 0x21
+ 1983 03f6 5402 0000 		.long	0x254
+ 1984 03fa 00        		.byte	0x0
+ 1985 03fb 1F        		.uleb128 0x1f
+ 1986 03fc CA00 0000 		.long	0xca
+ 1987 0400 0000 0000 		.long	.LBB56
+ 1988 0404 0000 0000 		.long	.LBE56
+ 1989 0408 01        		.byte	0x1
+ 1990 0409 0D01      		.word	0x10d
+ 1991 040b 20        		.uleb128 0x20
+ 1992 040c D400 0000 		.long	0xd4
+ 1993 0410 0000 0000 		.long	.LBB58
+ 1994 0414 0000 0000 		.long	.LBE58
+ 1995 0418 01        		.byte	0x1
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 36
+
+
+ 1996 0419 1501      		.word	0x115
+ 1997 041b 2504 0000 		.long	0x425
+ 1998 041f 21        		.uleb128 0x21
+ 1999 0420 5402 0000 		.long	0x254
+ 2000 0424 00        		.byte	0x0
+ 2001 0425 1F        		.uleb128 0x1f
+ 2002 0426 CA00 0000 		.long	0xca
+ 2003 042a 0000 0000 		.long	.LBB60
+ 2004 042e 0000 0000 		.long	.LBE60
+ 2005 0432 01        		.byte	0x1
+ 2006 0433 1601      		.word	0x116
+ 2007 0435 1F        		.uleb128 0x1f
+ 2008 0436 EE00 0000 		.long	0xee
+ 2009 043a 0000 0000 		.long	.LBB62
+ 2010 043e 0000 0000 		.long	.LBE62
+ 2011 0442 01        		.byte	0x1
+ 2012 0443 2401      		.word	0x124
+ 2013 0445 00        		.byte	0x0
+ 2014 0446 1B        		.uleb128 0x1b
+ 2015 0447 01        		.byte	0x1
+ 2016 0448 0000 0000 		.long	.LASF38
+ 2017 044c 01        		.byte	0x1
+ 2018 044d 2E01      		.word	0x12e
+ 2019 044f 01        		.byte	0x1
+ 2020 0450 5D00 0000 		.long	0x5d
+ 2021 0454 0000 0000 		.long	.LFB17
+ 2022 0458 0000 0000 		.long	.LFE17
+ 2023 045c 02        		.byte	0x2
+ 2024 045d 90        		.byte	0x90
+ 2025 045e 20        		.uleb128 0x20
+ 2026 045f 3E05 0000 		.long	0x53e
+ 2027 0463 1C        		.uleb128 0x1c
+ 2028 0464 0000 0000 		.long	.LASF23
+ 2029 0468 01        		.byte	0x1
+ 2030 0469 2D01      		.word	0x12d
+ 2031 046b 5D00 0000 		.long	0x5d
+ 2032 046f 0000 0000 		.long	.LLST26
+ 2033 0473 1C        		.uleb128 0x1c
+ 2034 0474 0000 0000 		.long	.LASF32
+ 2035 0478 01        		.byte	0x1
+ 2036 0479 2D01      		.word	0x12d
+ 2037 047b 5D00 0000 		.long	0x5d
+ 2038 047f 0000 0000 		.long	.LLST27
+ 2039 0483 1C        		.uleb128 0x1c
+ 2040 0484 0000 0000 		.long	.LASF33
+ 2041 0488 01        		.byte	0x1
+ 2042 0489 2D01      		.word	0x12d
+ 2043 048b BE01 0000 		.long	0x1be
+ 2044 048f 0000 0000 		.long	.LLST28
+ 2045 0493 1E        		.uleb128 0x1e
+ 2046 0494 0000 0000 		.long	.LASF36
+ 2047 0498 01        		.byte	0x1
+ 2048 0499 2F01      		.word	0x12f
+ 2049 049b 5D00 0000 		.long	0x5d
+ 2050 049f 0000 0000 		.long	.LLST29
+ 2051 04a3 1F        		.uleb128 0x1f
+ 2052 04a4 C000 0000 		.long	0xc0
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 37
+
+
+ 2053 04a8 0000 0000 		.long	.LBB64
+ 2054 04ac 0000 0000 		.long	.LBE64
+ 2055 04b0 01        		.byte	0x1
+ 2056 04b1 3501      		.word	0x135
+ 2057 04b3 1F        		.uleb128 0x1f
+ 2058 04b4 CA00 0000 		.long	0xca
+ 2059 04b8 0000 0000 		.long	.LBB66
+ 2060 04bc 0000 0000 		.long	.LBE66
+ 2061 04c0 01        		.byte	0x1
+ 2062 04c1 3601      		.word	0x136
+ 2063 04c3 20        		.uleb128 0x20
+ 2064 04c4 D400 0000 		.long	0xd4
+ 2065 04c8 0000 0000 		.long	.LBB68
+ 2066 04cc 0000 0000 		.long	.LBE68
+ 2067 04d0 01        		.byte	0x1
+ 2068 04d1 3901      		.word	0x139
+ 2069 04d3 DD04 0000 		.long	0x4dd
+ 2070 04d7 21        		.uleb128 0x21
+ 2071 04d8 5402 0000 		.long	0x254
+ 2072 04dc 00        		.byte	0x0
+ 2073 04dd 1F        		.uleb128 0x1f
+ 2074 04de CA00 0000 		.long	0xca
+ 2075 04e2 0000 0000 		.long	.LBB70
+ 2076 04e6 0000 0000 		.long	.LBE70
+ 2077 04ea 01        		.byte	0x1
+ 2078 04eb 3A01      		.word	0x13a
+ 2079 04ed 1F        		.uleb128 0x1f
+ 2080 04ee CA00 0000 		.long	0xca
+ 2081 04f2 0000 0000 		.long	.LBB72
+ 2082 04f6 0000 0000 		.long	.LBE72
+ 2083 04fa 01        		.byte	0x1
+ 2084 04fb 4301      		.word	0x143
+ 2085 04fd 1F        		.uleb128 0x1f
+ 2086 04fe F800 0000 		.long	0xf8
+ 2087 0502 0000 0000 		.long	.LBB74
+ 2088 0506 0000 0000 		.long	.LBE74
+ 2089 050a 01        		.byte	0x1
+ 2090 050b 4401      		.word	0x144
+ 2091 050d 1F        		.uleb128 0x1f
+ 2092 050e CA00 0000 		.long	0xca
+ 2093 0512 0000 0000 		.long	.LBB76
+ 2094 0516 0000 0000 		.long	.LBE76
+ 2095 051a 01        		.byte	0x1
+ 2096 051b 4B01      		.word	0x14b
+ 2097 051d 1F        		.uleb128 0x1f
+ 2098 051e F800 0000 		.long	0xf8
+ 2099 0522 0000 0000 		.long	.LBB78
+ 2100 0526 0000 0000 		.long	.LBE78
+ 2101 052a 01        		.byte	0x1
+ 2102 052b 4C01      		.word	0x14c
+ 2103 052d 1F        		.uleb128 0x1f
+ 2104 052e EE00 0000 		.long	0xee
+ 2105 0532 0000 0000 		.long	.LBB80
+ 2106 0536 0000 0000 		.long	.LBE80
+ 2107 053a 01        		.byte	0x1
+ 2108 053b 5801      		.word	0x158
+ 2109 053d 00        		.byte	0x0
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 38
+
+
+ 2110 053e 22        		.uleb128 0x22
+ 2111 053f 01        		.byte	0x1
+ 2112 0540 0000 0000 		.long	.LASF39
+ 2113 0544 01        		.byte	0x1
+ 2114 0545 6301      		.word	0x163
+ 2115 0547 01        		.byte	0x1
+ 2116 0548 0000 0000 		.long	.LFB18
+ 2117 054c 0000 0000 		.long	.LFE18
+ 2118 0550 02        		.byte	0x2
+ 2119 0551 90        		.byte	0x90
+ 2120 0552 20        		.uleb128 0x20
+ 2121 0553 7A05 0000 		.long	0x57a
+ 2122 0557 23        		.uleb128 0x23
+ 2123 0558 0000 0000 		.long	.LASF40
+ 2124 055c 01        		.byte	0x1
+ 2125 055d 6501      		.word	0x165
+ 2126 055f 5D00 0000 		.long	0x5d
+ 2127 0563 24        		.uleb128 0x24
+ 2128 0564 D400 0000 		.long	0xd4
+ 2129 0568 0000 0000 		.long	.LBB82
+ 2130 056c 0000 0000 		.long	.LBE82
+ 2131 0570 01        		.byte	0x1
+ 2132 0571 8001      		.word	0x180
+ 2133 0573 21        		.uleb128 0x21
+ 2134 0574 5402 0000 		.long	0x254
+ 2135 0578 00        		.byte	0x0
+ 2136 0579 00        		.byte	0x0
+ 2137 057a 25        		.uleb128 0x25
+ 2138 057b 01        		.byte	0x1
+ 2139 057c 0000 0000 		.long	.LASF42
+ 2140 0580 01        		.byte	0x1
+ 2141 0581 4F02      		.word	0x24f
+ 2142 0583 01        		.byte	0x1
+ 2143 0584 B500 0000 		.long	0xb5
+ 2144 0588 0000 0000 		.long	.LFB19
+ 2145 058c 0000 0000 		.long	.LFE19
+ 2146 0590 02        		.byte	0x2
+ 2147 0591 90        		.byte	0x90
+ 2148 0592 20        		.uleb128 0x20
+ 2149 0593 25        		.uleb128 0x25
+ 2150 0594 01        		.byte	0x1
+ 2151 0595 0000 0000 		.long	.LASF43
+ 2152 0599 01        		.byte	0x1
+ 2153 059a 5402      		.word	0x254
+ 2154 059c 01        		.byte	0x1
+ 2155 059d 5D00 0000 		.long	0x5d
+ 2156 05a1 0000 0000 		.long	.LFB20
+ 2157 05a5 0000 0000 		.long	.LFE20
+ 2158 05a9 02        		.byte	0x2
+ 2159 05aa 90        		.byte	0x90
+ 2160 05ab 20        		.uleb128 0x20
+ 2161 05ac 0E        		.uleb128 0xe
+ 2162 05ad 0000 0000 		.long	.LASF44
+ 2163 05b1 01        		.byte	0x1
+ 2164 05b2 45        		.byte	0x45
+ 2165 05b3 BD05 0000 		.long	0x5bd
+ 2166 05b7 05        		.byte	0x5
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 39
+
+
+ 2167 05b8 03        		.byte	0x3
+ 2168 05b9 0000 0000 		.long	I2cState
+ 2169 05bd 26        		.uleb128 0x26
+ 2170 05be B500 0000 		.long	0xb5
+ 2171 05c2 0E        		.uleb128 0xe
+ 2172 05c3 0000 0000 		.long	.LASF45
+ 2173 05c7 01        		.byte	0x1
+ 2174 05c8 46        		.byte	0x46
+ 2175 05c9 5D00 0000 		.long	0x5d
+ 2176 05cd 05        		.byte	0x5
+ 2177 05ce 03        		.byte	0x3
+ 2178 05cf 0000 0000 		.long	I2cDeviceAddrRW
+ 2179 05d3 27        		.uleb128 0x27
+ 2180 05d4 5D00 0000 		.long	0x5d
+ 2181 05d8 E305 0000 		.long	0x5e3
+ 2182 05dc 28        		.uleb128 0x28
+ 2183 05dd E305 0000 		.long	0x5e3
+ 2184 05e1 1F        		.byte	0x1f
+ 2185 05e2 00        		.byte	0x0
+ 2186 05e3 29        		.uleb128 0x29
+ 2187 05e4 02        		.byte	0x2
+ 2188 05e5 07        		.byte	0x7
+ 2189 05e6 0E        		.uleb128 0xe
+ 2190 05e7 0000 0000 		.long	.LASF46
+ 2191 05eb 01        		.byte	0x1
+ 2192 05ec 48        		.byte	0x48
+ 2193 05ed D305 0000 		.long	0x5d3
+ 2194 05f1 05        		.byte	0x5
+ 2195 05f2 03        		.byte	0x3
+ 2196 05f3 0000 0000 		.long	I2cSendData
+ 2197 05f7 0E        		.uleb128 0xe
+ 2198 05f8 0000 0000 		.long	.LASF47
+ 2199 05fc 01        		.byte	0x1
+ 2200 05fd 49        		.byte	0x49
+ 2201 05fe 5D00 0000 		.long	0x5d
+ 2202 0602 05        		.byte	0x5
+ 2203 0603 03        		.byte	0x3
+ 2204 0604 0000 0000 		.long	I2cSendDataIndex
+ 2205 0608 0E        		.uleb128 0xe
+ 2206 0609 0000 0000 		.long	.LASF48
+ 2207 060d 01        		.byte	0x1
+ 2208 060e 4A        		.byte	0x4a
+ 2209 060f 5D00 0000 		.long	0x5d
+ 2210 0613 05        		.byte	0x5
+ 2211 0614 03        		.byte	0x3
+ 2212 0615 0000 0000 		.long	I2cSendDataLength
+ 2213 0619 0E        		.uleb128 0xe
+ 2214 061a 0000 0000 		.long	.LASF49
+ 2215 061e 01        		.byte	0x1
+ 2216 061f 4C        		.byte	0x4c
+ 2217 0620 D305 0000 		.long	0x5d3
+ 2218 0624 05        		.byte	0x5
+ 2219 0625 03        		.byte	0x3
+ 2220 0626 0000 0000 		.long	I2cReceiveData
+ 2221 062a 0E        		.uleb128 0xe
+ 2222 062b 0000 0000 		.long	.LASF50
+ 2223 062f 01        		.byte	0x1
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 40
+
+
+ 2224 0630 4D        		.byte	0x4d
+ 2225 0631 5D00 0000 		.long	0x5d
+ 2226 0635 05        		.byte	0x5
+ 2227 0636 03        		.byte	0x3
+ 2228 0637 0000 0000 		.long	I2cReceiveDataIndex
+ 2229 063b 0E        		.uleb128 0xe
+ 2230 063c 0000 0000 		.long	.LASF51
+ 2231 0640 01        		.byte	0x1
+ 2232 0641 4E        		.byte	0x4e
+ 2233 0642 5D00 0000 		.long	0x5d
+ 2234 0646 05        		.byte	0x5
+ 2235 0647 03        		.byte	0x3
+ 2236 0648 0000 0000 		.long	I2cReceiveDataLength
+ 2237 064c 0E        		.uleb128 0xe
+ 2238 064d 0000 0000 		.long	.LASF52
+ 2239 0651 01        		.byte	0x1
+ 2240 0652 54        		.byte	0x54
+ 2241 0653 C401 0000 		.long	0x1c4
+ 2242 0657 05        		.byte	0x5
+ 2243 0658 03        		.byte	0x3
+ 2244 0659 0000 0000 		.long	i2cSlaveReceive
+ 2245 065d 0E        		.uleb128 0xe
+ 2246 065e 0000 0000 		.long	.LASF53
+ 2247 0662 01        		.byte	0x1
+ 2248 0663 57        		.byte	0x57
+ 2249 0664 0A02 0000 		.long	0x20a
+ 2250 0668 05        		.byte	0x5
+ 2251 0669 03        		.byte	0x3
+ 2252 066a 0000 0000 		.long	i2cSlaveTransmit
+ 2253 066e 2A        		.uleb128 0x2a
+ 2254 066f 0000 0000 		.long	.LASF60
+ 2255 0673 01        		.byte	0x1
+ 2256 0674 4F        		.byte	0x4f
+ 2257 0675 5D00 0000 		.long	0x5d
+ 2258 0679 01        		.byte	0x1
+ 2259 067a 05        		.byte	0x5
+ 2260 067b 03        		.byte	0x3
+ 2261 067c 0000 0000 		.long	GenCal_Flag
+ 2262 0680 00        		.byte	0x0
+ 2263               		.section	.debug_abbrev
+ 2264 0000 01        		.uleb128 0x1
+ 2265 0001 11        		.uleb128 0x11
+ 2266 0002 01        		.byte	0x1
+ 2267 0003 25        		.uleb128 0x25
+ 2268 0004 0E        		.uleb128 0xe
+ 2269 0005 13        		.uleb128 0x13
+ 2270 0006 0B        		.uleb128 0xb
+ 2271 0007 03        		.uleb128 0x3
+ 2272 0008 0E        		.uleb128 0xe
+ 2273 0009 1B        		.uleb128 0x1b
+ 2274 000a 0E        		.uleb128 0xe
+ 2275 000b 11        		.uleb128 0x11
+ 2276 000c 01        		.uleb128 0x1
+ 2277 000d 12        		.uleb128 0x12
+ 2278 000e 01        		.uleb128 0x1
+ 2279 000f 10        		.uleb128 0x10
+ 2280 0010 06        		.uleb128 0x6
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 41
+
+
+ 2281 0011 00        		.byte	0x0
+ 2282 0012 00        		.byte	0x0
+ 2283 0013 02        		.uleb128 0x2
+ 2284 0014 24        		.uleb128 0x24
+ 2285 0015 00        		.byte	0x0
+ 2286 0016 0B        		.uleb128 0xb
+ 2287 0017 0B        		.uleb128 0xb
+ 2288 0018 3E        		.uleb128 0x3e
+ 2289 0019 0B        		.uleb128 0xb
+ 2290 001a 03        		.uleb128 0x3
+ 2291 001b 0E        		.uleb128 0xe
+ 2292 001c 00        		.byte	0x0
+ 2293 001d 00        		.byte	0x0
+ 2294 001e 03        		.uleb128 0x3
+ 2295 001f 24        		.uleb128 0x24
+ 2296 0020 00        		.byte	0x0
+ 2297 0021 0B        		.uleb128 0xb
+ 2298 0022 0B        		.uleb128 0xb
+ 2299 0023 3E        		.uleb128 0x3e
+ 2300 0024 0B        		.uleb128 0xb
+ 2301 0025 03        		.uleb128 0x3
+ 2302 0026 08        		.uleb128 0x8
+ 2303 0027 00        		.byte	0x0
+ 2304 0028 00        		.byte	0x0
+ 2305 0029 04        		.uleb128 0x4
+ 2306 002a 16        		.uleb128 0x16
+ 2307 002b 00        		.byte	0x0
+ 2308 002c 03        		.uleb128 0x3
+ 2309 002d 08        		.uleb128 0x8
+ 2310 002e 3A        		.uleb128 0x3a
+ 2311 002f 0B        		.uleb128 0xb
+ 2312 0030 3B        		.uleb128 0x3b
+ 2313 0031 0B        		.uleb128 0xb
+ 2314 0032 49        		.uleb128 0x49
+ 2315 0033 13        		.uleb128 0x13
+ 2316 0034 00        		.byte	0x0
+ 2317 0035 00        		.byte	0x0
+ 2318 0036 05        		.uleb128 0x5
+ 2319 0037 04        		.uleb128 0x4
+ 2320 0038 01        		.byte	0x1
+ 2321 0039 0B        		.uleb128 0xb
+ 2322 003a 0B        		.uleb128 0xb
+ 2323 003b 3A        		.uleb128 0x3a
+ 2324 003c 0B        		.uleb128 0xb
+ 2325 003d 3B        		.uleb128 0x3b
+ 2326 003e 0B        		.uleb128 0xb
+ 2327 003f 01        		.uleb128 0x1
+ 2328 0040 13        		.uleb128 0x13
+ 2329 0041 00        		.byte	0x0
+ 2330 0042 00        		.byte	0x0
+ 2331 0043 06        		.uleb128 0x6
+ 2332 0044 28        		.uleb128 0x28
+ 2333 0045 00        		.byte	0x0
+ 2334 0046 03        		.uleb128 0x3
+ 2335 0047 0E        		.uleb128 0xe
+ 2336 0048 1C        		.uleb128 0x1c
+ 2337 0049 0D        		.uleb128 0xd
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 42
+
+
+ 2338 004a 00        		.byte	0x0
+ 2339 004b 00        		.byte	0x0
+ 2340 004c 07        		.uleb128 0x7
+ 2341 004d 16        		.uleb128 0x16
+ 2342 004e 00        		.byte	0x0
+ 2343 004f 03        		.uleb128 0x3
+ 2344 0050 0E        		.uleb128 0xe
+ 2345 0051 3A        		.uleb128 0x3a
+ 2346 0052 0B        		.uleb128 0xb
+ 2347 0053 3B        		.uleb128 0x3b
+ 2348 0054 0B        		.uleb128 0xb
+ 2349 0055 49        		.uleb128 0x49
+ 2350 0056 13        		.uleb128 0x13
+ 2351 0057 00        		.byte	0x0
+ 2352 0058 00        		.byte	0x0
+ 2353 0059 08        		.uleb128 0x8
+ 2354 005a 2E        		.uleb128 0x2e
+ 2355 005b 00        		.byte	0x0
+ 2356 005c 3F        		.uleb128 0x3f
+ 2357 005d 0C        		.uleb128 0xc
+ 2358 005e 03        		.uleb128 0x3
+ 2359 005f 0E        		.uleb128 0xe
+ 2360 0060 3A        		.uleb128 0x3a
+ 2361 0061 0B        		.uleb128 0xb
+ 2362 0062 3B        		.uleb128 0x3b
+ 2363 0063 0B        		.uleb128 0xb
+ 2364 0064 27        		.uleb128 0x27
+ 2365 0065 0C        		.uleb128 0xc
+ 2366 0066 20        		.uleb128 0x20
+ 2367 0067 0B        		.uleb128 0xb
+ 2368 0068 00        		.byte	0x0
+ 2369 0069 00        		.byte	0x0
+ 2370 006a 09        		.uleb128 0x9
+ 2371 006b 2E        		.uleb128 0x2e
+ 2372 006c 01        		.byte	0x1
+ 2373 006d 3F        		.uleb128 0x3f
+ 2374 006e 0C        		.uleb128 0xc
+ 2375 006f 03        		.uleb128 0x3
+ 2376 0070 0E        		.uleb128 0xe
+ 2377 0071 3A        		.uleb128 0x3a
+ 2378 0072 0B        		.uleb128 0xb
+ 2379 0073 3B        		.uleb128 0x3b
+ 2380 0074 0B        		.uleb128 0xb
+ 2381 0075 27        		.uleb128 0x27
+ 2382 0076 0C        		.uleb128 0xc
+ 2383 0077 20        		.uleb128 0x20
+ 2384 0078 0B        		.uleb128 0xb
+ 2385 0079 01        		.uleb128 0x1
+ 2386 007a 13        		.uleb128 0x13
+ 2387 007b 00        		.byte	0x0
+ 2388 007c 00        		.byte	0x0
+ 2389 007d 0A        		.uleb128 0xa
+ 2390 007e 05        		.uleb128 0x5
+ 2391 007f 00        		.byte	0x0
+ 2392 0080 03        		.uleb128 0x3
+ 2393 0081 0E        		.uleb128 0xe
+ 2394 0082 3A        		.uleb128 0x3a
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 43
+
+
+ 2395 0083 0B        		.uleb128 0xb
+ 2396 0084 3B        		.uleb128 0x3b
+ 2397 0085 0B        		.uleb128 0xb
+ 2398 0086 49        		.uleb128 0x49
+ 2399 0087 13        		.uleb128 0x13
+ 2400 0088 00        		.byte	0x0
+ 2401 0089 00        		.byte	0x0
+ 2402 008a 0B        		.uleb128 0xb
+ 2403 008b 2E        		.uleb128 0x2e
+ 2404 008c 00        		.byte	0x0
+ 2405 008d 3F        		.uleb128 0x3f
+ 2406 008e 0C        		.uleb128 0xc
+ 2407 008f 03        		.uleb128 0x3
+ 2408 0090 0E        		.uleb128 0xe
+ 2409 0091 3A        		.uleb128 0x3a
+ 2410 0092 0B        		.uleb128 0xb
+ 2411 0093 3B        		.uleb128 0x3b
+ 2412 0094 0B        		.uleb128 0xb
+ 2413 0095 27        		.uleb128 0x27
+ 2414 0096 0C        		.uleb128 0xc
+ 2415 0097 49        		.uleb128 0x49
+ 2416 0098 13        		.uleb128 0x13
+ 2417 0099 20        		.uleb128 0x20
+ 2418 009a 0B        		.uleb128 0xb
+ 2419 009b 00        		.byte	0x0
+ 2420 009c 00        		.byte	0x0
+ 2421 009d 0C        		.uleb128 0xc
+ 2422 009e 2E        		.uleb128 0x2e
+ 2423 009f 01        		.byte	0x1
+ 2424 00a0 3F        		.uleb128 0x3f
+ 2425 00a1 0C        		.uleb128 0xc
+ 2426 00a2 03        		.uleb128 0x3
+ 2427 00a3 0E        		.uleb128 0xe
+ 2428 00a4 3A        		.uleb128 0x3a
+ 2429 00a5 0B        		.uleb128 0xb
+ 2430 00a6 3B        		.uleb128 0x3b
+ 2431 00a7 0B        		.uleb128 0xb
+ 2432 00a8 27        		.uleb128 0x27
+ 2433 00a9 0C        		.uleb128 0xc
+ 2434 00aa 11        		.uleb128 0x11
+ 2435 00ab 01        		.uleb128 0x1
+ 2436 00ac 12        		.uleb128 0x12
+ 2437 00ad 01        		.uleb128 0x1
+ 2438 00ae 40        		.uleb128 0x40
+ 2439 00af 0A        		.uleb128 0xa
+ 2440 00b0 01        		.uleb128 0x1
+ 2441 00b1 13        		.uleb128 0x13
+ 2442 00b2 00        		.byte	0x0
+ 2443 00b3 00        		.byte	0x0
+ 2444 00b4 0D        		.uleb128 0xd
+ 2445 00b5 05        		.uleb128 0x5
+ 2446 00b6 00        		.byte	0x0
+ 2447 00b7 03        		.uleb128 0x3
+ 2448 00b8 0E        		.uleb128 0xe
+ 2449 00b9 3A        		.uleb128 0x3a
+ 2450 00ba 0B        		.uleb128 0xb
+ 2451 00bb 3B        		.uleb128 0x3b
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 44
+
+
+ 2452 00bc 0B        		.uleb128 0xb
+ 2453 00bd 49        		.uleb128 0x49
+ 2454 00be 13        		.uleb128 0x13
+ 2455 00bf 02        		.uleb128 0x2
+ 2456 00c0 06        		.uleb128 0x6
+ 2457 00c1 00        		.byte	0x0
+ 2458 00c2 00        		.byte	0x0
+ 2459 00c3 0E        		.uleb128 0xe
+ 2460 00c4 34        		.uleb128 0x34
+ 2461 00c5 00        		.byte	0x0
+ 2462 00c6 03        		.uleb128 0x3
+ 2463 00c7 0E        		.uleb128 0xe
+ 2464 00c8 3A        		.uleb128 0x3a
+ 2465 00c9 0B        		.uleb128 0xb
+ 2466 00ca 3B        		.uleb128 0x3b
+ 2467 00cb 0B        		.uleb128 0xb
+ 2468 00cc 49        		.uleb128 0x49
+ 2469 00cd 13        		.uleb128 0x13
+ 2470 00ce 02        		.uleb128 0x2
+ 2471 00cf 0A        		.uleb128 0xa
+ 2472 00d0 00        		.byte	0x0
+ 2473 00d1 00        		.byte	0x0
+ 2474 00d2 0F        		.uleb128 0xf
+ 2475 00d3 2E        		.uleb128 0x2e
+ 2476 00d4 00        		.byte	0x0
+ 2477 00d5 3F        		.uleb128 0x3f
+ 2478 00d6 0C        		.uleb128 0xc
+ 2479 00d7 03        		.uleb128 0x3
+ 2480 00d8 0E        		.uleb128 0xe
+ 2481 00d9 3A        		.uleb128 0x3a
+ 2482 00da 0B        		.uleb128 0xb
+ 2483 00db 3B        		.uleb128 0x3b
+ 2484 00dc 0B        		.uleb128 0xb
+ 2485 00dd 27        		.uleb128 0x27
+ 2486 00de 0C        		.uleb128 0xc
+ 2487 00df 11        		.uleb128 0x11
+ 2488 00e0 01        		.uleb128 0x1
+ 2489 00e1 12        		.uleb128 0x12
+ 2490 00e2 01        		.uleb128 0x1
+ 2491 00e3 40        		.uleb128 0x40
+ 2492 00e4 0A        		.uleb128 0xa
+ 2493 00e5 00        		.byte	0x0
+ 2494 00e6 00        		.byte	0x0
+ 2495 00e7 10        		.uleb128 0x10
+ 2496 00e8 05        		.uleb128 0x5
+ 2497 00e9 00        		.byte	0x0
+ 2498 00ea 03        		.uleb128 0x3
+ 2499 00eb 0E        		.uleb128 0xe
+ 2500 00ec 3A        		.uleb128 0x3a
+ 2501 00ed 0B        		.uleb128 0xb
+ 2502 00ee 3B        		.uleb128 0x3b
+ 2503 00ef 0B        		.uleb128 0xb
+ 2504 00f0 49        		.uleb128 0x49
+ 2505 00f1 13        		.uleb128 0x13
+ 2506 00f2 02        		.uleb128 0x2
+ 2507 00f3 0A        		.uleb128 0xa
+ 2508 00f4 00        		.byte	0x0
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 45
+
+
+ 2509 00f5 00        		.byte	0x0
+ 2510 00f6 11        		.uleb128 0x11
+ 2511 00f7 15        		.uleb128 0x15
+ 2512 00f8 01        		.byte	0x1
+ 2513 00f9 27        		.uleb128 0x27
+ 2514 00fa 0C        		.uleb128 0xc
+ 2515 00fb 01        		.uleb128 0x1
+ 2516 00fc 13        		.uleb128 0x13
+ 2517 00fd 00        		.byte	0x0
+ 2518 00fe 00        		.byte	0x0
+ 2519 00ff 12        		.uleb128 0x12
+ 2520 0100 05        		.uleb128 0x5
+ 2521 0101 00        		.byte	0x0
+ 2522 0102 49        		.uleb128 0x49
+ 2523 0103 13        		.uleb128 0x13
+ 2524 0104 00        		.byte	0x0
+ 2525 0105 00        		.byte	0x0
+ 2526 0106 13        		.uleb128 0x13
+ 2527 0107 0F        		.uleb128 0xf
+ 2528 0108 00        		.byte	0x0
+ 2529 0109 0B        		.uleb128 0xb
+ 2530 010a 0B        		.uleb128 0xb
+ 2531 010b 49        		.uleb128 0x49
+ 2532 010c 13        		.uleb128 0x13
+ 2533 010d 00        		.byte	0x0
+ 2534 010e 00        		.byte	0x0
+ 2535 010f 14        		.uleb128 0x14
+ 2536 0110 15        		.uleb128 0x15
+ 2537 0111 01        		.byte	0x1
+ 2538 0112 27        		.uleb128 0x27
+ 2539 0113 0C        		.uleb128 0xc
+ 2540 0114 49        		.uleb128 0x49
+ 2541 0115 13        		.uleb128 0x13
+ 2542 0116 01        		.uleb128 0x1
+ 2543 0117 13        		.uleb128 0x13
+ 2544 0118 00        		.byte	0x0
+ 2545 0119 00        		.byte	0x0
+ 2546 011a 15        		.uleb128 0x15
+ 2547 011b 2E        		.uleb128 0x2e
+ 2548 011c 00        		.byte	0x0
+ 2549 011d 31        		.uleb128 0x31
+ 2550 011e 13        		.uleb128 0x13
+ 2551 011f 11        		.uleb128 0x11
+ 2552 0120 01        		.uleb128 0x1
+ 2553 0121 12        		.uleb128 0x12
+ 2554 0122 01        		.uleb128 0x1
+ 2555 0123 40        		.uleb128 0x40
+ 2556 0124 0A        		.uleb128 0xa
+ 2557 0125 00        		.byte	0x0
+ 2558 0126 00        		.byte	0x0
+ 2559 0127 16        		.uleb128 0x16
+ 2560 0128 2E        		.uleb128 0x2e
+ 2561 0129 01        		.byte	0x1
+ 2562 012a 31        		.uleb128 0x31
+ 2563 012b 13        		.uleb128 0x13
+ 2564 012c 11        		.uleb128 0x11
+ 2565 012d 01        		.uleb128 0x1
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 46
+
+
+ 2566 012e 12        		.uleb128 0x12
+ 2567 012f 01        		.uleb128 0x1
+ 2568 0130 40        		.uleb128 0x40
+ 2569 0131 0A        		.uleb128 0xa
+ 2570 0132 01        		.uleb128 0x1
+ 2571 0133 13        		.uleb128 0x13
+ 2572 0134 00        		.byte	0x0
+ 2573 0135 00        		.byte	0x0
+ 2574 0136 17        		.uleb128 0x17
+ 2575 0137 05        		.uleb128 0x5
+ 2576 0138 00        		.byte	0x0
+ 2577 0139 31        		.uleb128 0x31
+ 2578 013a 13        		.uleb128 0x13
+ 2579 013b 02        		.uleb128 0x2
+ 2580 013c 06        		.uleb128 0x6
+ 2581 013d 00        		.byte	0x0
+ 2582 013e 00        		.byte	0x0
+ 2583 013f 18        		.uleb128 0x18
+ 2584 0140 2E        		.uleb128 0x2e
+ 2585 0141 00        		.byte	0x0
+ 2586 0142 3F        		.uleb128 0x3f
+ 2587 0143 0C        		.uleb128 0xc
+ 2588 0144 03        		.uleb128 0x3
+ 2589 0145 0E        		.uleb128 0xe
+ 2590 0146 3A        		.uleb128 0x3a
+ 2591 0147 0B        		.uleb128 0xb
+ 2592 0148 3B        		.uleb128 0x3b
+ 2593 0149 0B        		.uleb128 0xb
+ 2594 014a 27        		.uleb128 0x27
+ 2595 014b 0C        		.uleb128 0xc
+ 2596 014c 49        		.uleb128 0x49
+ 2597 014d 13        		.uleb128 0x13
+ 2598 014e 11        		.uleb128 0x11
+ 2599 014f 01        		.uleb128 0x1
+ 2600 0150 12        		.uleb128 0x12
+ 2601 0151 01        		.uleb128 0x1
+ 2602 0152 40        		.uleb128 0x40
+ 2603 0153 0A        		.uleb128 0xa
+ 2604 0154 00        		.byte	0x0
+ 2605 0155 00        		.byte	0x0
+ 2606 0156 19        		.uleb128 0x19
+ 2607 0157 34        		.uleb128 0x34
+ 2608 0158 00        		.byte	0x0
+ 2609 0159 03        		.uleb128 0x3
+ 2610 015a 08        		.uleb128 0x8
+ 2611 015b 3A        		.uleb128 0x3a
+ 2612 015c 0B        		.uleb128 0xb
+ 2613 015d 3B        		.uleb128 0x3b
+ 2614 015e 0B        		.uleb128 0xb
+ 2615 015f 49        		.uleb128 0x49
+ 2616 0160 13        		.uleb128 0x13
+ 2617 0161 00        		.byte	0x0
+ 2618 0162 00        		.byte	0x0
+ 2619 0163 1A        		.uleb128 0x1a
+ 2620 0164 1D        		.uleb128 0x1d
+ 2621 0165 00        		.byte	0x0
+ 2622 0166 31        		.uleb128 0x31
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 47
+
+
+ 2623 0167 13        		.uleb128 0x13
+ 2624 0168 11        		.uleb128 0x11
+ 2625 0169 01        		.uleb128 0x1
+ 2626 016a 12        		.uleb128 0x12
+ 2627 016b 01        		.uleb128 0x1
+ 2628 016c 58        		.uleb128 0x58
+ 2629 016d 0B        		.uleb128 0xb
+ 2630 016e 59        		.uleb128 0x59
+ 2631 016f 0B        		.uleb128 0xb
+ 2632 0170 00        		.byte	0x0
+ 2633 0171 00        		.byte	0x0
+ 2634 0172 1B        		.uleb128 0x1b
+ 2635 0173 2E        		.uleb128 0x2e
+ 2636 0174 01        		.byte	0x1
+ 2637 0175 3F        		.uleb128 0x3f
+ 2638 0176 0C        		.uleb128 0xc
+ 2639 0177 03        		.uleb128 0x3
+ 2640 0178 0E        		.uleb128 0xe
+ 2641 0179 3A        		.uleb128 0x3a
+ 2642 017a 0B        		.uleb128 0xb
+ 2643 017b 3B        		.uleb128 0x3b
+ 2644 017c 05        		.uleb128 0x5
+ 2645 017d 27        		.uleb128 0x27
+ 2646 017e 0C        		.uleb128 0xc
+ 2647 017f 49        		.uleb128 0x49
+ 2648 0180 13        		.uleb128 0x13
+ 2649 0181 11        		.uleb128 0x11
+ 2650 0182 01        		.uleb128 0x1
+ 2651 0183 12        		.uleb128 0x12
+ 2652 0184 01        		.uleb128 0x1
+ 2653 0185 40        		.uleb128 0x40
+ 2654 0186 0A        		.uleb128 0xa
+ 2655 0187 01        		.uleb128 0x1
+ 2656 0188 13        		.uleb128 0x13
+ 2657 0189 00        		.byte	0x0
+ 2658 018a 00        		.byte	0x0
+ 2659 018b 1C        		.uleb128 0x1c
+ 2660 018c 05        		.uleb128 0x5
+ 2661 018d 00        		.byte	0x0
+ 2662 018e 03        		.uleb128 0x3
+ 2663 018f 0E        		.uleb128 0xe
+ 2664 0190 3A        		.uleb128 0x3a
+ 2665 0191 0B        		.uleb128 0xb
+ 2666 0192 3B        		.uleb128 0x3b
+ 2667 0193 05        		.uleb128 0x5
+ 2668 0194 49        		.uleb128 0x49
+ 2669 0195 13        		.uleb128 0x13
+ 2670 0196 02        		.uleb128 0x2
+ 2671 0197 06        		.uleb128 0x6
+ 2672 0198 00        		.byte	0x0
+ 2673 0199 00        		.byte	0x0
+ 2674 019a 1D        		.uleb128 0x1d
+ 2675 019b 05        		.uleb128 0x5
+ 2676 019c 00        		.byte	0x0
+ 2677 019d 03        		.uleb128 0x3
+ 2678 019e 0E        		.uleb128 0xe
+ 2679 019f 3A        		.uleb128 0x3a
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 48
+
+
+ 2680 01a0 0B        		.uleb128 0xb
+ 2681 01a1 3B        		.uleb128 0x3b
+ 2682 01a2 05        		.uleb128 0x5
+ 2683 01a3 49        		.uleb128 0x49
+ 2684 01a4 13        		.uleb128 0x13
+ 2685 01a5 02        		.uleb128 0x2
+ 2686 01a6 0A        		.uleb128 0xa
+ 2687 01a7 00        		.byte	0x0
+ 2688 01a8 00        		.byte	0x0
+ 2689 01a9 1E        		.uleb128 0x1e
+ 2690 01aa 34        		.uleb128 0x34
+ 2691 01ab 00        		.byte	0x0
+ 2692 01ac 03        		.uleb128 0x3
+ 2693 01ad 0E        		.uleb128 0xe
+ 2694 01ae 3A        		.uleb128 0x3a
+ 2695 01af 0B        		.uleb128 0xb
+ 2696 01b0 3B        		.uleb128 0x3b
+ 2697 01b1 05        		.uleb128 0x5
+ 2698 01b2 49        		.uleb128 0x49
+ 2699 01b3 13        		.uleb128 0x13
+ 2700 01b4 02        		.uleb128 0x2
+ 2701 01b5 06        		.uleb128 0x6
+ 2702 01b6 00        		.byte	0x0
+ 2703 01b7 00        		.byte	0x0
+ 2704 01b8 1F        		.uleb128 0x1f
+ 2705 01b9 1D        		.uleb128 0x1d
+ 2706 01ba 00        		.byte	0x0
+ 2707 01bb 31        		.uleb128 0x31
+ 2708 01bc 13        		.uleb128 0x13
+ 2709 01bd 11        		.uleb128 0x11
+ 2710 01be 01        		.uleb128 0x1
+ 2711 01bf 12        		.uleb128 0x12
+ 2712 01c0 01        		.uleb128 0x1
+ 2713 01c1 58        		.uleb128 0x58
+ 2714 01c2 0B        		.uleb128 0xb
+ 2715 01c3 59        		.uleb128 0x59
+ 2716 01c4 05        		.uleb128 0x5
+ 2717 01c5 00        		.byte	0x0
+ 2718 01c6 00        		.byte	0x0
+ 2719 01c7 20        		.uleb128 0x20
+ 2720 01c8 1D        		.uleb128 0x1d
+ 2721 01c9 01        		.byte	0x1
+ 2722 01ca 31        		.uleb128 0x31
+ 2723 01cb 13        		.uleb128 0x13
+ 2724 01cc 11        		.uleb128 0x11
+ 2725 01cd 01        		.uleb128 0x1
+ 2726 01ce 12        		.uleb128 0x12
+ 2727 01cf 01        		.uleb128 0x1
+ 2728 01d0 58        		.uleb128 0x58
+ 2729 01d1 0B        		.uleb128 0xb
+ 2730 01d2 59        		.uleb128 0x59
+ 2731 01d3 05        		.uleb128 0x5
+ 2732 01d4 01        		.uleb128 0x1
+ 2733 01d5 13        		.uleb128 0x13
+ 2734 01d6 00        		.byte	0x0
+ 2735 01d7 00        		.byte	0x0
+ 2736 01d8 21        		.uleb128 0x21
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 49
+
+
+ 2737 01d9 05        		.uleb128 0x5
+ 2738 01da 00        		.byte	0x0
+ 2739 01db 31        		.uleb128 0x31
+ 2740 01dc 13        		.uleb128 0x13
+ 2741 01dd 00        		.byte	0x0
+ 2742 01de 00        		.byte	0x0
+ 2743 01df 22        		.uleb128 0x22
+ 2744 01e0 2E        		.uleb128 0x2e
+ 2745 01e1 01        		.byte	0x1
+ 2746 01e2 3F        		.uleb128 0x3f
+ 2747 01e3 0C        		.uleb128 0xc
+ 2748 01e4 03        		.uleb128 0x3
+ 2749 01e5 0E        		.uleb128 0xe
+ 2750 01e6 3A        		.uleb128 0x3a
+ 2751 01e7 0B        		.uleb128 0xb
+ 2752 01e8 3B        		.uleb128 0x3b
+ 2753 01e9 05        		.uleb128 0x5
+ 2754 01ea 27        		.uleb128 0x27
+ 2755 01eb 0C        		.uleb128 0xc
+ 2756 01ec 11        		.uleb128 0x11
+ 2757 01ed 01        		.uleb128 0x1
+ 2758 01ee 12        		.uleb128 0x12
+ 2759 01ef 01        		.uleb128 0x1
+ 2760 01f0 40        		.uleb128 0x40
+ 2761 01f1 0A        		.uleb128 0xa
+ 2762 01f2 01        		.uleb128 0x1
+ 2763 01f3 13        		.uleb128 0x13
+ 2764 01f4 00        		.byte	0x0
+ 2765 01f5 00        		.byte	0x0
+ 2766 01f6 23        		.uleb128 0x23
+ 2767 01f7 34        		.uleb128 0x34
+ 2768 01f8 00        		.byte	0x0
+ 2769 01f9 03        		.uleb128 0x3
+ 2770 01fa 0E        		.uleb128 0xe
+ 2771 01fb 3A        		.uleb128 0x3a
+ 2772 01fc 0B        		.uleb128 0xb
+ 2773 01fd 3B        		.uleb128 0x3b
+ 2774 01fe 05        		.uleb128 0x5
+ 2775 01ff 49        		.uleb128 0x49
+ 2776 0200 13        		.uleb128 0x13
+ 2777 0201 00        		.byte	0x0
+ 2778 0202 00        		.byte	0x0
+ 2779 0203 24        		.uleb128 0x24
+ 2780 0204 1D        		.uleb128 0x1d
+ 2781 0205 01        		.byte	0x1
+ 2782 0206 31        		.uleb128 0x31
+ 2783 0207 13        		.uleb128 0x13
+ 2784 0208 11        		.uleb128 0x11
+ 2785 0209 01        		.uleb128 0x1
+ 2786 020a 12        		.uleb128 0x12
+ 2787 020b 01        		.uleb128 0x1
+ 2788 020c 58        		.uleb128 0x58
+ 2789 020d 0B        		.uleb128 0xb
+ 2790 020e 59        		.uleb128 0x59
+ 2791 020f 05        		.uleb128 0x5
+ 2792 0210 00        		.byte	0x0
+ 2793 0211 00        		.byte	0x0
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 50
+
+
+ 2794 0212 25        		.uleb128 0x25
+ 2795 0213 2E        		.uleb128 0x2e
+ 2796 0214 00        		.byte	0x0
+ 2797 0215 3F        		.uleb128 0x3f
+ 2798 0216 0C        		.uleb128 0xc
+ 2799 0217 03        		.uleb128 0x3
+ 2800 0218 0E        		.uleb128 0xe
+ 2801 0219 3A        		.uleb128 0x3a
+ 2802 021a 0B        		.uleb128 0xb
+ 2803 021b 3B        		.uleb128 0x3b
+ 2804 021c 05        		.uleb128 0x5
+ 2805 021d 27        		.uleb128 0x27
+ 2806 021e 0C        		.uleb128 0xc
+ 2807 021f 49        		.uleb128 0x49
+ 2808 0220 13        		.uleb128 0x13
+ 2809 0221 11        		.uleb128 0x11
+ 2810 0222 01        		.uleb128 0x1
+ 2811 0223 12        		.uleb128 0x12
+ 2812 0224 01        		.uleb128 0x1
+ 2813 0225 40        		.uleb128 0x40
+ 2814 0226 0A        		.uleb128 0xa
+ 2815 0227 00        		.byte	0x0
+ 2816 0228 00        		.byte	0x0
+ 2817 0229 26        		.uleb128 0x26
+ 2818 022a 35        		.uleb128 0x35
+ 2819 022b 00        		.byte	0x0
+ 2820 022c 49        		.uleb128 0x49
+ 2821 022d 13        		.uleb128 0x13
+ 2822 022e 00        		.byte	0x0
+ 2823 022f 00        		.byte	0x0
+ 2824 0230 27        		.uleb128 0x27
+ 2825 0231 01        		.uleb128 0x1
+ 2826 0232 01        		.byte	0x1
+ 2827 0233 49        		.uleb128 0x49
+ 2828 0234 13        		.uleb128 0x13
+ 2829 0235 01        		.uleb128 0x1
+ 2830 0236 13        		.uleb128 0x13
+ 2831 0237 00        		.byte	0x0
+ 2832 0238 00        		.byte	0x0
+ 2833 0239 28        		.uleb128 0x28
+ 2834 023a 21        		.uleb128 0x21
+ 2835 023b 00        		.byte	0x0
+ 2836 023c 49        		.uleb128 0x49
+ 2837 023d 13        		.uleb128 0x13
+ 2838 023e 2F        		.uleb128 0x2f
+ 2839 023f 0B        		.uleb128 0xb
+ 2840 0240 00        		.byte	0x0
+ 2841 0241 00        		.byte	0x0
+ 2842 0242 29        		.uleb128 0x29
+ 2843 0243 24        		.uleb128 0x24
+ 2844 0244 00        		.byte	0x0
+ 2845 0245 0B        		.uleb128 0xb
+ 2846 0246 0B        		.uleb128 0xb
+ 2847 0247 3E        		.uleb128 0x3e
+ 2848 0248 0B        		.uleb128 0xb
+ 2849 0249 00        		.byte	0x0
+ 2850 024a 00        		.byte	0x0
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 51
+
+
+ 2851 024b 2A        		.uleb128 0x2a
+ 2852 024c 34        		.uleb128 0x34
+ 2853 024d 00        		.byte	0x0
+ 2854 024e 03        		.uleb128 0x3
+ 2855 024f 0E        		.uleb128 0xe
+ 2856 0250 3A        		.uleb128 0x3a
+ 2857 0251 0B        		.uleb128 0xb
+ 2858 0252 3B        		.uleb128 0x3b
+ 2859 0253 0B        		.uleb128 0xb
+ 2860 0254 49        		.uleb128 0x49
+ 2861 0255 13        		.uleb128 0x13
+ 2862 0256 3F        		.uleb128 0x3f
+ 2863 0257 0C        		.uleb128 0xc
+ 2864 0258 02        		.uleb128 0x2
+ 2865 0259 0A        		.uleb128 0xa
+ 2866 025a 00        		.byte	0x0
+ 2867 025b 00        		.byte	0x0
+ 2868 025c 00        		.byte	0x0
+ 2869               		.section	.debug_pubnames,"",@progbits
+ 2870 0000 9A01 0000 		.long	0x19a
+ 2871 0004 0200      		.word	0x2
+ 2872 0006 0000 0000 		.long	.Ldebug_info0
+ 2873 000a 8106 0000 		.long	0x681
+ 2874 000e 0601 0000 		.long	0x106
+ 2875 0012 6932 6353 		.string	"i2cSetBitrate"
+ 2875      6574 4269 
+ 2875      7472 6174 
+ 2875      6500 
+ 2876 0020 3B01 0000 		.long	0x13b
+ 2877 0024 6932 6349 		.string	"i2cInit"
+ 2877      6E69 7400 
+ 2878 002c 4F01 0000 		.long	0x14f
+ 2879 0030 6932 6353 		.string	"i2cSetLocalDeviceAddr"
+ 2879      6574 4C6F 
+ 2879      6361 6C44 
+ 2879      6576 6963 
+ 2879      6541 6464 
+ 2880 0046 8201 0000 		.long	0x182
+ 2881 004a 6932 6353 		.string	"i2cSetSlaveReceiveHandler"
+ 2881      6574 536C 
+ 2881      6176 6552 
+ 2881      6563 6569 
+ 2881      7665 4861 
+ 2882 0064 CA01 0000 		.long	0x1ca
+ 2883 0068 6932 6353 		.string	"i2cSetSlaveTransmitHandler"
+ 2883      6574 536C 
+ 2883      6176 6554 
+ 2883      7261 6E73 
+ 2883      6D69 7448 
+ 2884 0083 1002 0000 		.long	0x210
+ 2885 0087 6932 6353 		.string	"i2cSendStart"
+ 2885      656E 6453 
+ 2885      7461 7274 
+ 2885      00
+ 2886 0094 2002 0000 		.long	0x220
+ 2887 0098 6932 6353 		.string	"i2cSendStop"
+ 2887      656E 6453 
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 52
+
+
+ 2887      746F 7000 
+ 2888 00a4 3002 0000 		.long	0x230
+ 2889 00a8 6932 6357 		.string	"i2cWaitForComplete"
+ 2889      6169 7446 
+ 2889      6F72 436F 
+ 2889      6D70 6C65 
+ 2889      7465 00
+ 2890 00bb 4002 0000 		.long	0x240
+ 2891 00bf 6932 6353 		.string	"i2cSendByte"
+ 2891      656E 6442 
+ 2891      7974 6500 
+ 2892 00cb 5E02 0000 		.long	0x25e
+ 2893 00cf 6932 6352 		.string	"i2cReceiveByte"
+ 2893      6563 6569 
+ 2893      7665 4279 
+ 2893      7465 00
+ 2894 00de 8602 0000 		.long	0x286
+ 2895 00e2 6932 6347 		.string	"i2cGetReceivedByte"
+ 2895      6574 5265 
+ 2895      6365 6976 
+ 2895      6564 4279 
+ 2895      7465 00
+ 2896 00f5 9602 0000 		.long	0x296
+ 2897 00f9 6932 6347 		.string	"i2cGetStatus"
+ 2897      6574 5374 
+ 2897      6174 7573 
+ 2897      00
+ 2898 0106 AE02 0000 		.long	0x2ae
+ 2899 010a 6932 634D 		.string	"i2cMasterSend"
+ 2899      6173 7465 
+ 2899      7253 656E 
+ 2899      6400 
+ 2900 0118 0A03 0000 		.long	0x30a
+ 2901 011c 6932 634D 		.string	"i2cMasterReceive"
+ 2901      6173 7465 
+ 2901      7252 6563 
+ 2901      6569 7665 
+ 2901      00
+ 2902 012d 6603 0000 		.long	0x366
+ 2903 0131 6932 634D 		.string	"i2cMasterSendNI"
+ 2903      6173 7465 
+ 2903      7253 656E 
+ 2903      644E 4900 
+ 2904 0141 4604 0000 		.long	0x446
+ 2905 0145 6932 634D 		.string	"i2cMasterReceiveNI"
+ 2905      6173 7465 
+ 2905      7252 6563 
+ 2905      6569 7665 
+ 2905      4E49 00
+ 2906 0158 3E05 0000 		.long	0x53e
+ 2907 015c 5F5F 7665 		.string	"__vector_24"
+ 2907      6374 6F72 
+ 2907      5F32 3400 
+ 2908 0168 7A05 0000 		.long	0x57a
+ 2909 016c 6932 6347 		.string	"i2cGetState"
+ 2909      6574 5374 
+ 2909      6174 6500 
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 53
+
+
+ 2910 0178 9305 0000 		.long	0x593
+ 2911 017c 6932 6347 		.string	"i2cGetGenCall"
+ 2911      6574 4765 
+ 2911      6E43 616C 
+ 2911      6C00 
+ 2912 018a 6E06 0000 		.long	0x66e
+ 2913 018e 4765 6E43 		.string	"GenCal_Flag"
+ 2913      616C 5F46 
+ 2913      6C61 6700 
+ 2914 019a 0000 0000 		.long	0x0
+ 2915               		.section	.debug_aranges,"",@progbits
+ 2916 0000 1C00 0000 		.long	0x1c
+ 2917 0004 0200      		.word	0x2
+ 2918 0006 0000 0000 		.long	.Ldebug_info0
+ 2919 000a 04        		.byte	0x4
+ 2920 000b 00        		.byte	0x0
+ 2921 000c 0000      		.word	0x0
+ 2922 000e 0000      		.word	0x0
+ 2923 0010 0000 0000 		.long	.Ltext0
+ 2924 0014 3805 0000 		.long	.Letext0-.Ltext0
+ 2925 0018 0000 0000 		.long	0x0
+ 2926 001c 0000 0000 		.long	0x0
+ 2927               		.section	.debug_line
+ 2928 0000 2805 0000 		.long	.LELT0-.LSLT0
+ 2929               	.LSLT0:
+ 2930 0004 0200      		.word	0x2
+ 2931 0006 3300 0000 		.long	.LELTP0-.LASLTP0
+ 2932               	.LASLTP0:
+ 2933 000a 01        		.byte	0x1
+ 2934 000b 01        		.byte	0x1
+ 2935 000c F6        		.byte	0xf6
+ 2936 000d F5        		.byte	0xf5
+ 2937 000e 0A        		.byte	0xa
+ 2938 000f 00        		.byte	0x0
+ 2939 0010 01        		.byte	0x1
+ 2940 0011 01        		.byte	0x1
+ 2941 0012 01        		.byte	0x1
+ 2942 0013 01        		.byte	0x1
+ 2943 0014 00        		.byte	0x0
+ 2944 0015 00        		.byte	0x0
+ 2945 0016 00        		.byte	0x0
+ 2946 0017 01        		.byte	0x1
+ 2947 0018 00        		.byte	0x0
+ 2948 0019 6932 632E 		.string	"i2c.c"
+ 2948      6300 
+ 2949 001f 00        		.uleb128 0x0
+ 2950 0020 00        		.uleb128 0x0
+ 2951 0021 00        		.uleb128 0x0
+ 2952 0022 6176 726C 		.string	"avrlibtypes.h"
+ 2952      6962 7479 
+ 2952      7065 732E 
+ 2952      6800 
+ 2953 0030 00        		.uleb128 0x0
+ 2954 0031 00        		.uleb128 0x0
+ 2955 0032 00        		.uleb128 0x0
+ 2956 0033 6932 632E 		.string	"i2c.h"
+ 2956      6800 
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 54
+
+
+ 2957 0039 00        		.uleb128 0x0
+ 2958 003a 00        		.uleb128 0x0
+ 2959 003b 00        		.uleb128 0x0
+ 2960 003c 00        		.byte	0x0
+ 2961               	.LELTP0:
+ 2962 003d 00        		.byte	0x0
+ 2963 003e 05        		.uleb128 0x5
+ 2964 003f 02        		.byte	0x2
+ 2965 0040 0000 0000 		.long	.LM1
+ 2966 0044 8A        		.byte	0x8a
+ 2967 0045 00        		.byte	0x0
+ 2968 0046 05        		.uleb128 0x5
+ 2969 0047 02        		.byte	0x2
+ 2970 0048 0000 0000 		.long	.LM2
+ 2971 004c 1C        		.byte	0x1c
+ 2972 004d 00        		.byte	0x0
+ 2973 004e 05        		.uleb128 0x5
+ 2974 004f 02        		.byte	0x2
+ 2975 0050 0000 0000 		.long	.LM3
+ 2976 0054 15        		.byte	0x15
+ 2977 0055 00        		.byte	0x0
+ 2978 0056 05        		.uleb128 0x5
+ 2979 0057 02        		.byte	0x2
+ 2980 0058 0000 0000 		.long	.LM4
+ 2981 005c 20        		.byte	0x20
+ 2982 005d 00        		.byte	0x0
+ 2983 005e 05        		.uleb128 0x5
+ 2984 005f 02        		.byte	0x2
+ 2985 0060 0000 0000 		.long	.LM5
+ 2986 0064 16        		.byte	0x16
+ 2987 0065 00        		.byte	0x0
+ 2988 0066 05        		.uleb128 0x5
+ 2989 0067 02        		.byte	0x2
+ 2990 0068 0000 0000 		.long	.LM6
+ 2991 006c 17        		.byte	0x17
+ 2992 006d 00        		.byte	0x0
+ 2993 006e 05        		.uleb128 0x5
+ 2994 006f 02        		.byte	0x2
+ 2995 0070 0000 0000 		.long	.LM7
+ 2996 0074 15        		.byte	0x15
+ 2997 0075 00        		.byte	0x0
+ 2998 0076 05        		.uleb128 0x5
+ 2999 0077 02        		.byte	0x2
+ 3000 0078 0000 0000 		.long	.LM8
+ 3001 007c 03        		.byte	0x3
+ 3002 007d 49        		.sleb128 -55
+ 3003 007e 01        		.byte	0x1
+ 3004 007f 00        		.byte	0x0
+ 3005 0080 05        		.uleb128 0x5
+ 3006 0081 02        		.byte	0x2
+ 3007 0082 0000 0000 		.long	.LM9
+ 3008 0086 15        		.byte	0x15
+ 3009 0087 00        		.byte	0x0
+ 3010 0088 05        		.uleb128 0x5
+ 3011 0089 02        		.byte	0x2
+ 3012 008a 0000 0000 		.long	.LM10
+ 3013 008e 1E        		.byte	0x1e
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 55
+
+
+ 3014 008f 00        		.byte	0x0
+ 3015 0090 05        		.uleb128 0x5
+ 3016 0091 02        		.byte	0x2
+ 3017 0092 0000 0000 		.long	.LM11
+ 3018 0096 15        		.byte	0x15
+ 3019 0097 00        		.byte	0x0
+ 3020 0098 05        		.uleb128 0x5
+ 3021 0099 02        		.byte	0x2
+ 3022 009a 0000 0000 		.long	.LM12
+ 3023 009e 16        		.byte	0x16
+ 3024 009f 00        		.byte	0x0
+ 3025 00a0 05        		.uleb128 0x5
+ 3026 00a1 02        		.byte	0x2
+ 3027 00a2 0000 0000 		.long	.LM13
+ 3028 00a6 16        		.byte	0x16
+ 3029 00a7 00        		.byte	0x0
+ 3030 00a8 05        		.uleb128 0x5
+ 3031 00a9 02        		.byte	0x2
+ 3032 00aa 0000 0000 		.long	.LM14
+ 3033 00ae 16        		.byte	0x16
+ 3034 00af 00        		.byte	0x0
+ 3035 00b0 05        		.uleb128 0x5
+ 3036 00b1 02        		.byte	0x2
+ 3037 00b2 0000 0000 		.long	.LM15
+ 3038 00b6 16        		.byte	0x16
+ 3039 00b7 00        		.byte	0x0
+ 3040 00b8 05        		.uleb128 0x5
+ 3041 00b9 02        		.byte	0x2
+ 3042 00ba 0000 0000 		.long	.LM16
+ 3043 00be 15        		.byte	0x15
+ 3044 00bf 00        		.byte	0x0
+ 3045 00c0 05        		.uleb128 0x5
+ 3046 00c1 02        		.byte	0x2
+ 3047 00c2 0000 0000 		.long	.LM17
+ 3048 00c6 17        		.byte	0x17
+ 3049 00c7 00        		.byte	0x0
+ 3050 00c8 05        		.uleb128 0x5
+ 3051 00c9 02        		.byte	0x2
+ 3052 00ca 0000 0000 		.long	.LM18
+ 3053 00ce 15        		.byte	0x15
+ 3054 00cf 00        		.byte	0x0
+ 3055 00d0 05        		.uleb128 0x5
+ 3056 00d1 02        		.byte	0x2
+ 3057 00d2 0000 0000 		.long	.LM19
+ 3058 00d6 36        		.byte	0x36
+ 3059 00d7 00        		.byte	0x0
+ 3060 00d8 05        		.uleb128 0x5
+ 3061 00d9 02        		.byte	0x2
+ 3062 00da 0000 0000 		.long	.LM20
+ 3063 00de 16        		.byte	0x16
+ 3064 00df 00        		.byte	0x0
+ 3065 00e0 05        		.uleb128 0x5
+ 3066 00e1 02        		.byte	0x2
+ 3067 00e2 0000 0000 		.long	.LM21
+ 3068 00e6 15        		.byte	0x15
+ 3069 00e7 00        		.byte	0x0
+ 3070 00e8 05        		.uleb128 0x5
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 56
+
+
+ 3071 00e9 02        		.byte	0x2
+ 3072 00ea 0000 0000 		.long	.LM22
+ 3073 00ee 17        		.byte	0x17
+ 3074 00ef 00        		.byte	0x0
+ 3075 00f0 05        		.uleb128 0x5
+ 3076 00f1 02        		.byte	0x2
+ 3077 00f2 0000 0000 		.long	.LM23
+ 3078 00f6 15        		.byte	0x15
+ 3079 00f7 00        		.byte	0x0
+ 3080 00f8 05        		.uleb128 0x5
+ 3081 00f9 02        		.byte	0x2
+ 3082 00fa 0000 0000 		.long	.LM24
+ 3083 00fe 15        		.byte	0x15
+ 3084 00ff 00        		.byte	0x0
+ 3085 0100 05        		.uleb128 0x5
+ 3086 0101 02        		.byte	0x2
+ 3087 0102 0000 0000 		.long	.LM25
+ 3088 0106 17        		.byte	0x17
+ 3089 0107 00        		.byte	0x0
+ 3090 0108 05        		.uleb128 0x5
+ 3091 0109 02        		.byte	0x2
+ 3092 010a 0000 0000 		.long	.LM26
+ 3093 010e 15        		.byte	0x15
+ 3094 010f 00        		.byte	0x0
+ 3095 0110 05        		.uleb128 0x5
+ 3096 0111 02        		.byte	0x2
+ 3097 0112 0000 0000 		.long	.LM27
+ 3098 0116 15        		.byte	0x15
+ 3099 0117 00        		.byte	0x0
+ 3100 0118 05        		.uleb128 0x5
+ 3101 0119 02        		.byte	0x2
+ 3102 011a 0000 0000 		.long	.LM28
+ 3103 011e 17        		.byte	0x17
+ 3104 011f 00        		.byte	0x0
+ 3105 0120 05        		.uleb128 0x5
+ 3106 0121 02        		.byte	0x2
+ 3107 0122 0000 0000 		.long	.LM29
+ 3108 0126 16        		.byte	0x16
+ 3109 0127 00        		.byte	0x0
+ 3110 0128 05        		.uleb128 0x5
+ 3111 0129 02        		.byte	0x2
+ 3112 012a 0000 0000 		.long	.LM30
+ 3113 012e 15        		.byte	0x15
+ 3114 012f 00        		.byte	0x0
+ 3115 0130 05        		.uleb128 0x5
+ 3116 0131 02        		.byte	0x2
+ 3117 0132 0000 0000 		.long	.LM31
+ 3118 0136 17        		.byte	0x17
+ 3119 0137 00        		.byte	0x0
+ 3120 0138 05        		.uleb128 0x5
+ 3121 0139 02        		.byte	0x2
+ 3122 013a 0000 0000 		.long	.LM32
+ 3123 013e 17        		.byte	0x17
+ 3124 013f 00        		.byte	0x0
+ 3125 0140 05        		.uleb128 0x5
+ 3126 0141 02        		.byte	0x2
+ 3127 0142 0000 0000 		.long	.LM33
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 57
+
+
+ 3128 0146 15        		.byte	0x15
+ 3129 0147 00        		.byte	0x0
+ 3130 0148 05        		.uleb128 0x5
+ 3131 0149 02        		.byte	0x2
+ 3132 014a 0000 0000 		.long	.LM34
+ 3133 014e 17        		.byte	0x17
+ 3134 014f 00        		.byte	0x0
+ 3135 0150 05        		.uleb128 0x5
+ 3136 0151 02        		.byte	0x2
+ 3137 0152 0000 0000 		.long	.LM35
+ 3138 0156 16        		.byte	0x16
+ 3139 0157 00        		.byte	0x0
+ 3140 0158 05        		.uleb128 0x5
+ 3141 0159 02        		.byte	0x2
+ 3142 015a 0000 0000 		.long	.LM36
+ 3143 015e 15        		.byte	0x15
+ 3144 015f 00        		.byte	0x0
+ 3145 0160 05        		.uleb128 0x5
+ 3146 0161 02        		.byte	0x2
+ 3147 0162 0000 0000 		.long	.LM37
+ 3148 0166 17        		.byte	0x17
+ 3149 0167 00        		.byte	0x0
+ 3150 0168 05        		.uleb128 0x5
+ 3151 0169 02        		.byte	0x2
+ 3152 016a 0000 0000 		.long	.LM38
+ 3153 016e 16        		.byte	0x16
+ 3154 016f 00        		.byte	0x0
+ 3155 0170 05        		.uleb128 0x5
+ 3156 0171 02        		.byte	0x2
+ 3157 0172 0000 0000 		.long	.LM39
+ 3158 0176 16        		.byte	0x16
+ 3159 0177 00        		.byte	0x0
+ 3160 0178 05        		.uleb128 0x5
+ 3161 0179 02        		.byte	0x2
+ 3162 017a 0000 0000 		.long	.LM40
+ 3163 017e 15        		.byte	0x15
+ 3164 017f 00        		.byte	0x0
+ 3165 0180 05        		.uleb128 0x5
+ 3166 0181 02        		.byte	0x2
+ 3167 0182 0000 0000 		.long	.LM41
+ 3168 0186 17        		.byte	0x17
+ 3169 0187 00        		.byte	0x0
+ 3170 0188 05        		.uleb128 0x5
+ 3171 0189 02        		.byte	0x2
+ 3172 018a 0000 0000 		.long	.LM42
+ 3173 018e 16        		.byte	0x16
+ 3174 018f 00        		.byte	0x0
+ 3175 0190 05        		.uleb128 0x5
+ 3176 0191 02        		.byte	0x2
+ 3177 0192 0000 0000 		.long	.LM43
+ 3178 0196 17        		.byte	0x17
+ 3179 0197 00        		.byte	0x0
+ 3180 0198 05        		.uleb128 0x5
+ 3181 0199 02        		.byte	0x2
+ 3182 019a 0000 0000 		.long	.LM44
+ 3183 019e 19        		.byte	0x19
+ 3184 019f 00        		.byte	0x0
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 58
+
+
+ 3185 01a0 05        		.uleb128 0x5
+ 3186 01a1 02        		.byte	0x2
+ 3187 01a2 0000 0000 		.long	.LM45
+ 3188 01a6 19        		.byte	0x19
+ 3189 01a7 00        		.byte	0x0
+ 3190 01a8 05        		.uleb128 0x5
+ 3191 01a9 02        		.byte	0x2
+ 3192 01aa 0000 0000 		.long	.LM46
+ 3193 01ae 16        		.byte	0x16
+ 3194 01af 00        		.byte	0x0
+ 3195 01b0 05        		.uleb128 0x5
+ 3196 01b1 02        		.byte	0x2
+ 3197 01b2 0000 0000 		.long	.LM47
+ 3198 01b6 15        		.byte	0x15
+ 3199 01b7 00        		.byte	0x0
+ 3200 01b8 05        		.uleb128 0x5
+ 3201 01b9 02        		.byte	0x2
+ 3202 01ba 0000 0000 		.long	.LM48
+ 3203 01be 17        		.byte	0x17
+ 3204 01bf 00        		.byte	0x0
+ 3205 01c0 05        		.uleb128 0x5
+ 3206 01c1 02        		.byte	0x2
+ 3207 01c2 0000 0000 		.long	.LM49
+ 3208 01c6 16        		.byte	0x16
+ 3209 01c7 00        		.byte	0x0
+ 3210 01c8 05        		.uleb128 0x5
+ 3211 01c9 02        		.byte	0x2
+ 3212 01ca 0000 0000 		.long	.LM50
+ 3213 01ce 15        		.byte	0x15
+ 3214 01cf 00        		.byte	0x0
+ 3215 01d0 05        		.uleb128 0x5
+ 3216 01d1 02        		.byte	0x2
+ 3217 01d2 0000 0000 		.long	.LM51
+ 3218 01d6 17        		.byte	0x17
+ 3219 01d7 00        		.byte	0x0
+ 3220 01d8 05        		.uleb128 0x5
+ 3221 01d9 02        		.byte	0x2
+ 3222 01da 0000 0000 		.long	.LM52
+ 3223 01de 17        		.byte	0x17
+ 3224 01df 00        		.byte	0x0
+ 3225 01e0 05        		.uleb128 0x5
+ 3226 01e1 02        		.byte	0x2
+ 3227 01e2 0000 0000 		.long	.LM53
+ 3228 01e6 16        		.byte	0x16
+ 3229 01e7 00        		.byte	0x0
+ 3230 01e8 05        		.uleb128 0x5
+ 3231 01e9 02        		.byte	0x2
+ 3232 01ea 0000 0000 		.long	.LM54
+ 3233 01ee 16        		.byte	0x16
+ 3234 01ef 00        		.byte	0x0
+ 3235 01f0 05        		.uleb128 0x5
+ 3236 01f1 02        		.byte	0x2
+ 3237 01f2 0000 0000 		.long	.LM55
+ 3238 01f6 16        		.byte	0x16
+ 3239 01f7 00        		.byte	0x0
+ 3240 01f8 05        		.uleb128 0x5
+ 3241 01f9 02        		.byte	0x2
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 59
+
+
+ 3242 01fa 0000 0000 		.long	.LM56
+ 3243 01fe 13        		.byte	0x13
+ 3244 01ff 00        		.byte	0x0
+ 3245 0200 05        		.uleb128 0x5
+ 3246 0201 02        		.byte	0x2
+ 3247 0202 0000 0000 		.long	.LM57
+ 3248 0206 16        		.byte	0x16
+ 3249 0207 00        		.byte	0x0
+ 3250 0208 05        		.uleb128 0x5
+ 3251 0209 02        		.byte	0x2
+ 3252 020a 0000 0000 		.long	.LM58
+ 3253 020e 15        		.byte	0x15
+ 3254 020f 00        		.byte	0x0
+ 3255 0210 05        		.uleb128 0x5
+ 3256 0211 02        		.byte	0x2
+ 3257 0212 0000 0000 		.long	.LM59
+ 3258 0216 03        		.byte	0x3
+ 3259 0217 41        		.sleb128 -63
+ 3260 0218 01        		.byte	0x1
+ 3261 0219 00        		.byte	0x0
+ 3262 021a 05        		.uleb128 0x5
+ 3263 021b 02        		.byte	0x2
+ 3264 021c 0000 0000 		.long	.LM60
+ 3265 0220 56        		.byte	0x56
+ 3266 0221 00        		.byte	0x0
+ 3267 0222 05        		.uleb128 0x5
+ 3268 0223 02        		.byte	0x2
+ 3269 0224 0000 0000 		.long	.LM61
+ 3270 0228 17        		.byte	0x17
+ 3271 0229 00        		.byte	0x0
+ 3272 022a 05        		.uleb128 0x5
+ 3273 022b 02        		.byte	0x2
+ 3274 022c 0000 0000 		.long	.LM62
+ 3275 0230 17        		.byte	0x17
+ 3276 0231 00        		.byte	0x0
+ 3277 0232 05        		.uleb128 0x5
+ 3278 0233 02        		.byte	0x2
+ 3279 0234 0000 0000 		.long	.LM63
+ 3280 0238 16        		.byte	0x16
+ 3281 0239 00        		.byte	0x0
+ 3282 023a 05        		.uleb128 0x5
+ 3283 023b 02        		.byte	0x2
+ 3284 023c 0000 0000 		.long	.LM64
+ 3285 0240 16        		.byte	0x16
+ 3286 0241 00        		.byte	0x0
+ 3287 0242 05        		.uleb128 0x5
+ 3288 0243 02        		.byte	0x2
+ 3289 0244 0000 0000 		.long	.LM65
+ 3290 0248 15        		.byte	0x15
+ 3291 0249 00        		.byte	0x0
+ 3292 024a 05        		.uleb128 0x5
+ 3293 024b 02        		.byte	0x2
+ 3294 024c 0000 0000 		.long	.LM66
+ 3295 0250 15        		.byte	0x15
+ 3296 0251 00        		.byte	0x0
+ 3297 0252 05        		.uleb128 0x5
+ 3298 0253 02        		.byte	0x2
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 60
+
+
+ 3299 0254 0000 0000 		.long	.LM67
+ 3300 0258 03        		.byte	0x3
+ 3301 0259 B27F      		.sleb128 -78
+ 3302 025b 01        		.byte	0x1
+ 3303 025c 00        		.byte	0x0
+ 3304 025d 05        		.uleb128 0x5
+ 3305 025e 02        		.byte	0x2
+ 3306 025f 0000 0000 		.long	.LM68
+ 3307 0263 66        		.byte	0x66
+ 3308 0264 00        		.byte	0x0
+ 3309 0265 05        		.uleb128 0x5
+ 3310 0266 02        		.byte	0x2
+ 3311 0267 0000 0000 		.long	.LM69
+ 3312 026b 17        		.byte	0x17
+ 3313 026c 00        		.byte	0x0
+ 3314 026d 05        		.uleb128 0x5
+ 3315 026e 02        		.byte	0x2
+ 3316 026f 0000 0000 		.long	.LM70
+ 3317 0273 13        		.byte	0x13
+ 3318 0274 00        		.byte	0x0
+ 3319 0275 05        		.uleb128 0x5
+ 3320 0276 02        		.byte	0x2
+ 3321 0277 0000 0000 		.long	.LM71
+ 3322 027b 16        		.byte	0x16
+ 3323 027c 00        		.byte	0x0
+ 3324 027d 05        		.uleb128 0x5
+ 3325 027e 02        		.byte	0x2
+ 3326 027f 0000 0000 		.long	.LM72
+ 3327 0283 17        		.byte	0x17
+ 3328 0284 00        		.byte	0x0
+ 3329 0285 05        		.uleb128 0x5
+ 3330 0286 02        		.byte	0x2
+ 3331 0287 0000 0000 		.long	.LM73
+ 3332 028b 18        		.byte	0x18
+ 3333 028c 00        		.byte	0x0
+ 3334 028d 05        		.uleb128 0x5
+ 3335 028e 02        		.byte	0x2
+ 3336 028f 0000 0000 		.long	.LM74
+ 3337 0293 03        		.byte	0x3
+ 3338 0294 A37F      		.sleb128 -93
+ 3339 0296 01        		.byte	0x1
+ 3340 0297 00        		.byte	0x0
+ 3341 0298 05        		.uleb128 0x5
+ 3342 0299 02        		.byte	0x2
+ 3343 029a 0000 0000 		.long	.LM75
+ 3344 029e 21        		.byte	0x21
+ 3345 029f 00        		.byte	0x0
+ 3346 02a0 05        		.uleb128 0x5
+ 3347 02a1 02        		.byte	0x2
+ 3348 02a2 0000 0000 		.long	.LM76
+ 3349 02a6 6B        		.byte	0x6b
+ 3350 02a7 00        		.byte	0x0
+ 3351 02a8 05        		.uleb128 0x5
+ 3352 02a9 02        		.byte	0x2
+ 3353 02aa 0000 0000 		.long	.LM77
+ 3354 02ae 03        		.byte	0x3
+ 3355 02af AF7F      		.sleb128 -81
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 61
+
+
+ 3356 02b1 01        		.byte	0x1
+ 3357 02b2 00        		.byte	0x0
+ 3358 02b3 05        		.uleb128 0x5
+ 3359 02b4 02        		.byte	0x2
+ 3360 02b5 0000 0000 		.long	.LM78
+ 3361 02b9 16        		.byte	0x16
+ 3362 02ba 00        		.byte	0x0
+ 3363 02bb 05        		.uleb128 0x5
+ 3364 02bc 02        		.byte	0x2
+ 3365 02bd 0000 0000 		.long	.LM79
+ 3366 02c1 0C        		.byte	0xc
+ 3367 02c2 00        		.byte	0x0
+ 3368 02c3 05        		.uleb128 0x5
+ 3369 02c4 02        		.byte	0x2
+ 3370 02c5 0000 0000 		.long	.LM80
+ 3371 02c9 6F        		.byte	0x6f
+ 3372 02ca 00        		.byte	0x0
+ 3373 02cb 05        		.uleb128 0x5
+ 3374 02cc 02        		.byte	0x2
+ 3375 02cd 0000 0000 		.long	.LM81
+ 3376 02d1 19        		.byte	0x19
+ 3377 02d2 00        		.byte	0x0
+ 3378 02d3 05        		.uleb128 0x5
+ 3379 02d4 02        		.byte	0x2
+ 3380 02d5 0000 0000 		.long	.LM82
+ 3381 02d9 03        		.byte	0x3
+ 3382 02da A67F      		.sleb128 -90
+ 3383 02dc 01        		.byte	0x1
+ 3384 02dd 00        		.byte	0x0
+ 3385 02de 05        		.uleb128 0x5
+ 3386 02df 02        		.byte	0x2
+ 3387 02e0 0000 0000 		.long	.LM83
+ 3388 02e4 16        		.byte	0x16
+ 3389 02e5 00        		.byte	0x0
+ 3390 02e6 05        		.uleb128 0x5
+ 3391 02e7 02        		.byte	0x2
+ 3392 02e8 0000 0000 		.long	.LM84
+ 3393 02ec 0C        		.byte	0xc
+ 3394 02ed 00        		.byte	0x0
+ 3395 02ee 05        		.uleb128 0x5
+ 3396 02ef 02        		.byte	0x2
+ 3397 02f0 0000 0000 		.long	.LM85
+ 3398 02f4 74        		.byte	0x74
+ 3399 02f5 00        		.byte	0x0
+ 3400 02f6 05        		.uleb128 0x5
+ 3401 02f7 02        		.byte	0x2
+ 3402 02f8 0000 0000 		.long	.LM86
+ 3403 02fc 16        		.byte	0x16
+ 3404 02fd 00        		.byte	0x0
+ 3405 02fe 05        		.uleb128 0x5
+ 3406 02ff 02        		.byte	0x2
+ 3407 0300 0000 0000 		.long	.LM87
+ 3408 0304 10        		.byte	0x10
+ 3409 0305 00        		.byte	0x0
+ 3410 0306 05        		.uleb128 0x5
+ 3411 0307 02        		.byte	0x2
+ 3412 0308 0000 0000 		.long	.LM88
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 62
+
+
+ 3413 030c 03        		.byte	0x3
+ 3414 030d 9C7F      		.sleb128 -100
+ 3415 030f 01        		.byte	0x1
+ 3416 0310 00        		.byte	0x0
+ 3417 0311 05        		.uleb128 0x5
+ 3418 0312 02        		.byte	0x2
+ 3419 0313 0000 0000 		.long	.LM89
+ 3420 0317 8A        		.byte	0x8a
+ 3421 0318 00        		.byte	0x0
+ 3422 0319 05        		.uleb128 0x5
+ 3423 031a 02        		.byte	0x2
+ 3424 031b 0000 0000 		.long	.LM90
+ 3425 031f 17        		.byte	0x17
+ 3426 0320 00        		.byte	0x0
+ 3427 0321 05        		.uleb128 0x5
+ 3428 0322 02        		.byte	0x2
+ 3429 0323 0000 0000 		.long	.LM91
+ 3430 0327 17        		.byte	0x17
+ 3431 0328 00        		.byte	0x0
+ 3432 0329 05        		.uleb128 0x5
+ 3433 032a 02        		.byte	0x2
+ 3434 032b 0000 0000 		.long	.LM92
+ 3435 032f 17        		.byte	0x17
+ 3436 0330 00        		.byte	0x0
+ 3437 0331 05        		.uleb128 0x5
+ 3438 0332 02        		.byte	0x2
+ 3439 0333 0000 0000 		.long	.LM93
+ 3440 0337 18        		.byte	0x18
+ 3441 0338 00        		.byte	0x0
+ 3442 0339 05        		.uleb128 0x5
+ 3443 033a 02        		.byte	0x2
+ 3444 033b 0000 0000 		.long	.LM94
+ 3445 033f 03        		.byte	0x3
+ 3446 0340 F67E      		.sleb128 -138
+ 3447 0342 01        		.byte	0x1
+ 3448 0343 00        		.byte	0x0
+ 3449 0344 05        		.uleb128 0x5
+ 3450 0345 02        		.byte	0x2
+ 3451 0346 0000 0000 		.long	.LM95
+ 3452 034a 21        		.byte	0x21
+ 3453 034b 00        		.byte	0x0
+ 3454 034c 05        		.uleb128 0x5
+ 3455 034d 02        		.byte	0x2
+ 3456 034e 0000 0000 		.long	.LM96
+ 3457 0352 98        		.byte	0x98
+ 3458 0353 00        		.byte	0x0
+ 3459 0354 05        		.uleb128 0x5
+ 3460 0355 02        		.byte	0x2
+ 3461 0356 0000 0000 		.long	.LM97
+ 3462 035a 03        		.byte	0x3
+ 3463 035b 827F      		.sleb128 -126
+ 3464 035d 01        		.byte	0x1
+ 3465 035e 00        		.byte	0x0
+ 3466 035f 05        		.uleb128 0x5
+ 3467 0360 02        		.byte	0x2
+ 3468 0361 0000 0000 		.long	.LM98
+ 3469 0365 16        		.byte	0x16
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 63
+
+
+ 3470 0366 00        		.byte	0x0
+ 3471 0367 05        		.uleb128 0x5
+ 3472 0368 02        		.byte	0x2
+ 3473 0369 0000 0000 		.long	.LM99
+ 3474 036d 0C        		.byte	0xc
+ 3475 036e 00        		.byte	0x0
+ 3476 036f 05        		.uleb128 0x5
+ 3477 0370 02        		.byte	0x2
+ 3478 0371 0000 0000 		.long	.LM100
+ 3479 0375 9C        		.byte	0x9c
+ 3480 0376 00        		.byte	0x0
+ 3481 0377 05        		.uleb128 0x5
+ 3482 0378 02        		.byte	0x2
+ 3483 0379 0000 0000 		.long	.LM101
+ 3484 037d 19        		.byte	0x19
+ 3485 037e 00        		.byte	0x0
+ 3486 037f 05        		.uleb128 0x5
+ 3487 0380 02        		.byte	0x2
+ 3488 0381 0000 0000 		.long	.LM102
+ 3489 0385 03        		.byte	0x3
+ 3490 0386 F37E      		.sleb128 -141
+ 3491 0388 01        		.byte	0x1
+ 3492 0389 00        		.byte	0x0
+ 3493 038a 05        		.uleb128 0x5
+ 3494 038b 02        		.byte	0x2
+ 3495 038c 0000 0000 		.long	.LM103
+ 3496 0390 31        		.byte	0x31
+ 3497 0391 00        		.byte	0x0
+ 3498 0392 05        		.uleb128 0x5
+ 3499 0393 02        		.byte	0x2
+ 3500 0394 0000 0000 		.long	.LM104
+ 3501 0398 86        		.byte	0x86
+ 3502 0399 00        		.byte	0x0
+ 3503 039a 05        		.uleb128 0x5
+ 3504 039b 02        		.byte	0x2
+ 3505 039c 0000 0000 		.long	.LM105
+ 3506 03a0 16        		.byte	0x16
+ 3507 03a1 00        		.byte	0x0
+ 3508 03a2 05        		.uleb128 0x5
+ 3509 03a3 02        		.byte	0x2
+ 3510 03a4 0000 0000 		.long	.LM106
+ 3511 03a8 0E        		.byte	0xe
+ 3512 03a9 00        		.byte	0x0
+ 3513 03aa 05        		.uleb128 0x5
+ 3514 03ab 02        		.byte	0x2
+ 3515 03ac 0000 0000 		.long	.LM107
+ 3516 03b0 1E        		.byte	0x1e
+ 3517 03b1 00        		.byte	0x0
+ 3518 03b2 05        		.uleb128 0x5
+ 3519 03b3 02        		.byte	0x2
+ 3520 03b4 0000 0000 		.long	.LM108
+ 3521 03b8 03        		.byte	0x3
+ 3522 03b9 EB7E      		.sleb128 -149
+ 3523 03bb 01        		.byte	0x1
+ 3524 03bc 00        		.byte	0x0
+ 3525 03bd 05        		.uleb128 0x5
+ 3526 03be 02        		.byte	0x2
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 64
+
+
+ 3527 03bf 0000 0000 		.long	.LM109
+ 3528 03c3 31        		.byte	0x31
+ 3529 03c4 00        		.byte	0x0
+ 3530 03c5 05        		.uleb128 0x5
+ 3531 03c6 02        		.byte	0x2
+ 3532 03c7 0000 0000 		.long	.LM110
+ 3533 03cb 8E        		.byte	0x8e
+ 3534 03cc 00        		.byte	0x0
+ 3535 03cd 05        		.uleb128 0x5
+ 3536 03ce 02        		.byte	0x2
+ 3537 03cf 0000 0000 		.long	.LM111
+ 3538 03d3 03        		.byte	0x3
+ 3539 03d4 E37E      		.sleb128 -157
+ 3540 03d6 01        		.byte	0x1
+ 3541 03d7 00        		.byte	0x0
+ 3542 03d8 05        		.uleb128 0x5
+ 3543 03d9 02        		.byte	0x2
+ 3544 03da 0000 0000 		.long	.LM112
+ 3545 03de C0        		.byte	0xc0
+ 3546 03df 00        		.byte	0x0
+ 3547 03e0 05        		.uleb128 0x5
+ 3548 03e1 02        		.byte	0x2
+ 3549 03e2 0000 0000 		.long	.LM113
+ 3550 03e6 17        		.byte	0x17
+ 3551 03e7 00        		.byte	0x0
+ 3552 03e8 05        		.uleb128 0x5
+ 3553 03e9 02        		.byte	0x2
+ 3554 03ea 0000 0000 		.long	.LM114
+ 3555 03ee 19        		.byte	0x19
+ 3556 03ef 00        		.byte	0x0
+ 3557 03f0 05        		.uleb128 0x5
+ 3558 03f1 02        		.byte	0x2
+ 3559 03f2 0000 0000 		.long	.LM115
+ 3560 03f6 16        		.byte	0x16
+ 3561 03f7 00        		.byte	0x0
+ 3562 03f8 05        		.uleb128 0x5
+ 3563 03f9 02        		.byte	0x2
+ 3564 03fa 0000 0000 		.long	.LM116
+ 3565 03fe 16        		.byte	0x16
+ 3566 03ff 00        		.byte	0x0
+ 3567 0400 05        		.uleb128 0x5
+ 3568 0401 02        		.byte	0x2
+ 3569 0402 0000 0000 		.long	.LM117
+ 3570 0406 1F        		.byte	0x1f
+ 3571 0407 00        		.byte	0x0
+ 3572 0408 05        		.uleb128 0x5
+ 3573 0409 02        		.byte	0x2
+ 3574 040a 0000 0000 		.long	.LM118
+ 3575 040e 1F        		.byte	0x1f
+ 3576 040f 00        		.byte	0x0
+ 3577 0410 05        		.uleb128 0x5
+ 3578 0411 02        		.byte	0x2
+ 3579 0412 0000 0000 		.long	.LM119
+ 3580 0416 17        		.byte	0x17
+ 3581 0417 00        		.byte	0x0
+ 3582 0418 05        		.uleb128 0x5
+ 3583 0419 02        		.byte	0x2
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 65
+
+
+ 3584 041a 0000 0000 		.long	.LM120
+ 3585 041e 03        		.byte	0x3
+ 3586 041f BB7E      		.sleb128 -197
+ 3587 0421 01        		.byte	0x1
+ 3588 0422 00        		.byte	0x0
+ 3589 0423 05        		.uleb128 0x5
+ 3590 0424 02        		.byte	0x2
+ 3591 0425 0000 0000 		.long	.LM121
+ 3592 0429 EA        		.byte	0xea
+ 3593 042a 00        		.byte	0x0
+ 3594 042b 05        		.uleb128 0x5
+ 3595 042c 02        		.byte	0x2
+ 3596 042d 0000 0000 		.long	.LM122
+ 3597 0431 2B        		.byte	0x2b
+ 3598 0432 00        		.byte	0x0
+ 3599 0433 05        		.uleb128 0x5
+ 3600 0434 02        		.byte	0x2
+ 3601 0435 0000 0000 		.long	.LM123
+ 3602 0439 21        		.byte	0x21
+ 3603 043a 00        		.byte	0x0
+ 3604 043b 05        		.uleb128 0x5
+ 3605 043c 02        		.byte	0x2
+ 3606 043d 0000 0000 		.long	.LM124
+ 3607 0441 1C        		.byte	0x1c
+ 3608 0442 00        		.byte	0x0
+ 3609 0443 05        		.uleb128 0x5
+ 3610 0444 02        		.byte	0x2
+ 3611 0445 0000 0000 		.long	.LM125
+ 3612 0449 28        		.byte	0x28
+ 3613 044a 00        		.byte	0x0
+ 3614 044b 05        		.uleb128 0x5
+ 3615 044c 02        		.byte	0x2
+ 3616 044d 0000 0000 		.long	.LM126
+ 3617 0451 16        		.byte	0x16
+ 3618 0452 00        		.byte	0x0
+ 3619 0453 05        		.uleb128 0x5
+ 3620 0454 02        		.byte	0x2
+ 3621 0455 0000 0000 		.long	.LM127
+ 3622 0459 19        		.byte	0x19
+ 3623 045a 00        		.byte	0x0
+ 3624 045b 05        		.uleb128 0x5
+ 3625 045c 02        		.byte	0x2
+ 3626 045d 0000 0000 		.long	.LM128
+ 3627 0461 1C        		.byte	0x1c
+ 3628 0462 00        		.byte	0x0
+ 3629 0463 05        		.uleb128 0x5
+ 3630 0464 02        		.byte	0x2
+ 3631 0465 0000 0000 		.long	.LM129
+ 3632 0469 16        		.byte	0x16
+ 3633 046a 00        		.byte	0x0
+ 3634 046b 05        		.uleb128 0x5
+ 3635 046c 02        		.byte	0x2
+ 3636 046d 0000 0000 		.long	.LM130
+ 3637 0471 17        		.byte	0x17
+ 3638 0472 00        		.byte	0x0
+ 3639 0473 05        		.uleb128 0x5
+ 3640 0474 02        		.byte	0x2
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 66
+
+
+ 3641 0475 0000 0000 		.long	.LM131
+ 3642 0479 26        		.byte	0x26
+ 3643 047a 00        		.byte	0x0
+ 3644 047b 05        		.uleb128 0x5
+ 3645 047c 02        		.byte	0x2
+ 3646 047d 0000 0000 		.long	.LM132
+ 3647 0481 15        		.byte	0x15
+ 3648 0482 00        		.byte	0x0
+ 3649 0483 05        		.uleb128 0x5
+ 3650 0484 02        		.byte	0x2
+ 3651 0485 0000 0000 		.long	.LM133
+ 3652 0489 1E        		.byte	0x1e
+ 3653 048a 00        		.byte	0x0
+ 3654 048b 05        		.uleb128 0x5
+ 3655 048c 02        		.byte	0x2
+ 3656 048d 0000 0000 		.long	.LM134
+ 3657 0491 16        		.byte	0x16
+ 3658 0492 00        		.byte	0x0
+ 3659 0493 05        		.uleb128 0x5
+ 3660 0494 02        		.byte	0x2
+ 3661 0495 0000 0000 		.long	.LM135
+ 3662 0499 16        		.byte	0x16
+ 3663 049a 00        		.byte	0x0
+ 3664 049b 05        		.uleb128 0x5
+ 3665 049c 02        		.byte	0x2
+ 3666 049d 0000 0000 		.long	.LM136
+ 3667 04a1 15        		.byte	0x15
+ 3668 04a2 00        		.byte	0x0
+ 3669 04a3 05        		.uleb128 0x5
+ 3670 04a4 02        		.byte	0x2
+ 3671 04a5 0000 0000 		.long	.LM137
+ 3672 04a9 21        		.byte	0x21
+ 3673 04aa 00        		.byte	0x0
+ 3674 04ab 05        		.uleb128 0x5
+ 3675 04ac 02        		.byte	0x2
+ 3676 04ad 0000 0000 		.long	.LM138
+ 3677 04b1 16        		.byte	0x16
+ 3678 04b2 00        		.byte	0x0
+ 3679 04b3 05        		.uleb128 0x5
+ 3680 04b4 02        		.byte	0x2
+ 3681 04b5 0000 0000 		.long	.LM139
+ 3682 04b9 16        		.byte	0x16
+ 3683 04ba 00        		.byte	0x0
+ 3684 04bb 05        		.uleb128 0x5
+ 3685 04bc 02        		.byte	0x2
+ 3686 04bd 0000 0000 		.long	.LM140
+ 3687 04c1 1D        		.byte	0x1d
+ 3688 04c2 00        		.byte	0x0
+ 3689 04c3 05        		.uleb128 0x5
+ 3690 04c4 02        		.byte	0x2
+ 3691 04c5 0000 0000 		.long	.LM141
+ 3692 04c9 15        		.byte	0x15
+ 3693 04ca 00        		.byte	0x0
+ 3694 04cb 05        		.uleb128 0x5
+ 3695 04cc 02        		.byte	0x2
+ 3696 04cd 0000 0000 		.long	.LM142
+ 3697 04d1 16        		.byte	0x16
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 67
+
+
+ 3698 04d2 00        		.byte	0x0
+ 3699 04d3 05        		.uleb128 0x5
+ 3700 04d4 02        		.byte	0x2
+ 3701 04d5 0000 0000 		.long	.LM143
+ 3702 04d9 17        		.byte	0x17
+ 3703 04da 00        		.byte	0x0
+ 3704 04db 05        		.uleb128 0x5
+ 3705 04dc 02        		.byte	0x2
+ 3706 04dd 0000 0000 		.long	.LM144
+ 3707 04e1 1F        		.byte	0x1f
+ 3708 04e2 00        		.byte	0x0
+ 3709 04e3 05        		.uleb128 0x5
+ 3710 04e4 02        		.byte	0x2
+ 3711 04e5 0000 0000 		.long	.LM145
+ 3712 04e9 29        		.byte	0x29
+ 3713 04ea 00        		.byte	0x0
+ 3714 04eb 05        		.uleb128 0x5
+ 3715 04ec 02        		.byte	0x2
+ 3716 04ed 0000 0000 		.long	.LM146
+ 3717 04f1 16        		.byte	0x16
+ 3718 04f2 00        		.byte	0x0
+ 3719 04f3 05        		.uleb128 0x5
+ 3720 04f4 02        		.byte	0x2
+ 3721 04f5 0000 0000 		.long	.LM147
+ 3722 04f9 17        		.byte	0x17
+ 3723 04fa 00        		.byte	0x0
+ 3724 04fb 05        		.uleb128 0x5
+ 3725 04fc 02        		.byte	0x2
+ 3726 04fd 0000 0000 		.long	.LM148
+ 3727 0501 17        		.byte	0x17
+ 3728 0502 00        		.byte	0x0
+ 3729 0503 05        		.uleb128 0x5
+ 3730 0504 02        		.byte	0x2
+ 3731 0505 0000 0000 		.long	.LM149
+ 3732 0509 15        		.byte	0x15
+ 3733 050a 00        		.byte	0x0
+ 3734 050b 05        		.uleb128 0x5
+ 3735 050c 02        		.byte	0x2
+ 3736 050d 0000 0000 		.long	.LM150
+ 3737 0511 15        		.byte	0x15
+ 3738 0512 00        		.byte	0x0
+ 3739 0513 05        		.uleb128 0x5
+ 3740 0514 02        		.byte	0x2
+ 3741 0515 0000 0000 		.long	.LM151
+ 3742 0519 17        		.byte	0x17
+ 3743 051a 00        		.byte	0x0
+ 3744 051b 05        		.uleb128 0x5
+ 3745 051c 02        		.byte	0x2
+ 3746 051d 0000 0000 		.long	.LM152
+ 3747 0521 16        		.byte	0x16
+ 3748 0522 00        		.byte	0x0
+ 3749 0523 05        		.uleb128 0x5
+ 3750 0524 02        		.byte	0x2
+ 3751 0525 0000 0000 		.long	.Letext0
+ 3752 0529 00        		.byte	0x0
+ 3753 052a 01        		.uleb128 0x1
+ 3754 052b 01        		.byte	0x1
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 68
+
+
+ 3755               	.LELT0:
+ 3756 052c 1600 0000 		.section	.debug_str,"MS",@progbits,1
+ 3756      0200 1000 
+ 3756      0000 0101 
+ 3756      FB0E 0A00 
+ 3756      0101 0101 
+ 3757               	.LASF35:
+ 3758 0000 6269 7472 		.string	"bitrate_div"
+ 3758      6174 655F 
+ 3758      6469 7600 
+ 3759               	.LASF41:
+ 3760 000c 6932 6347 		.string	"i2cGetStatus"
+ 3760      6574 5374 
+ 3760      6174 7573 
+ 3760      00
+ 3761               	.LASF11:
+ 3762 0019 4932 435F 		.string	"I2C_BUSY"
+ 3762      4255 5359 
+ 3762      00
+ 3763               	.LASF54:
+ 3764 0022 474E 5520 		.string	"GNU C 4.3.3"
+ 3764      4320 342E 
+ 3764      332E 3300 
+ 3765               	.LASF59:
+ 3766 002e 6932 6349 		.string	"i2cInit"
+ 3766      6E69 7400 
+ 3767               	.LASF55:
+ 3768 0036 6932 632E 		.string	"i2c.c"
+ 3768      6300 
+ 3769               	.LASF51:
+ 3770 003c 4932 6352 		.string	"I2cReceiveDataLength"
+ 3770      6563 6569 
+ 3770      7665 4461 
+ 3770      7461 4C65 
+ 3770      6E67 7468 
+ 3771               	.LASF31:
+ 3772 0051 6932 634D 		.string	"i2cMasterSend"
+ 3772      6173 7465 
+ 3772      7253 656E 
+ 3772      6400 
+ 3773               	.LASF8:
+ 3774 005f 7368 6F72 		.string	"short int"
+ 3774      7420 696E 
+ 3774      7400 
+ 3775               	.LASF26:
+ 3776 0069 6932 6353 		.string	"i2cSlaveRx_func"
+ 3776      6C61 7665 
+ 3776      5278 5F66 
+ 3776      756E 6300 
+ 3777               	.LASF43:
+ 3778 0079 6932 6347 		.string	"i2cGetGenCall"
+ 3778      6574 4765 
+ 3778      6E43 616C 
+ 3778      6C00 
+ 3779               	.LASF33:
+ 3780 0087 6461 7461 		.string	"data"
+ 3780      00
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 69
+
+
+ 3781               	.LASF45:
+ 3782 008c 4932 6344 		.string	"I2cDeviceAddrRW"
+ 3782      6576 6963 
+ 3782      6541 6464 
+ 3782      7252 5700 
+ 3783               	.LASF53:
+ 3784 009c 6932 6353 		.string	"i2cSlaveTransmit"
+ 3784      6C61 7665 
+ 3784      5472 616E 
+ 3784      736D 6974 
+ 3784      00
+ 3785               	.LASF42:
+ 3786 00ad 6932 6347 		.string	"i2cGetState"
+ 3786      6574 5374 
+ 3786      6174 6500 
+ 3787               	.LASF36:
+ 3788 00b9 7265 7476 		.string	"retval"
+ 3788      616C 00
+ 3789               	.LASF48:
+ 3790 00c0 4932 6353 		.string	"I2cSendDataLength"
+ 3790      656E 6444 
+ 3790      6174 614C 
+ 3790      656E 6774 
+ 3790      6800 
+ 3791               	.LASF16:
+ 3792 00d2 6549 3263 		.string	"eI2cStateType"
+ 3792      5374 6174 
+ 3792      6554 7970 
+ 3792      6500 
+ 3793               	.LASF23:
+ 3794 00e0 6465 7669 		.string	"deviceAddr"
+ 3794      6365 4164 
+ 3794      6472 00
+ 3795               	.LASF28:
+ 3796 00eb 6932 6353 		.string	"i2cSlaveTx_func"
+ 3796      6C61 7665 
+ 3796      5478 5F66 
+ 3796      756E 6300 
+ 3797               	.LASF21:
+ 3798 00fb 6932 6353 		.string	"i2cSetLocalDeviceAddr"
+ 3798      6574 4C6F 
+ 3798      6361 6C44 
+ 3798      6576 6963 
+ 3798      6541 6464 
+ 3799               	.LASF57:
+ 3800 0111 6932 6353 		.string	"i2cSendByte"
+ 3800      656E 6442 
+ 3800      7974 6500 
+ 3801               	.LASF5:
+ 3802 011d 6C6F 6E67 		.string	"long long int"
+ 3802      206C 6F6E 
+ 3802      6720 696E 
+ 3802      7400 
+ 3803               	.LASF12:
+ 3804 012b 4932 435F 		.string	"I2C_MASTER_TX"
+ 3804      4D41 5354 
+ 3804      4552 5F54 
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 70
+
+
+ 3804      5800 
+ 3805               	.LASF3:
+ 3806 0139 6C6F 6E67 		.string	"long int"
+ 3806      2069 6E74 
+ 3806      00
+ 3807               	.LASF18:
+ 3808 0142 6932 6357 		.string	"i2cWaitForComplete"
+ 3808      6169 7446 
+ 3808      6F72 436F 
+ 3808      6D70 6C65 
+ 3808      7465 00
+ 3809               	.LASF60:
+ 3810 0155 4765 6E43 		.string	"GenCal_Flag"
+ 3810      616C 5F46 
+ 3810      6C61 6700 
+ 3811               	.LASF58:
+ 3812 0161 6932 6347 		.string	"i2cGetReceivedByte"
+ 3812      6574 5265 
+ 3812      6365 6976 
+ 3812      6564 4279 
+ 3812      7465 00
+ 3813               	.LASF14:
+ 3814 0174 4932 435F 		.string	"I2C_SLAVE_TX"
+ 3814      534C 4156 
+ 3814      455F 5458 
+ 3814      00
+ 3815               	.LASF27:
+ 3816 0181 6932 6353 		.string	"i2cSetSlaveTransmitHandler"
+ 3816      6574 536C 
+ 3816      6176 6554 
+ 3816      7261 6E73 
+ 3816      6D69 7448 
+ 3817               	.LASF39:
+ 3818 019c 5F5F 7665 		.string	"__vector_24"
+ 3818      6374 6F72 
+ 3818      5F32 3400 
+ 3819               	.LASF30:
+ 3820 01a8 6163 6B46 		.string	"ackFlag"
+ 3820      6C61 6700 
+ 3821               	.LASF49:
+ 3822 01b0 4932 6352 		.string	"I2cReceiveData"
+ 3822      6563 6569 
+ 3822      7665 4461 
+ 3822      7461 00
+ 3823               	.LASF32:
+ 3824 01bf 6C65 6E67 		.string	"length"
+ 3824      7468 00
+ 3825               	.LASF50:
+ 3826 01c6 4932 6352 		.string	"I2cReceiveDataIndex"
+ 3826      6563 6569 
+ 3826      7665 4461 
+ 3826      7461 496E 
+ 3826      6465 7800 
+ 3827               	.LASF1:
+ 3828 01da 756E 7369 		.string	"unsigned char"
+ 3828      676E 6564 
+ 3828      2063 6861 
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 71
+
+
+ 3828      7200 
+ 3829               	.LASF34:
+ 3830 01e8 6932 634D 		.string	"i2cMasterReceive"
+ 3830      6173 7465 
+ 3830      7252 6563 
+ 3830      6569 7665 
+ 3830      00
+ 3831               	.LASF29:
+ 3832 01f9 6932 6352 		.string	"i2cReceiveByte"
+ 3832      6563 6569 
+ 3832      7665 4279 
+ 3832      7465 00
+ 3833               	.LASF0:
+ 3834 0208 7369 676E 		.string	"signed char"
+ 3834      6564 2063 
+ 3834      6861 7200 
+ 3835               	.LASF6:
+ 3836 0214 6C6F 6E67 		.string	"long long unsigned int"
+ 3836      206C 6F6E 
+ 3836      6720 756E 
+ 3836      7369 676E 
+ 3836      6564 2069 
+ 3837               	.LASF2:
+ 3838 022b 756E 7369 		.string	"unsigned int"
+ 3838      676E 6564 
+ 3838      2069 6E74 
+ 3838      00
+ 3839               	.LASF52:
+ 3840 0238 6932 6353 		.string	"i2cSlaveReceive"
+ 3840      6C61 7665 
+ 3840      5265 6365 
+ 3840      6976 6500 
+ 3841               	.LASF7:
+ 3842 0248 7368 6F72 		.string	"short unsigned int"
+ 3842      7420 756E 
+ 3842      7369 676E 
+ 3842      6564 2069 
+ 3842      6E74 00
+ 3843               	.LASF20:
+ 3844 025b 6932 6353 		.string	"i2cSetBitrate"
+ 3844      6574 4269 
+ 3844      7472 6174 
+ 3844      6500 
+ 3845               	.LASF40:
+ 3846 0269 7374 6174 		.string	"status"
+ 3846      7573 00
+ 3847               	.LASF9:
+ 3848 0270 6368 6172 		.string	"char"
+ 3848      00
+ 3849               	.LASF47:
+ 3850 0275 4932 6353 		.string	"I2cSendDataIndex"
+ 3850      656E 6444 
+ 3850      6174 6149 
+ 3850      6E64 6578 
+ 3850      00
+ 3851               	.LASF56:
+ 3852 0286 443A 5C4D 		.string	"D:\\Michael_Reiser\\Xmega_C_V13\\Panel_4Xemga_preload"
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 72
+
+
+ 3852      6963 6861 
+ 3852      656C 5F52 
+ 3852      6569 7365 
+ 3852      725C 586D 
+ 3853               	.LASF4:
+ 3854 02b9 6C6F 6E67 		.string	"long unsigned int"
+ 3854      2075 6E73 
+ 3854      6967 6E65 
+ 3854      6420 696E 
+ 3854      7400 
+ 3855               	.LASF37:
+ 3856 02cb 6932 634D 		.string	"i2cMasterSendNI"
+ 3856      6173 7465 
+ 3856      7253 656E 
+ 3856      644E 4900 
+ 3857               	.LASF44:
+ 3858 02db 4932 6353 		.string	"I2cState"
+ 3858      7461 7465 
+ 3858      00
+ 3859               	.LASF22:
+ 3860 02e4 6269 7472 		.string	"bitrateKHz"
+ 3860      6174 654B 
+ 3860      487A 00
+ 3861               	.LASF13:
+ 3862 02ef 4932 435F 		.string	"I2C_MASTER_RX"
+ 3862      4D41 5354 
+ 3862      4552 5F52 
+ 3862      5800 
+ 3863               	.LASF46:
+ 3864 02fd 4932 6353 		.string	"I2cSendData"
+ 3864      656E 6444 
+ 3864      6174 6100 
+ 3865               	.LASF17:
+ 3866 0309 6932 6353 		.string	"i2cSendStart"
+ 3866      656E 6453 
+ 3866      7461 7274 
+ 3866      00
+ 3867               	.LASF25:
+ 3868 0316 6932 6353 		.string	"i2cSetSlaveReceiveHandler"
+ 3868      6574 536C 
+ 3868      6176 6552 
+ 3868      6563 6569 
+ 3868      7665 4861 
+ 3869               	.LASF10:
+ 3870 0330 4932 435F 		.string	"I2C_IDLE"
+ 3870      4944 4C45 
+ 3870      00
+ 3871               	.LASF15:
+ 3872 0339 4932 435F 		.string	"I2C_SLAVE_RX"
+ 3872      534C 4156 
+ 3872      455F 5258 
+ 3872      00
+ 3873               	.LASF19:
+ 3874 0346 6932 6353 		.string	"i2cSendStop"
+ 3874      656E 6453 
+ 3874      746F 7000 
+ 3875               	.LASF24:
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 73
+
+
+ 3876 0352 6765 6E43 		.string	"genCallEn"
+ 3876      616C 6C45 
+ 3876      6E00 
+ 3877               	.LASF38:
+ 3878 035c 6932 634D 		.string	"i2cMasterReceiveNI"
+ 3878      6173 7465 
+ 3878      7252 6563 
+ 3878      6569 7665 
+ 3878      4E49 00
+ 3879               	.global __do_clear_bss
+GAS LISTING C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s 			page 74
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 i2c.c
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:2      *ABS*:0000003f __SREG__
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:3      *ABS*:0000003e __SP_H__
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:4      *ABS*:0000003d __SP_L__
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:5      *ABS*:00000034 __CCP__
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:18     .text:00000000 i2cSetBitrate
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:68     .text:0000004a i2cInit
+                            *COM*:00000001 GenCal_Flag
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1065   .bss:00000046 i2cSlaveReceive
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1066   .bss:00000048 i2cSlaveTransmit
+                             .bss:00000000 I2cState
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:115    .text:00000086 i2cSetLocalDeviceAddr
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:137    .text:00000096 i2cSetSlaveReceiveHandler
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:153    .text:000000a0 i2cSetSlaveTransmitHandler
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:169    .text:000000aa i2cSendStart
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:188    .text:000000b8 i2cSendStop
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:207    .text:000000c6 i2cWaitForComplete
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:224    .text:000000d0 i2cSendByte
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:247    .text:000000e2 i2cReceiveByte
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:276    .text:000000fe i2cGetReceivedByte
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:290    .text:00000104 i2cGetStatus
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:304    .text:0000010a i2cMasterSend
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1058   .bss:00000001 I2cDeviceAddrRW
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1059   .bss:00000002 I2cSendData
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1060   .bss:00000022 I2cSendDataIndex
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1061   .bss:00000023 I2cSendDataLength
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:360    .text:0000014a i2cMasterReceive
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1063   .bss:00000044 I2cReceiveDataIndex
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1064   .bss:00000045 I2cReceiveDataLength
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1062   .bss:00000024 I2cReceiveData
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:421    .text:00000192 i2cMasterSendNI
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:544    .text:00000220 i2cMasterReceiveNI
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:689    .text:000002c0 __vector_24
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1033   .text:0000052c i2cGetState
+C:\Users\liujin\AppData\Local\Temp/ccYXlLWd.s:1047   .text:00000532 i2cGetGenCall
+
+UNDEFINED SYMBOLS
+__divmodsi4
+__do_clear_bss
