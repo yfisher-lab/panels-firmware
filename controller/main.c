@@ -2201,7 +2201,10 @@ Reg_Handler(increment_index_y, UPDATE_RATE, 3, 0); // the countdown is fast unti
 													//by the Update_display interupt.
 if(!default_func_x && !default_func_y && functionX_rate == functionY_rate){ 
 	//We want to synchronize function X and function Y updates in this case	
-}													
+	sync_XY_func = 1;
+	update_funcCnt_xy();
+	Reg_Handler(update_funcCnt_xy, functionX_rate, 4, 1);
+else{													
 													
 if (default_func_x)
 	Reg_Handler(update_funcCnt_x, functionX_rate, 4, 0);
@@ -2215,6 +2218,6 @@ else{
 	update_funcCnt_y();//add this because the function cnt is updated without delay
 	Reg_Handler(update_funcCnt_y, functionY_rate, 5, 1); 					
 	}
-
+}
 xputs(PSTR("Int3 catches a rising edge trigger!\n"));
 }
