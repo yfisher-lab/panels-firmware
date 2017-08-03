@@ -2186,7 +2186,6 @@ void dump_mat(void) {
 
 ISR(PORTK_INT0_vect)
 {
-
 //set these to zero so that start at beginning of function - useful for putting in a set amount of expansion
 func_read_index_x = 0;
 func_read_index_y = 0;
@@ -2200,6 +2199,10 @@ Reg_Handler(Update_display, UPDATE_RATE, 1, 1);
 Reg_Handler(increment_index_x, UPDATE_RATE, 2, 0); //initilize the 2 and 3 priority interupts to a fast rate so that
 Reg_Handler(increment_index_y, UPDATE_RATE, 3, 0); // the countdown is fast until the setting of the next rate
 													//by the Update_display interupt.
+if(!default_func_x && !default_func_y && functionX_rate == functionY_rate){ 
+	//We want to synchronize function X and function Y updates in this case	
+}													
+													
 if (default_func_x)
 	Reg_Handler(update_funcCnt_x, functionX_rate, 4, 0);
 else{
