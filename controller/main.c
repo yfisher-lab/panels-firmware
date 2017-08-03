@@ -2199,11 +2199,14 @@ Reg_Handler(Update_display, UPDATE_RATE, 1, 1);
 Reg_Handler(increment_index_x, UPDATE_RATE, 2, 0); //initilize the 2 and 3 priority interupts to a fast rate so that
 Reg_Handler(increment_index_y, UPDATE_RATE, 3, 0); // the countdown is fast until the setting of the next rate
 													//by the Update_display interupt.
-if(!default_func_x && !default_func_y && functionX_rate == functionY_rate){ 
+													
+// Logic added to have x and y sychronization enabled for external trigger mode	- yf 8/17												
+if(!default_func_x && !default_func_y && functionX_rate == functionY_rate){
 	//We want to synchronize function X and function Y updates in this case	
 	sync_XY_func = 1;
 	update_funcCnt_xy();
 	Reg_Handler(update_funcCnt_xy, functionX_rate, 4, 1);
+}
 else{													
 													
 if (default_func_x)
