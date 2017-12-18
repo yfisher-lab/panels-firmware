@@ -25,7 +25,7 @@ uint8_t  usePreloadedPattern = 0;
 
 uint16_t x_num, y_num;  //the max index for x and y
 volatile uint16_t index_x, index_y; // the current index of x and y
-volatile uint16_t start_ADC_2 = 0; // ADDED BY JL: the initial ADC2 value when pattern is started
+uint16_t start_ADC_2; // ADDED BY JL: the initial ADC2 value when pattern is started
 uint8_t  gs_value, bytes_per_panel_frame, row_compress, ident_compress;
 uint8_t  num_panels = 0;
 uint8_t  x_mode, y_mode;
@@ -1050,7 +1050,7 @@ void fetch_display_frame(uint16_t f_num, uint16_t Xindex, uint16_t Yindex){
 
 }
 
-void update_display(void) {
+void Update_display(void) {
     int16_t X_rate = 0;
     int16_t Y_rate = 0;
     int16_t X_ADC1, Y_ADC1, X_ADC2, Y_ADC2;
@@ -1100,14 +1100,15 @@ void update_display(void) {
 	        X_ADC2 = analogRead(2);  //X_ADC2 ranges from 0-4095 (12bit ADC) when input 0-10V
 	        if (X_ADC2>resolution_x) {X_ADC2 = resolution_x;}
 
-	        X_ADC2 = (X_ADC2 - start_ADC_2 + resolution_x + 1) % (resolution_x + 1); // ADDED BY JL: reset according to initial starting ADC2
-	        
+	        X_ADC2 = (X_ADC2 - start_ADC_2 + resolution_x + 1) - (resolution_x + 1)*((X_ADC2 - start_ADC_2 + resolution_x + 1)/(resolution_x + 1)); // ADDED BY JL: reset according to initial starting ADC2
+	        //xprintf(PSTR("value of adc2 new is %d \n"), X_ADC2);
+            //xprintf(PSTR("value of adc2 start is %d \n"), start_ADC_2);
 			//calculate the index_x                                               
 			temp_index_x = ((int32_t)X_ADC2 * x_num * 2 + resolution_x) / ((int32_t) resolution_x * 2) - 1;
 				
             if (temp_index_x >= x_num)  {temp_index_x = x_num - 1;} //check if too big
             if (temp_index_x <= 0)  {temp_index_x = 0;} //or too small
-			index_x = index_x + temp_index_x;
+			index_x = temp_index_x + X_pos_index; // MODIFIED ADDED BY JL
 			
             frame_num = index_y*x_num + index_x;
             X_rate = 0;	
