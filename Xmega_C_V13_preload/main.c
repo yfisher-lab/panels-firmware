@@ -1109,7 +1109,8 @@ void Update_display(void) {
             if (temp_index_x >= x_num)  {temp_index_x = x_num - 1;} //check if too big
             if (temp_index_x <= 0)  {temp_index_x = 0;} //or too small
 			index_x = temp_index_x + X_pos_index; // MODIFIED ADDED BY JL
-			
+			if (index_x > x_num) {index_x = index_x - x_num;}
+
             frame_num = index_y*x_num + index_x;
             X_rate = 0;	
 			break;
