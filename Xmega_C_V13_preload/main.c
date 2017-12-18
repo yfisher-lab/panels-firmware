@@ -25,6 +25,7 @@ uint8_t  usePreloadedPattern = 0;
 
 uint16_t x_num, y_num;  //the max index for x and y
 volatile uint16_t index_x, index_y; // the current index of x and y
+volatile uint16_t start_ADC_2 = 0; // ADDED BY JL: the initial ADC2 value when pattern is started
 uint8_t  gs_value, bytes_per_panel_frame, row_compress, ident_compress;
 uint8_t  num_panels = 0;
 uint8_t  x_mode, y_mode;
@@ -384,6 +385,7 @@ void handle_message_length_1(uint8_t *msg_buffer) {
 			next_block_x = 1;
 			next_block_y = 1;
             display_flag = 0;  //clear the display flag
+            start_ADC_2 = analogRead(2); // ADDED BY JL: record the value of ADC2
             Reg_Handler(Update_display, UPDATE_RATE, 1, 1);
             Reg_Handler(increment_index_x, UPDATE_RATE, 2, 0); //initilize the 2 and 3 priority interupts to a fast rate so that
             Reg_Handler(increment_index_y, UPDATE_RATE, 3, 0); // the countdown is fast until the setting of the next rate
@@ -442,6 +444,7 @@ void handle_message_length_1(uint8_t *msg_buffer) {
 			func_read_index_y = 0;
             Stop = 0;
             display_flag = 0;  //clear the display flag
+            start_ADC_2 = analogRead(2); // ADDED BY JL: record the value of ADC2
             Reg_Handler(Update_display, UPDATE_RATE, 1, 1);
             Reg_Handler(increment_index_x, UPDATE_RATE, 2, 0);
             Reg_Handler(increment_index_y, UPDATE_RATE, 3, 0);
@@ -1047,7 +1050,7 @@ void fetch_display_frame(uint16_t f_num, uint16_t Xindex, uint16_t Yindex){
 
 }
 
-void Update_display(void) {
+void update_display(void) {
     int16_t X_rate = 0;
     int16_t Y_rate = 0;
     int16_t X_ADC1, Y_ADC1, X_ADC2, Y_ADC2;
@@ -1063,29 +1066,48 @@ void Update_display(void) {
             X_rate = ((X_val*gain_x)/10 + 5*bias_x)/2;
             break;
         case 1: //closed loop, use CH0 - CH1 to set x rate
-            X_ADC1 = analogRead(0)/4;  // 1 volt = 102 frames/sec
+            X_ADC1 = analogRead(0)/4;  X_ADC2 = analogRead(1)/4; // 1 volt = 102 frames/sec
+            // set to 0 if negative to be compatibel with old code
+            if (X_ADC1 < 0)
+                X_ADC1 = 0;
+            if (X_ADC2 < 0)
+                X_ADC2 = 0;
             temp_ADC_val = X_val; //the previous value
-            X_val = ( 6*temp_ADC_val + 4*X_ADC1 )/10;   //this is a 60% old value, 40% new value smoother
+            X_val = ( 6*temp_ADC_val + 4*(X_ADC1 - X_ADC2) )/10;   //this is a 60% old value, 40% new value smoother
             X_rate = (int16_t)((int32_t)(X_val*gain_x)/10 + 5*bias_x)/2;  //X_val can go as high as 4095, gain_x 100fiu and bias_x 250
+            
+            //set a frame rate limit 256fps
+            if (X_rate >256)
+                X_rate = 256;
+            else if (X_rate < -256)
+                X_rate = -256;
+            
             break;
-        case 2: //closed loop w bias - use CH0 - CH1, and function gen. to set x rate
-            X_ADC1 = analogRead(0)/4; // 1 volt = 102
+	case 2: //closed loop w bias - use CH0 - CH1, and function gen. to set x rate
+            X_ADC1 = analogRead(0)/4;  X_ADC2 = analogRead(1)/4; // 1 volt = 102
+            // set to 0 if negative to be compatibel with old code
+            if (X_ADC1 < 0)
+                X_ADC1 = 0;
+            if (X_ADC2 < 0)
+                X_ADC2 = 0;
             temp_ADC_val = X_val; //the previous value
-            X_val = ( 6*temp_ADC_val + 4*X_ADC1 )/10;   //this is a 60% old value, 40% new value smoother
+            X_val = ( 6*temp_ADC_val + 4*(X_ADC1 - X_ADC2) )/10;   //this is a 60% old value, 40% new value smoother
             //add in the bias to CL mode on ch X
             X_rate = (int16_t)((int32_t)(X_val*gain_x)/10 + 2*function_X[func_read_index_x] + 5*bias_x)/2;
             break;
-        case 3: // POS mode, use CH2 to set the frame position (pos ctrl, not vel ctrl)
-	        X_ADC2 = analogRead(2);  //X_ADC2 ranges from 0-4095 (12bit ADC) when input 0-10V
+    case 3: // POS mode, use CH2 to set the frame position (pos ctrl, not vel ctrl)
 
-			if (X_ADC2>resolution_x) {X_ADC2 = resolution_x;}
-			
+	        X_ADC2 = analogRead(2);  //X_ADC2 ranges from 0-4095 (12bit ADC) when input 0-10V
+	        if (X_ADC2>resolution_x) {X_ADC2 = resolution_x;}
+
+	        X_ADC2 = (X_ADC2 - start_ADC_2 + resolution_x + 1) % (resolution_x + 1); // ADDED BY JL: reset according to initial starting ADC2
+	        
 			//calculate the index_x                                               
 			temp_index_x = ((int32_t)X_ADC2 * x_num * 2 + resolution_x) / ((int32_t) resolution_x * 2) - 1;
 				
             if (temp_index_x >= x_num)  {temp_index_x = x_num - 1;} //check if too big
             if (temp_index_x <= 0)  {temp_index_x = 0;} //or too small
-			index_x = temp_index_x;
+			index_x = index_x + temp_index_x;
 			
             frame_num = index_y*x_num + index_x;
             X_rate = 0;	
