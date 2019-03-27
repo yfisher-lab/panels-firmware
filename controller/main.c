@@ -451,11 +451,12 @@ void handle_message_length_1(uint8_t *msg_buffer) {
 			
 			if(!default_func_x && !default_func_y && functionX_rate == functionY_rate){ 
 				//We want to synchronize function X and function Y updates in this case
+				sync_XY_func = 1;
 				update_funcCnt_xy();
-				Reg_Handler(update_funcCnt_xy, functionX_rate, 4, 1);
+				Reg_Handler(update_funcCnt_xy, functionX_rate, 4, 1);	
 				
 			}else{
-																
+				sync_XY_func = 0;												
 				if (default_func_x)
 					Reg_Handler(update_funcCnt_x, functionX_rate, 4, 0);
 				else{
